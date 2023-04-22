@@ -1,3 +1,5 @@
-function Saludar (){
-    console.log("Hola grupo de PF");
-}
+
+function laCajaDePandora(numero){
+    // proximamente escribiremos codigo aqui
+    }
+
