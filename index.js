@@ -3,5 +3,5 @@ function laCajaDePandora(numero){
     }
 
     function creadaxHefesto(){
-
+        //agregando cositas
     }
