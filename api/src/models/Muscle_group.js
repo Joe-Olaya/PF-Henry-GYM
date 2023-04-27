@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('User', {
+  sequelize.define('Muscle_group', {
 
     name: {
       type: DataTypes.STRING,
@@ -16,22 +16,6 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: true
     }, 
-
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-
-    adress: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    userType:{
-      type: DataTypes.ENUM("Manager", "Client"),
-      allowNull: true
-    }
 
 
 });
