@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('User', {
 
-    name: {
+    name_Ex: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -16,22 +16,6 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: true
     }, 
-
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-
-    adress: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    userType:{
-      type: DataTypes.ENUM("Manager", "Client"),
-      allowNull: true
-    }
 
 
 });
