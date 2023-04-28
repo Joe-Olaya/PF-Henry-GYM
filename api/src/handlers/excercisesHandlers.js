@@ -10,6 +10,17 @@ const getExcercisesHandler = async (req,res) => {
     }
 };
 
+const getExecercisesByIdHandler = async (req,res) => {
+    const {id} = req.params
+    try {
+        const results = await searchExcerciseById(id);
+        res.status(200).json(results)
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    }
+};
+
 module.exports = {
     getExcercisesHandler,
+    getExecercisesByIdHandler
 }
