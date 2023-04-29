@@ -4,14 +4,7 @@
 @tailwind utilities;
 
 :root {
-  --font-base: "Cormorant Upright", serif;
-  --font-alt: "Open Sans", sans-serif;
-
-  --color-golden: #dcca87;
   --color-black: #0c0c0c;
-  --color-gray: #545454;
-  --color-crimson: #f5efdb;
-  --color-grey: #aaaaaa;
   --color-white: #ffffff;
 }
 
