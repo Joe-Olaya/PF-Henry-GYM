@@ -1,0 +1,23 @@
+.app__header {
+  background-image: url("../../assets/background.jpg");
+  background-size:cover
+}
+
+.app_titleimg{
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+.app_titleimg img {
+  width: 80%;
+}
+
+
+
+.app__header-img img {
+  width: 80%;
+}
