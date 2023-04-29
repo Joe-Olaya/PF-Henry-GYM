@@ -74,7 +74,7 @@ const CardsContainer = () => {
           "repeticiones": 10,
           "imagen_url": "https://www.pngmart.com/files/21/Gym-Silhoutte-PNG-Photo.png"
         }
-    ]; // array de prueba
+    ]; // array de prueba para renderizar
 
 return(
     <div>
