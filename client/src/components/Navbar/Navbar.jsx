@@ -12,18 +12,18 @@ const Navbar = () => {
         <img src={images.logoy} alt="app__logo" />
       </div>
       <ul className="app__navbar-links">
-        <li className="p__opensans">
+        {/* <li className="p__opensans">
           <a href="#home">Home</a>
-        </li>
+        </li> */}
         <li className="p__opensans">
           <a href="#services">Services</a>
         </li>
-        <li className="p__opensans">
+        {/* <li className="p__opensans">
           <a href="#blog">Blog</a>
-        </li>
-        <li className="p__opensans">
+        </li> */}
+        {/* <li className="p__opensans">
           <a href="#gallery">Store</a>
-        </li>
+        </li> */}
         <li className="p__opensans">
           <a href="#contact">Contact</a>
         </li>
@@ -52,16 +52,16 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                {/* <a href="#home" onClick={() => setToggleMenu(false)}>
                   Home
-                </a>
+                </a> */}
               </li>
               <li>
                 <a href="#services" onClick={() => setToggleMenu(false)}>
                   Services
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#blog" onClick={() => setToggleMenu(false)}>
                   Blog
                 </a>
@@ -70,7 +70,7 @@ const Navbar = () => {
                 <a href="#gallery" onClick={() => setToggleMenu(false)}>
                   Store
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="#contact" onClick={() => setToggleMenu(false)}>
                   Contact
