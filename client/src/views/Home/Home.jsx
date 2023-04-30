@@ -1,6 +1,6 @@
 import "./Home.css";
 
-const Home = () => {
+export const Home = () => {
   return (
     <div className="div_container">
       <div className="div_container_exercises">
@@ -81,4 +81,3 @@ const Home = () => {
   );
 };
 
-export default Home;
