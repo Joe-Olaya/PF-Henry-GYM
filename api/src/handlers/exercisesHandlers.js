@@ -1,9 +1,10 @@
-const {searchExcerciseByName, getAllExcercises} = require("../controllers/excercisesControllers")
+const {searchExerciseByName, getAllExercises, searchExerciseById} = require("../controllers/exercisesControllers")
 
-const getExcercisesHandler = async (req,res) => {
+
+const getExercisesHandler = async (req,res) => {
     const {name} = req.query
     try {
-        const results = name ? await searchExcerciseByName(name) : await getAllExcercises();
+        const results = name ? await searchExerciseByName(name) : await getAllExercises();
         res.status(200).json(results)
     } catch (error) {
         res.status(400).json({error:error.message});
@@ -13,7 +14,7 @@ const getExcercisesHandler = async (req,res) => {
 const getExecercisesByIdHandler = async (req,res) => {
     const {id} = req.params
     try {
-        const results = await searchExcerciseById(id);
+        const results = await searchExerciseById(id);
         res.status(200).json(results)
     } catch (error) {
         res.status(400).json({error:error.message});
@@ -21,6 +22,6 @@ const getExecercisesByIdHandler = async (req,res) => {
 };
 
 module.exports = {
-    getExcercisesHandler,
+    getExercisesHandler,
     getExecercisesByIdHandler
 }

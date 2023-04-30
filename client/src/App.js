@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Services, Header } from "./container";
-import { Navbar, Contact } from "./components";
+import { Services, Header, Footer } from "./container";
+import { Navbar, Contact,  } from "./components";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -14,6 +14,7 @@ const App = () => (
           <Navbar />
           <Header />
           <Services />
+          <Footer />
         </div>
       }
     />

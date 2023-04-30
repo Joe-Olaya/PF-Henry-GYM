@@ -3,12 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('User', {
-
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+  sequelize.define('user', {
 
     id: {
         type: DataTypes.INTEGER,
@@ -16,6 +11,22 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: true
     }, 
+
+    dni: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
 
     email: {
         type: DataTypes.STRING,
@@ -29,7 +40,7 @@ module.exports = (sequelize) => {
     },
 
     userType:{
-      type: DataTypes.ENUM("Manager", "Client"),
+      type: DataTypes.ENUM("Manager", "Client", "Trainer", "Usersadminister"),
       allowNull: true
     }
 
