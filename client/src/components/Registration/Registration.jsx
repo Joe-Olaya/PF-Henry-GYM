@@ -1,26 +1,95 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import {Formik} from "formik"
 
 const Registration =()=>{
 return (
-  <div className="bg-white 'px-10' px-20">
+  <div className="w-11/12 max-w-[700px] px-10 py-20 rounded-3xl  border-gray-100">
   <h1 className="text-5xl font-semibold mt-4 ">REGISTRATION</h1>
+  <Formik 
+  initialValues={{
+    name:'',
+    lastname:'',
+    email:'',
+    phone: '',
+    password:'',
 
-    <form className="mt-8">
+  }
+  }
+  validate={(valores)=>{
+let errors={};
+if(!valores.name){
+  errors.name= 'UN MESAJE EN INGLES'
+} else if (!/^[a-zA-ZÀ-ÿ\s]{1,20}$/.test(valores.name)){
+  errors.name ='el nombre solo puede tener letras y espacios '
+
+}
+ return errors
+
+
+
+  }}
+  onSubmit={(valores)=>{
+    console.log(valores)
+    console.log('FORMULARIO ENVIADO')
+
+  }} 
+
+  >
+    {({values,errors,handleSubmit,handleChange,handleBlur})=>(
+    <form className="mt-8" onSubmit={handleSubmit}>
       <div className="text-lg font-medium">
         <label htmlFor="name">Name</label>
-        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"type="text" id="name" name="name" placeholder="name" />
+        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"
+        type="text" 
+        id="name" 
+        name="name" 
+        placeholder="name" 
+        value={values.name}
+        onChange={handleChange}
+        onBlur={handleBlur} 
+        />
+        {errors.name && <did className='error'>{errors.name}</did>}
       </div>
       <div className="text-lg font-medium">
         <label htmlFor="last name"> Last Name</label>
-        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"type="text" id="last name" name="last name" placeholder=" last name" />
+        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"
+        type="text" 
+        id="lastname" 
+        name="lastname" 
+        placeholder=" lastname" 
+        value={values.lastname}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        
+        
+        />
       </div>
       <div className="text-lg font-medium">
         <label htmlFor="email">Email</label>
-        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent" type="email" id="email" name="email" placeholder="email" />
+        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent" 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="email" 
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        
+        />
       </div >
       <div className="text-lg font-medium">
         <label htmlFor="phone">Phone</label>
-        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"type="number" id="phone" name="phone" placeholder="phone" />
+        <input className="w-full border-2 border-gray rounded-xl p-4 mt-1 bg-transparent"
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        placeholder="phone" 
+        value={values.phone}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        
+        />
       </div>
       <div className="text-lg font-medium">
         <label htmlFor="password">Password</label>
@@ -29,6 +98,9 @@ return (
           id="password"
           name="password"
           placeholder="password"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
       </div>
       
@@ -54,7 +126,16 @@ return (
                             Sign in with Google
                     </button>
       </div>
+      <div className='mt-8 flex justify-center items-center'>
+                    <p className='font-medium text-base'>Don't have an account?</p>
+                    <Link to="/">
+                    <button 
+                       
+                        className='ml-2 font-medium text-base text-yellow-500'>Sign up</button></Link>
+                </div>
     </form>
+    )}
+    </Formik>
   </div>
 );
 
