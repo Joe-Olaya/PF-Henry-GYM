@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
     }, 
 
     dni: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
 
