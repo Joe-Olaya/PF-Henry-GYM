@@ -6,7 +6,7 @@ import "./Services.css";
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
 const Services = () => (
 
-<section className="hero-section">
+<section className="hero-section" id="services">
   <div className="card-grid">
     <a className="card" href="#">
       <div className="card__background1"></div>
