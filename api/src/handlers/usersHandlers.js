@@ -1,4 +1,4 @@
-const { getUserByDNI, createUser } = require('../controllers/usersControllers')
+const { getUserByDNI, createUser, getAllUsers } = require('../controllers/usersControllers')
 
 
 
@@ -22,7 +22,17 @@ const registerUserHandler = async (req,res) =>{
     }
 }
 
+const getAllUsersHandler = async (req,res) => {
+    try {
+        const results = getAllUsers()
+        res.status(200).json({results})
+    } catch (error) {
+        res.status(400).json({error:error})
+    }
+}
+
 module.exports = {
     loginUserHandler,
     registerUserHandler,
+    getAllUsersHandler
 }
