@@ -8,7 +8,7 @@ const Services = () => (
 
 <section className="hero-section" id="services">
   <div className="card-grid">
-    <a className="card" href="#">
+    <a className="card" href="/exercises">
       <div className="card__background1"></div>
       <div className="card__content">
         <p className="card__category">Category</p>

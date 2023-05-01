@@ -4,6 +4,8 @@ import { Services, Header, Footer } from "./container";
 import { Navbar, Contact,  } from "./components";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Exercises from "./components/Exercises/Exercises";
+// import CardsContainer from "./components/CardsContainer/CardsContainer";
 
 const App = () => (
   <Routes>
@@ -19,6 +21,7 @@ const App = () => (
       }
     />
     <Route path="/contact" element={<Contact/>} />
+    <Route path="/exercises" element={<Exercises/>}/>
   </Routes>
 );
 
