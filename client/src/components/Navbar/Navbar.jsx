@@ -33,7 +33,7 @@ const Navbar = () => {
           Log In
         </a>
         <div />
-        <a href="/" className="p__opensans">
+        <a href="/Register" className="p__opensans">
           Registration
         </a>
       </div>
