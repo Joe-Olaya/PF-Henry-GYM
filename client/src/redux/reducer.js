@@ -3,6 +3,7 @@ import {
   GET_EXERCISE_BY_ID,
   GET_PRODUCTS,
   GET_USERS,
+  POST_REGISTER
 } from "./action_types";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   exercisesOrigin: [],
   products: [],
   users: [],
+  register:[],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const rootReducer = (state = initialState, action) => {
       };
     default:
       return { ...state };
+
+      case POST_REGISTER:
+        return {
+          ...state,
+        };
   }
 };
 

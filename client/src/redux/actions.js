@@ -3,6 +3,7 @@ import {
   GET_EXERCISE_BY_ID,
   GET_PRODUCTS,
   GET_USERS,
+  POST_REGISTER,
 } from "./action_types";
 import axios from "axios";
 
@@ -37,4 +38,18 @@ export const getUsers = () => {
       payload: usersData,
     });
   };
+};
+export function postRegister(payload){
+  console.log(payload)
+  return async function(dispatch) {
+      try {
+          console.log(payload)
+          const registerData = await axios.post(`${URL}/register`, payload)
+          console.log(registerData)
+          return registerData
+
+      }catch(errors){
+          console.log(errors);
+      }
+  }
 };

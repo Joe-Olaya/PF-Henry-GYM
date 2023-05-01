@@ -1,9 +1,15 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import {Formik} from "formik"
+import { postRegister } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Registration =()=>{
+  //const [isRegistering, setRegistering] = useState(false);
+  const dispatch = useDispatch();
   const [formularioEnviado,cambiarFormularioenviado] = useState (false)
+  
+
 return (
   <div className="w-11/12 max-w-[700px] px-10 py-20 rounded-3xl  border-gray-100">
   <h1 className="text-5xl font-semibold mt-20  text-yellow-500">REGISTRATION</h1>
@@ -49,7 +55,8 @@ if (!valores.password) {
   onSubmit={(valores, {resetForm})=>{
     resetForm();
     console.log('FORMULARIO ENVIADO')
-    console.log(valores)
+    //console.log(valores)
+    dispatch(postRegister(valores));
     cambiarFormularioenviado(true)
     setTimeout(()=>cambiarFormularioenviado(false),5000)
 
