@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "nodemon -L",
-  "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -L",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "pg": "^8.10.0",
+    "postgres": "^3.3.4",
     "sequelize": "^6.31.0"
   }
 }

@@ -3,6 +3,7 @@ import {
   GET_EXERCISE_BY_ID,
   GET_PRODUCTS,
   GET_USERS,
+  FILTER_BY_MUSCLE
 } from "./action_types";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   exercisesOrigin: [],
   products: [],
   users: [],
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -31,6 +33,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+
+    case FILTER_BY_MUSCLE: 
+    const muscles = state.exercises.filter(el => el.muscle === action.payload)
+      return{
+         ...state,
+         exercisesOrigin: muscles
+
+      }
+
+
     default:
       return { ...state };
   }

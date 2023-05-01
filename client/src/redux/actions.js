@@ -1,4 +1,5 @@
 import {
+  FILTER_BY_MUSCLE,
   GET_EXERCISES,
   GET_EXERCISE_BY_ID,
   GET_PRODUCTS,
@@ -38,3 +39,12 @@ export const getUsers = () => {
     });
   };
 };
+
+export const filterByMuscle = (muscle) => {
+  return {
+      type: FILTER_BY_MUSCLE,
+      payload: muscle
+    }
+     }
+
+
