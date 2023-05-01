@@ -35,6 +35,12 @@ if(!valores.email){
   errors.email ='El correo solo puede terner lestra,punto, numero y guion bajo'
 
 }
+if (!valores.password) {
+  errors.password = 'Ingrese una contraseña.';
+} else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(valores.password)) {
+  errors.password = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.';
+}
+
  return errors
 
 
@@ -130,6 +136,7 @@ if(!valores.email){
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        {touched.password && errors.password && <did className='error'>{errors.password}</did>}
       </div>
       
       <div className="mt-8 flex justify-between items-center  text-slate-50">
