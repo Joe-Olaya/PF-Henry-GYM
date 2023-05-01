@@ -12,7 +12,6 @@ const getUserByName = async (name) => {
   const userFiltered = cleanData.filter((d) =>
     d.name.toLowerCase().includes(name.toLowerCase())
   );
-
   return userFiltered;
 };
 
@@ -24,8 +23,8 @@ const cleanUserData = (arr) => {
         dni: el.dni,
         name: el.name,
         email: el.email,
-        adress: el.adress,
-        
+        address: el.address,
+        phone: el.phone
       });
     });
   } else {
@@ -33,7 +32,8 @@ const cleanUserData = (arr) => {
       dni: arr.dni,
       name: arr.name,
       email: arr.email,
-      adress: arr.adress,
+      address: arr.address,
+      phone: arr.phone
     });
   }
   console.log(data);
@@ -53,7 +53,8 @@ const getUserByDNI = async (dni, password) => {
         dni: getUser.dni,
         name: getUser.name,
         email: getUser.email,
-        adress: getUser.adress,
+        address: getUser.address,
+        phone: getUser.phone
       });
       return arrUser;
     } else {
@@ -64,7 +65,7 @@ const getUserByDNI = async (dni, password) => {
   }
 };
 
-const createUser = async (dni, password, name, email, adress) => {
+const createUser = async (dni, password, name, email, address, phone) => {
   const oldUser = await getUserByDNI(dni);
 
   if (oldUser === "Usuario inexistente") {
@@ -73,7 +74,8 @@ const createUser = async (dni, password, name, email, adress) => {
       password: password,
       name: name,
       email: email,
-      adress: adress,
+      address: address,
+      phone: phone,
       userType: "Client",
     });
 
