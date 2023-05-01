@@ -12,7 +12,7 @@ const initialState = {
   exercisesOrigin: [],
   products: [],
   users: [],
-  register:[],
+  //register:[],
 };
 
 const rootReducer = (state = initialState, action) => {

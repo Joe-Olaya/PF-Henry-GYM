@@ -25,6 +25,7 @@ const cleanUserData = (arr) => {
         name: el.name,
         email: el.email,
         adress: el.adress,
+        
       });
     });
   } else {
