@@ -73,7 +73,7 @@ const reactiveUserById = async (id) => {
   })
   return 'Usuario reactivado correctamente'
 }
-reactiveUserById(1)
+
 const createUser = async (dni, password, name, email, address, phone) => {
   const oldUser = await getUserByDNI(dni);
 
