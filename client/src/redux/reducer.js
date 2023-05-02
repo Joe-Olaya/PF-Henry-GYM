@@ -33,13 +33,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-    default:
-      return { ...state };
-
+      
       case POST_REGISTER:
         return {
           ...state,
         };
+
+    default:
+      return { ...state };
+
+     
   }
 };
 

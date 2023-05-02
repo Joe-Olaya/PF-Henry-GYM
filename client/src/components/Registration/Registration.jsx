@@ -16,7 +16,6 @@ return (
   <Formik 
   initialValues={{
     name:'',
-    lastname:'',
     email:'',
     phone: '',
     dni:'',
