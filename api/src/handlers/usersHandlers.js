@@ -3,6 +3,8 @@ const {
   createUser,
   getAllUsers,
   getUserByName,
+  deleteUserById,
+  reactiveUserById
 } = require("../controllers/usersControllers");
 
 const loginUserHandler = async (req, res) => {
@@ -35,8 +37,30 @@ const getAllUsersHandler = async (req, res) => {
   }
 };
 
+const deleteUserHandler = async (req,res) => {
+  const {id} = req.params;
+  try {
+    const results = await deleteUserById(id)
+    res.status(200).json({ results });
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+}
+
+const reactiveUserHandler = async (req,res) => {
+  const {id} = req.params;
+  try {
+    const results = await reactiveUserById(id)
+    res.status(200).json({ results });
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+}
+
 module.exports = {
   loginUserHandler,
   registerUserHandler,
   getAllUsersHandler,
+  deleteUserHandler,
+  reactiveUserHandler
 };
