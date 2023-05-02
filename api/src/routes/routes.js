@@ -6,7 +6,7 @@ const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/
 const { loginUserHandler, registerUserHandler, getAllUsersHandler } = require("../handlers/usersHandlers");
 const router = Router();
 
-router.get('/', fullDbData);
+router.get('/loadingDb', fullDbData);
 router.get('/exercises', getExercisesHandler);
 router.get('/exercises/:id', getExecercisesByIdHandler);
 router.get('/users', getAllUsersHandler)
