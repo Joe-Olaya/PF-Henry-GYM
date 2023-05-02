@@ -1,9 +1,15 @@
 import "./Home.css";
 import Pagination from "../../components/Pagination/Pagination";
+import Filters from "../../components/Filters/Filters.jsx";
+
+
 export const Home = () => {
+
   return (
     
     <div className="div_container">
+      <Filters
+      />
       <div className="div_container_exercises">
         <section className="section_title">
           <h1>Supplies & Training</h1>
