@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: true
+        allowNull: false
     }, 
 
     dni: {
@@ -33,15 +33,19 @@ module.exports = (sequelize) => {
         allowNull: false
     },
 
+    phone: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
 
-    adress: {
+    address: {
       type: DataTypes.STRING,
       allowNull: true,
     },
 
     userType:{
       type: DataTypes.ENUM("Manager", "Client", "Trainer", "Usersadminister"),
-      allowNull: true
+      allowNull: false
     }
 
 

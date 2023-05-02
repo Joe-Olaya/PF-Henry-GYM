@@ -16,9 +16,9 @@ const loginUserHandler = async (req, res) => {
 };
 
 const registerUserHandler = async (req, res) => {
-  const { dni, password, name, email, adress } = req.body;
+  const { dni, password, name, email, address, phone } = req.body;
   try {
-    const results = createUser(dni, password, name, email, adress);
+    const results = createUser(dni, password, name, email, address, phone);
     res.status(200).json({ results });
   } catch (error) {
     res.status(400).json({ error: error });

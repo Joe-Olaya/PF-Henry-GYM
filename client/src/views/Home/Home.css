@@ -1,0 +1,99 @@
+body{
+   background: url('../../assets/background.jpg');
+   background-size:cover;
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat; 
+}
+.div_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.section_title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    color: rgb(255, 214, 34);
+
+}
+.section_title h1 {
+    font-size: 30px;
+}
+
+.section_title h3{
+    font-size: 20px;
+}
+
+.card_container{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 700px;
+    height: 300px;
+    border-radius: 10px;
+}
+.card_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(245, 221, 190);
+    padding: 5px;
+    margin: 2px;
+    width: 80%;
+    height: 90%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px grey
+}
+.card_section:hover{
+    transform:translate3d(1px, 2%, 3em);
+    transition-duration: 0.2s;
+}
+
+
+.section_cards{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(251, 255, 1, 0.6);
+    border: 2px solid rgb(255, 3, 3);
+    border-radius: 10px;
+    margin: 5px;
+    padding: 20px;
+}
+.section_cards .div_button{
+    display: flex;
+    justify-content: flex-end;
+}
+.section_cards h1{
+    color: rgb(0, 0, 0);
+    font-size: large;
+    font-style: oblique;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.div_button{
+    margin: 1px;
+    padding: 3px;
+}
+
+.button_Viewall{
+    border-radius: 10px;
+    padding: 5px;
+    margin: 2px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-weight: 700;
+}
+.button_Viewall:hover{
+    background-color: grey;
+    transition-duration: 1.5s;
+    transform: rotateY(1turn);
+}

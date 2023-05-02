@@ -45,7 +45,7 @@ const searchExerciseById = async (id) => {
   const cleanData = cleanExerciseData(getDbExercises);
   return cleanData;
 };
-searchExerciseById(3546);
+
 module.exports = {
   searchExerciseByName,
   getAllExercises,
