@@ -75,7 +75,7 @@ if (!valores.password) {
         onChange={handleChange}
         onBlur={handleBlur} 
         />
-        {touched.name && errors.name && <did className='error'>{errors.name}</did>}
+        {touched.name && errors.name && <div className='error'>{errors.name}</div>}
       </div>
       <div className="text-lg font-medium  text-slate-50">
         <label htmlFor="dni"> Number DNI </label>
