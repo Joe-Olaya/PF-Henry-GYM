@@ -67,13 +67,13 @@ const deleteUserById = async (id) => {
 
 const reactiveUserById = async (id) => {
   const activeUserById = await User.update({
-    state : 'Anactive'
+    state : 'Active'
   },{
     where: {id:id}
   })
   return 'Usuario reactivado correctamente'
 }
-
+reactiveUserById(1)
 const createUser = async (dni, password, name, email, address, phone) => {
   const oldUser = await getUserByDNI(dni);
 
