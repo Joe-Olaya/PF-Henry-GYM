@@ -20,7 +20,7 @@ return (
     email:'',
     phone: '',
     dni:'',
-    adress:'',
+    address:'',
     password:'',
 
   }
