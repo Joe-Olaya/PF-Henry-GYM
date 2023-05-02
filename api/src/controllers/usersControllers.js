@@ -17,7 +17,6 @@ const getUserByName = async (name) => {
 
 const cleanUserData = (arr) => {
   let data = [];
-  if (arr.length > 1) {
     arr.map((el) => {
       data.push({
         dni: el.dni,
@@ -27,16 +26,6 @@ const cleanUserData = (arr) => {
         phone: el.phone
       });
     });
-  } else {
-    data.push({
-      dni: arr.dni,
-      name: arr.name,
-      email: arr.email,
-      address: arr.address,
-      phone: arr.phone
-    });
-  }
-  console.log(data);
   return data;
 };
 
