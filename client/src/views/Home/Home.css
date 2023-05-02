@@ -17,19 +17,21 @@ body{
     flex-direction: column;
     align-items: center;
     font-weight: 600;
-    color: rgb(255, 214, 34);
+    color: rgb(247, 248, 170)
 
 }
 .section_title h1 {
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: bolder;
+    padding: 10px;
 }
 
 .section_title h3{
-    font-size: 20px;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
 .card_container{
-    background-color: red;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,7 +46,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(245, 221, 190);
+    background-color: rgba(231, 235, 15, 0.8);
     padding: 5px;
     margin: 2px;
     width: 80%;
@@ -56,13 +58,25 @@ body{
     transform:translate3d(1px, 2%, 3em);
     transition-duration: 0.2s;
 }
+.card_section h2{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+.card_section h3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    text-size-adjust:calc();
+    text-transform: uppercase;
+}
 
 
 .section_cards{
     display: flex;
     flex-direction: column;
-    background-color: rgba(251, 255, 1, 0.6);
-    border: 2px solid rgb(255, 3, 3);
+    background-color: rgba(231, 235, 15, 0.6);
+    border: 2px solid black;
+    box-shadow: 5px 10px 15px #333;
     border-radius: 10px;
     margin: 5px;
     padding: 20px;
@@ -72,9 +86,9 @@ body{
     justify-content: flex-end;
 }
 .section_cards h1{
-    color: rgb(0, 0, 0);
-    font-size: large;
+    font-size: xx-large;
     font-style: oblique;
+    font-weight: bolder;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
@@ -96,4 +110,9 @@ body{
     background-color: grey;
     transition-duration: 1.5s;
     transform: rotateY(1turn);
+}
+
+.div_container_exercises{
+    padding: 20px;
+    margin: 15px;
 }
