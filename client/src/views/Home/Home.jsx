@@ -1,7 +1,8 @@
 import "./Home.css";
-
+import Pagination from "../../components/Pagination/Pagination";
 export const Home = () => {
   return (
+    
     <div className="div_container">
       <div className="div_container_exercises">
         <section className="section_title">
@@ -76,6 +77,8 @@ export const Home = () => {
             </div>
         
         </section>
+        //solo de prueba 
+        <div className="flex justify-center "><Pagination /></div> //
       </div>
     </div>
   );
