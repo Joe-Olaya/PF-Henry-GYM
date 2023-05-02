@@ -1,6 +1,5 @@
-
 import "./Home.css";
-import Filters from "../../components/Filters/Filters";
+import Filters from "../../components/Filters/Filters.jsx";
 
 
 export const Home = () => {
