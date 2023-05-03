@@ -4,6 +4,8 @@ import {Formik} from "formik"
 import { postRegister } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+
+
 const Registration =()=>{
   //const [isRegistering, setRegistering] = useState(false);
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const Registration =()=>{
   
 
 return (
+
   <div className="w-11/12 max-w-[700px] px-10 py-20 rounded-3xl  border-gray-100">
   <h1 className="text-5xl font-semibold mt-20  text-yellow-500">REGISTRATION</h1>
   <Formik 
@@ -172,13 +175,13 @@ if (!valores.password) {
                             Sign in with Google
                     </button>
       </div>
-      <div className='mt-8 flex justify-center items-center'>
+     {/*  <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>Don't have an account?</p>
                     <Link to="/">
                     <button
                        
                         className='ml-2 font-medium text-base text-yellow-500'>Sign up</button></Link>
-                </div>
+                </div> */}
     </form>
     )}
     </Formik>
