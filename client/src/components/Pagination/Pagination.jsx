@@ -52,22 +52,19 @@ const Pagination = ({ exercisesPerPage, totalExercises, paginate }) => {
   return (
     <div className="pagination">
       <div className="flex bg-neutral-800 rounded-lg font-[Poppins]">
-        <button
-          onClick={handleBackClick}
-          className="h-12 border-2 border-r-0 border-yellow-500 px-4 rounded-l-lg hover:bg-neutral-900 hover:text-yellow-500"
-        >
-          <svg
-            class="w-4 h-4 fill-current"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
+        {startPage > 1 && (
+          <>
+            <button
+              onClick={() => handlePageClick(1)}
+              className={`h-12 border-2 border-r-0 border-yellow-500 w-12 ${
+                1 === num ? "bg-neutral-900 text-white-500" : ""
+              }`}
+            >
+              1
+            </button>
+            {startPage > 2 && <span className="pagination-dots">...</span>}
+          </>
+        )}
         {pages.map((pg, i) => (
           <button
             key={i}
@@ -79,6 +76,21 @@ const Pagination = ({ exercisesPerPage, totalExercises, paginate }) => {
             {pg.page}
           </button>
         ))}
+        {endPage < totalPages && (
+          <>
+            {endPage < totalPages - 1 && (
+              <span className="pagination-dots">...</span>
+            )}
+            <button
+              onClick={() => handlePageClick(totalPages)}
+              className={`h-12 border-2 border-r-0 border-yellow-500 w-12 ${
+                totalPages === num ? "bg-neutral-900 text-white-500" : ""
+              }`}
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
         <button
           onClick={handleNextClick}
           className="h-12 border-2  border-yellow-500 px-4 rounded-r-lg bg-neutral-900 hover:text-yellow-500"
