@@ -71,7 +71,7 @@ const Filters = () => {
         </select>
       </section>
 
-      <button className="bg-white rounded m-5 p-2 hover:bg-sky-700 font-bold" onClick={handleReset}>Reset</button>
+      <button className="bg-white rounded m-5 p-2 hover:bg-yellow-500 font-bold" onClick={handleReset}>Reset</button>
     </div>
   );
 };
