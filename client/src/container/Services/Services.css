@@ -35,7 +35,7 @@ body{
   padding: var(--spacing-xxl) var(--spacing-l);
 }
 
-.card-grid{
+.card1-grid{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: var(--spacing-l);
@@ -45,23 +45,23 @@ body{
 }
 
 @media(min-width: 540px){
-  .card-grid{
+  .card1-grid{
     grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media(min-width: 960px){
-  .card-grid{
+  .card1-grid{
     grid-template-columns: repeat(4, 1fr); 
   }
 }
 
-.card{
+.card1{
   list-style: none;
   position: relative;
 }
 
-.card:before{
+.card1:before{
   content: '';
   display: block;
   padding-bottom: 150%;
@@ -99,50 +99,50 @@ body{
 }
 
 
-.card:hover .card__background1{
+.card1:hover .card__background1{
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background1{
+.card1-grid:hover > .card:not(:hover) .card__background1{
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
-.card:hover .card__background2{
+.card1:hover .card__background2{
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background2{
+.card1-grid:hover > .card:not(:hover) .card__background2{
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
-.card:hover .card__background3{
+.card1:hover .card__background3{
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background3{
+.card1-grid:hover > .card:not(:hover) .card__background3{
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
-.card:hover .card__background4{
+.card1:hover .card__background4{
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background4{
+.card1-grid:hover > .card:not(:hover) .card__background4{
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
 
-.card__content{
+.card1__content{
   left: 0;
   padding: var(--spacing-l);
   position: absolute;
   top: 0;
 }
 
-.card__category{
+.card1__category{
   color: var(--text-light);
   font-size: 0.9rem;
   margin-bottom: var(--spacing-s);
   text-transform: uppercase;
 }
 
-.card__heading{
+.card1__heading{
   color: var(--text-lighter);
   font-size: 1.9rem;
   text-shadow: 2px 2px 20px rgba(0,0,0,0.2);

@@ -1,0 +1,13 @@
+.exercise {
+    background-color: transparent !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardExercise {
+    /* Agrega estilos adicionales a cada card */ /* Define un ancho fijo para cada card para que quepan tres en cada línea */
+    margin-top: 10%;
+    height: 30%;
+    width: 400px;
+}
