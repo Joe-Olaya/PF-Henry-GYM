@@ -1,0 +1,38 @@
+/* .contact {
+    background-image: url("../../assets/background.jpg");
+    background-size:cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.contact__styles {
+    align-items: center;
+    justify-content: center;
+    margin-left: 13rem;
+    margin-right: 13rem;
+    margin-top: 10rem;
+    padding: 2rem;
+    background-color: black;
+    border-radius: 4px;
+    
+  }
+
+
+.contact__box {
+    font-family: Montserrat;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 28px;
+    font-size: 16px;
+}
+  
+.contact__info {
+    font-family: Montserrat;
+    color: white;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+} */
