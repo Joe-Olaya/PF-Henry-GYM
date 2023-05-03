@@ -9,6 +9,7 @@ import Registration from "./components/Registration/Registration";
 import  images  from "../src/assets/card4.png";
 import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
+import Login from "./components/Login/Login";
 // import CardsContainer from "./components/CardsContainer/CardsContainer";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           }
         />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/exercises" element={<Exercises/>}/>
         <Route path="/*" element={<Error />} />
