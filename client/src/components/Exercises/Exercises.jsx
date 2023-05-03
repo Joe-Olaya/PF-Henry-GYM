@@ -30,7 +30,7 @@ const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage; //Calculamo
 const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise); //Obtenemos el subconjunto de exercises correspondiente a la página actual
 
 return (
-<>
+<div className="div_container">
 <section className="ser">
 <SearchBar/>
 </section>
@@ -45,7 +45,7 @@ return (
         totalExercises={exercises.length}
         paginate={paginate}
       />
-</>
+</div>
 );
 };
 

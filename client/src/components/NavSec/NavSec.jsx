@@ -21,7 +21,7 @@ const Navbar = () => {
           Exercises
         </a>
         <a href="/rutines" className="p__opensans">
-          Rutines
+          Routines
         </a>
       </div>
     </nav>
