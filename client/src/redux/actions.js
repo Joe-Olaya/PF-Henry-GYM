@@ -62,6 +62,20 @@ export const filterByMuscle = (muscle) => {
       payload: muscle
     };
      };
+     export function getNameExercises(name){
+      return async function (dispatch) {
+         try {
+           var json = await axios.get(`${URL}/exercises?name=${name}`);
+           console.log(json.data)
+           return dispatch ({
+              type: 'GET_NAME_EXERCISES', 
+              payload: json.data
+           }) 
+           
+         } catch (error) {
+            console.log(error.message)
+         }};
+    };
 
 
  export const orderByName = (payload) => {

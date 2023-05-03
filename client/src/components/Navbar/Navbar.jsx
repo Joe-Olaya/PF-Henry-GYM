@@ -9,21 +9,14 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
+        <a href="/">
         <img src={images.logoy} alt="app__logo" />
+        </a>
       </div>
       <ul className="app__navbar-links">
-        {/* <li className="p__opensans">
-          <a href="#home">Home</a>
-        </li> */}
         <li className="p__opensans">
           <a href="#services">Services</a>
         </li>
-        {/* <li className="p__opensans">
-          <a href="#blog">Blog</a>
-        </li> */}
-        {/* <li className="p__opensans">
-          <a href="#gallery">Store</a>
-        </li> */}
         <li className="p__opensans">
           <a href="#contact">Contact</a>
         </li>
@@ -52,25 +45,12 @@ const Navbar = () => {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                {/* <a href="#home" onClick={() => setToggleMenu(false)}>
-                  Home
-                </a> */}
               </li>
               <li>
                 <a href="#services" onClick={() => setToggleMenu(false)}>
                   Services
                 </a>
               </li>
-              {/* <li>
-                <a href="#blog" onClick={() => setToggleMenu(false)}>
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" onClick={() => setToggleMenu(false)}>
-                  Store
-                </a>
-              </li> */}
               <li>
                 <a href="#contact" onClick={() => setToggleMenu(false)}>
                   Contact

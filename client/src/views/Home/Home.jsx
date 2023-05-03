@@ -6,7 +6,9 @@ export const Home = () => {
   const exercises = useSelector((state) => state.exercises);
   const limitedExercises = exercises.slice(0, 4);
   return (
+      
     <div className="div_container">
+     
       <div className="div_container_exercises">
         <section className="section_title">
           <h1>Supplies & Training</h1>
