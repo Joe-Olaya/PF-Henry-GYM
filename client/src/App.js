@@ -15,7 +15,7 @@ const App = () => {
   const location = useLocation();
   return (
     <div>
-      {location.pathname !== "/Register" && <Navbar />}
+      {location.pathname !== "/register" && <Navbar />}
       <Routes>
         <Route
           exact

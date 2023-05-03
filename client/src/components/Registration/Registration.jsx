@@ -42,8 +42,8 @@ if(!valores.email){
 }
 if (!valores.password) {
   errors.password = 'Ingrese una contraseña.';
-} else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(valores.password)) {
-  errors.password = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.';
+} else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(valores.password)) {
+  errors.password = 'la contraseña contenga al menos 8 caracteres y al menos una letra minúscula, una letra mayúscula y un número.';
 }
 
  return errors
@@ -103,7 +103,7 @@ if (!valores.password) {
         onBlur={handleBlur}
         
         />
-        {touched.email && errors.email && <did className='error'>{errors.email}</did>}
+        {touched.email && errors.email && <div className='error'>{errors.email}</div>}
       </div >
       <div className="text-lg font-medium  text-slate-50">
         <label htmlFor="phone">Phone</label>
@@ -142,7 +142,7 @@ if (!valores.password) {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.password && errors.password && <did className='error'>{errors.password}</did>}
+        {touched.password && errors.password && <div className='error'>{errors.password}</div>}
       </div>
       
       {/* <div className="mt-8 flex justify-between items-center  text-slate-50">
