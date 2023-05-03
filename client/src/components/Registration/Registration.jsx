@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import {Formik} from "formik"
 import { postRegister } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from 'react-router-dom';
 const Registration =()=>{
   //const [isRegistering, setRegistering] = useState(false);
   const dispatch = useDispatch();
   const [formularioEnviado,cambiarFormularioenviado] = useState (false)
+  const navigate = useNavigate();
+ 
+  
   
 
 return (
@@ -56,13 +59,14 @@ if (!valores.password) {
     console.log('FORMULARIO ENVIADO')
     //console.log(valores)
     dispatch(postRegister(valores));
+    navigate('/home');
     cambiarFormularioenviado(true)
     setTimeout(()=>cambiarFormularioenviado(false),5000)
 
   }} 
 
   >
-    {({values,errors,handleSubmit,touched,handleChange,handleBlur})=>(
+    {({values,errors,handleSubmit,touched,handleChange,handleBlur,id})=>(
     <form className="mt-8" onSubmit={handleSubmit}>
       <div className="text-lg font-medium text-slate-50">
         <label  htmlFor="name">Name & Last Name </label>
@@ -171,7 +175,7 @@ if (!valores.password) {
       <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>Don't have an account?</p>
                     <Link to="/">
-                    <button 
+                    <button onClick={() => onSubmit(id)}
                        
                         className='ml-2 font-medium text-base text-yellow-500'>Sign up</button></Link>
                 </div>
