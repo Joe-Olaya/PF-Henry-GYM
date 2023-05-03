@@ -5,7 +5,8 @@ import {
   GET_USERS,
   POST_REGISTER,
   FILTER_BY_MUSCLE,
-  ORDER_BY_NAME
+  ORDER_BY_NAME,
+  GET_NAME_EXERCISES
 } from "./action_types";
 
 const initialState = {
@@ -31,6 +32,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         exercise: action.payload,
       };
+    case GET_NAME_EXERCISES:
+      return {
+        ...state,
+        exercises: action.payload
+      };
     case GET_USERS:
       return {
         ...state,
@@ -42,14 +48,14 @@ const rootReducer = (state = initialState, action) => {
           ...state,
         };
     case FILTER_BY_MUSCLE: 
-    const muscles = state.exercises.filter(el => el.muscle === action.payload)
+    const muscles = state.exercisesOrigin.filter(el => el.muscle === action.payload)
       return{
          ...state,
-         exercisesOrigin: muscles
+         exercises: muscles
       };
     case ORDER_BY_NAME:
      const sortedArr = action.payload === 'A-Z'?
-     state.exercisesOrigin.sort(function(a, b){
+    [].concat(state.exercises).sort(function(a, b){
           if(a.name > b.name) {
              return 1;
           }
@@ -58,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
           }
           return 0
      }):
-     state.exercisesOrigin.sort(function(a, b){
+    [].concat(state.exercises).sort(function(a, b){
       if (a.name > b.name) {
         return-1;
       }
@@ -69,7 +75,7 @@ const rootReducer = (state = initialState, action) => {
      })
       return {
         ...state,
-        exercisesOrigin: sortedArr
+        exercises: sortedArr
       } ; 
 
     
