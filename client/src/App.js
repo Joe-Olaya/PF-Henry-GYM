@@ -29,7 +29,11 @@ const App = () => {
           }
         />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/home" element={<Home />} />
+        
+        <Route path="/home" element={<div>
+            <NavSec />
+            <Home />
+          </div>} />
         <Route
           path="/exercises"
           element={
