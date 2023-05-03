@@ -32,19 +32,19 @@ let errors={};
 
 // VALIDACION NOMBRE 
 if(!valores.name){
-  errors.name= 'por favor ingresa un nombre'
+  errors.name= 'Please, insert a name'
 } else if (!/^[a-zA-ZÀ-ÿ\s]{1,20}$/.test(valores.name)){
   errors.name ='The name can only have letters and spaces and length less than 20'// ingles
 
 }
 if(!valores.email){
-  errors.email= 'porfavor ingresa un email'
+  errors.email= 'Please, insert an e-mail'
 } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){
   errors.email ='The email can only have a letter, point, number and underscore'
 
 }
 if (!valores.password) {
-  errors.password = 'Ingrese una contraseña.';
+  errors.password = 'Please, insert a password';
 } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(valores.password)) {
   errors.password = 'the password contains at least 8 characters and at least one lowercase letter, one uppercase letter, and one number';
 }
@@ -56,10 +56,10 @@ if (!valores.password) {
   }}
   onSubmit={(valores, {resetForm})=>{
     resetForm();
-    console.log('FORMULARIO ENVIADO')
+    console.log('FORM SENT')
     //console.log(valores)
     dispatch(postRegister(valores));
-    navigate('/home');
+    navigate('/exercises');
     cambiarFormularioenviado(true)
     setTimeout(()=>cambiarFormularioenviado(false),5000)
 
@@ -74,7 +74,7 @@ if (!valores.password) {
         type="text" 
         id="name" 
         name="name" 
-        placeholder="name" 
+        placeholder="Name" 
         value={values.name}
         onChange={handleChange}
         onBlur={handleBlur} 
@@ -82,12 +82,12 @@ if (!valores.password) {
         {touched.name && errors.name && <div className='error'>{errors.name}</div>}
       </div>
       <div className="text-lg font-medium  text-slate-50">
-        <label htmlFor="dni"> Number DNI </label>
+        <label htmlFor="dni"> DNI Number </label>
         <input className="w-full border-2 border-gray rounded-xl p-4 mt-1  bg-neutral-900"
         type="number" 
         id="dni" 
         name="dni" 
-        placeholder="number dni " 
+        placeholder="DNI number " 
         value={values.dni}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -96,12 +96,12 @@ if (!valores.password) {
         />
       </div>
       <div className="text-lg font-medium  text-slate-50">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">E-mail</label>
         <input className="w-full border-2 border-gray rounded-xl p-4 mt-1  bg-neutral-900" 
         type="email" 
         id="email" 
         name="email" 
-        placeholder="email" 
+        placeholder="E-mail" 
         value={values.email}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -115,7 +115,7 @@ if (!valores.password) {
         type="tel" 
         id="phone" 
         name="phone" 
-        placeholder="phone" 
+        placeholder="Phone" 
         value={values.phone}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -123,12 +123,12 @@ if (!valores.password) {
         />
       </div>
       <div className="text-lg font-medium  text-slate-50">
-        <label htmlFor="address">address</label>
+        <label htmlFor="address">Address</label>
         <input className="w-full border-2 border-gray rounded-xl p-4 mt-1  bg-neutral-900"
         type="text" 
         id="address" 
         name="address" 
-        placeholder="address" 
+        placeholder="Address" 
         value={values.address}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -141,7 +141,7 @@ if (!valores.password) {
           type="password"
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
