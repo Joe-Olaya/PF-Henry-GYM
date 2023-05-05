@@ -6,6 +6,8 @@ import "../Filters/filters.css";
 
 const Filters = () => {
   const [muscle, setMuscle] = useState([]);
+  const [selectedMuscle, setSelectedMuscle] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
 
   const dispatch = useDispatch();
   const exercise = useSelector((state) => state.exercisesOrigin);
@@ -27,19 +29,27 @@ const Filters = () => {
 
   function handleSort(e) {
     e.preventDefault();
+    setSortOrder(e.target.value);
     dispatch(orderByName(e.target.value));
   }
 
   function handleSelect(e) {
     e.preventDefault();
+    setSelectedMuscle(e.target.value);
     dispatch(filterByMuscle(e.target.value));
+  }
+
+  function handleReset() {
+    setSelectedMuscle(null);
+    setSortOrder(null);
+    dispatch(getExercises());
   }
 
   return (
     <div className="options">
       <section className="muscle">
         {/* <button onClick={()=>console.log(exercise)}>ver estado</button> */}
-        <select onChange={handleSelect}>
+        <select value={selectedMuscle} onChange={handleSelect}>
           <option hidden defaultValue>
             {" "}
             Select Muscle{" "}
@@ -55,11 +65,13 @@ const Filters = () => {
 
       {/* ordenamientos  */}
       <section className="sort">
-        <select onChange={handleSort}>
+        <select value={sortOrder} onChange={handleSort}>
           <option value="A-Z">From A to Z</option>
           <option value="Z-A"> From Z to A </option>
         </select>
       </section>
+
+      <button className="bg-white rounded m-5 p-2 hover:bg-yellow-500 font-bold" onClick={handleReset}>Reset</button>
     </div>
   );
 };

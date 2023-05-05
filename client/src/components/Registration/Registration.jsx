@@ -34,19 +34,19 @@ let errors={};
 if(!valores.name){
   errors.name= 'por favor ingresa un nombre'
 } else if (!/^[a-zA-ZÀ-ÿ\s]{1,20}$/.test(valores.name)){
-  errors.name ='El nombre solo puede tener letras y espacios y longitud menor a 20  '// ingles
+  errors.name ='The name can only have letters and spaces and length less than 20'// ingles
 
 }
 if(!valores.email){
   errors.email= 'porfavor ingresa un email'
 } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){
-  errors.email ='El correo solo puede terner lestra,punto, numero y guion bajo'
+  errors.email ='The email can only have a letter, point, number and underscore'
 
 }
 if (!valores.password) {
   errors.password = 'Ingrese una contraseña.';
 } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(valores.password)) {
-  errors.password = 'la contraseña contenga al menos 8 caracteres y al menos una letra minúscula, una letra mayúscula y un número.';
+  errors.password = 'the password contains at least 8 characters and at least one lowercase letter, one uppercase letter, and one number';
 }
 
  return errors
@@ -66,7 +66,7 @@ if (!valores.password) {
   }} 
 
   >
-    {({values,errors,handleSubmit,touched,handleChange,handleBlur,id})=>(
+    {({values,errors,handleSubmit,touched,handleChange,handleBlur})=>(
     <form className="mt-8" onSubmit={handleSubmit}>
       <div className="text-lg font-medium text-slate-50">
         <label  htmlFor="name">Name & Last Name </label>
@@ -175,7 +175,7 @@ if (!valores.password) {
       <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>Don't have an account?</p>
                     <Link to="/">
-                    <button onClick={() => onSubmit(id)}
+                    <button
                        
                         className='ml-2 font-medium text-base text-yellow-500'>Sign up</button></Link>
                 </div>
