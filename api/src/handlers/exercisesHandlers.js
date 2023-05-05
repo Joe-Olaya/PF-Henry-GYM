@@ -1,4 +1,3 @@
-
 const {
   searchExerciseByName,
   getAllExercises,
