@@ -4,6 +4,7 @@ const {
   searchExerciseById,
 } = require("../controllers/exercisesControllers");
 
+
 const getExercisesHandler = async (req, res) => {
   const { name } = req.query;
   try {
