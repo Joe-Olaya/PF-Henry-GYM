@@ -1,12 +1,10 @@
 const { Headersale } = require("../db");
 
-const createHeadersale = async (id, productName, clientName, clientAdress, date) => {
+const createHeadersale = async (clientId, clientName, clientAddress) => {
   const newHeadersale = await Headersale.create({
-    id: id,
-    name: productName,
-    date: date,
+    clientId: clientId,
     clientName: clientName,
-    clientAdress: clientAdress
+    clientAddress: clientAddress,
   });
   return newHeadersale;
 };

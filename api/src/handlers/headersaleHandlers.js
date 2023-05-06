@@ -1,20 +1,27 @@
 const {createHeadersale} = require('../controllers/headersaleControllers')
-const {createNewBody} = require('../controllers/bodySaleControllers')
+const {createNewBody} = require('../controllers/bodysaleControllers')
 const {getProductById} = require('../controllers/productsControllers')
 const {getUserById} = require('../controllers/usersControllers')
 
 const createSaleHandler = async (req,res) => {
     const {client_id, product_list} = req.body;
     try {
-        const client = getUserById(client_id);
-        const header = createHeadersale(client.id);
-        const bodies = [];
-        product_list.map(e => {
-            let product = getProductById(e.product_id)
-            let price = product.price * e.units
-            let body = createNewBody(price, e.units, product.id, header.id )
-            bodies.push(body)
-        })
+        const client = await getUserById(client_id);
+        const header = await createHeadersale(client.id, client.name, client.address);
+        const bodies = await new Promise(async (resolve, reject) => {
+            try {
+              const resultados = [];
+              for (const elemento of product_list) {
+                let product = await getProductById(elemento.product_id)
+                let price = product.price * elemento.units
+                const resultado = await createNewBody(price.toFixed(2), elemento.units, product.id, header.id)
+                resultados.push(resultado);
+              }
+              resolve(resultados);
+            } catch (error) {
+              reject(error);
+            }
+          });
         res.status(200).json({
             header : header,
             bodies: bodies

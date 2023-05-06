@@ -17,9 +17,9 @@ router.post('/users/:id', reactiveUserHandler);
 router.get('/login', validateDni, validatePassword, loginUserHandler);
 router.post('/register', validateDni, validatePassword, registerUserHandler);
 router.post('/products', createProductsHandler);
-router.get('/products', getProductsHandler)
-router.delete('/products/:name', deleteProductHandler)
-router.post('/products', reactiveProductHandler)
-router.post('/createSale', createSaleHandler)
+router.get('/products', getProductsHandler);
+router.delete('/products/:id', deleteProductHandler);
+router.post('/products/:id', reactiveProductHandler);
+router.post('/createSale', createSaleHandler);
 
 module.exports = router;

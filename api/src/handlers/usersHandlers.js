@@ -10,7 +10,7 @@ const {
 const loginUserHandler = async (req, res) => {
   const { dni, password } = req.body;
   try {
-    const results = getUserByDNI(dni, password);
+    const results = await getUserByDNI(dni, password);
     res.status(200).json({ results });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -20,7 +20,7 @@ const loginUserHandler = async (req, res) => {
 const registerUserHandler = async (req, res) => {
   const { dni, password, name, email, address, phone } = req.body;
   try {
-    const results = createUser(dni, password, name, email, address, phone);
+    const results = await createUser(dni, password, name, email, address, phone);
     res.status(200).json({ results });
   } catch (error) {
     res.status(400).json({ error: error });
@@ -30,7 +30,7 @@ const registerUserHandler = async (req, res) => {
 const getAllUsersHandler = async (req, res) => {
   const { name } = req.query;
   try {
-    const results = name ? getUserByName(name) : getAllUsers();
+    const results = name ? await getUserByName(name) : await getAllUsers();
     res.status(200).json({ results });
   } catch (error) {
     res.status(400).json({ error: error });

@@ -1,47 +1,45 @@
 const axios = require("axios");
-const { Products } = require("../db.js");
+const { Product } = require("../db.js");
 
 const createProducts = async (name, description, price, image) => {
-  const newProduct = await Products.create({
+  const newProduct = await Product.create({
     name: name,
     description: description,
     price: price,
     image: image,
+    state: "Active"
   });
-  console.log(newProduct);
   return newProduct;
 };
 
 const getProductById = async (id) => {
-  const product = await Products.findByPk(id);
+  const product = await Product.findByPk(id);
   return product;
 };
 
 const getAllProducts = async () => {
-  const allProducts = await Products.findAll();
+  const allProducts = await Product.findAll();
   return allProducts;
 };
 
 const deleteProduct = async (id) => {
-  const productId = await getProductById(id);
-  const inactiveProduct = await Products.Update(
+  const inactiveProduct = await Product.Update(
     {
-      state: "inactive",
+      state: "Inactive",
     },
     {
-      where: { id: productId },
+      where: { id: id },
     }
   );
 };
 
 const reactiveProduct = async (id) => {
-  const productId = await getProductById(id);
-  const activeProduct = await Products.update(
+  const activeProduct = await Product.update(
     {
       state: "Active",
     },
     {
-      where: { id: productId },
+      where: { id: id },
     }
   );
 };

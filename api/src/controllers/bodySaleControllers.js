@@ -1,13 +1,19 @@
 const {Bodysale} = require('../db')
 
-const createNewBody = async (price, units, ProductId, HeadersaleId) => {
+const createNewBody = async (price, units, productId, headersaleId) => {
     const bodySale = await Bodysale.create({
         price,
         units,
-        ProductId,
-        HeadersaleId
+        productId,
+        headersaleId
     })
-    return bodySale;
+    const bodyJson = {
+        price:bodySale.price,
+        units:bodySale.units,
+        productId:bodySale.productId,
+        headersaleId:bodySale.headersaleId
+    }
+    return bodyJson;
 }
 
 module.exports = {

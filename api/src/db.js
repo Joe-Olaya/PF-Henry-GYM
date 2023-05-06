@@ -30,7 +30,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale} = sequelize.models;
+const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale, Headersale} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -46,8 +46,11 @@ const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale} = sequeliz
 // Bodypart.hasMany(Exercise);
 // Exercise.belongsTo(Bodypart);
 
-//Headersale.hasMany(Bodysale)
-//Bodysale.belongsTo(Headersale)
+Headersale.hasMany(Bodysale);
+Bodysale.belongsTo(Headersale);
+
+Product.hasOne(Bodysale);
+Bodysale.belongsTo(Product);
 
 
 module.exports = {

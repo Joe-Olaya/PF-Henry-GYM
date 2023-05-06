@@ -8,21 +8,17 @@ module.exports = (sequelize) => {
       autoIncrement:true,
       allowNull: false
     },
+    clientId:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
     clientName:{
         type: DataTypes.STRING,
         allowNull:false
     },
-    clientAdress:{
+    clientAddress:{
         type: DataTypes.STRING,
         allowNull:false
     },
-    orderNumber: {
-        type: DataTypes.INTEGER,
-        allowNull:false
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    }
   });
 };
