@@ -6,7 +6,10 @@ import {
   POST_REGISTER,
   FILTER_BY_MUSCLE,
   ORDER_BY_NAME,
-  GET_NAME_EXERCISES
+  GET_NAME_EXERCISES,
+  POST_PRODUCT_CREATE,
+
+  
 } from "./action_types";
 
 const initialState = {
@@ -47,6 +50,7 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
+        
     case FILTER_BY_MUSCLE: 
     const muscles = state.exercisesOrigin.filter(el => el.muscle === action.payload)
       return{
@@ -77,6 +81,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         exercises: sortedArr
       } ; 
+      case POST_PRODUCT_CREATE:
+        return {
+          ...state,
+        };
 
     
 
