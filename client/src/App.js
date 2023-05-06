@@ -45,7 +45,7 @@ const App = () => {
             </div>
           }
         />
-        <Route exact path="/formProducts" element={FormProducts}/>
+        <Route exact path="/formProducts" element={<FormProducts/>}/>
         <Route path="/*" element={<Error />} />
         <Route
           path="/register"
