@@ -12,6 +12,11 @@ const createProducts = async(name, description, price, image) => {
     return newProduct
 }; 
 
+const getProductById = async(id) => {
+    const product = await Products.findByPk(id)
+    return product
+}
+
 const getAllProducts = async() => {
     const allProducts = await Products.findAll()
     return allProducts
@@ -26,5 +31,6 @@ const deleteProduct = async(name) => {
 module.exports = {
     createProducts,
     getAllProducts,
-    deleteProduct
+    deleteProduct,
+    getProductById
 }
