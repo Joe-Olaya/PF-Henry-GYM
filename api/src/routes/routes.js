@@ -5,6 +5,7 @@ const { validateDni, validatePassword } = require("../handlers/validationsHandle
 const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/exercisesHandlers");
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
 const { createProductsHandler, getProductsHandler, deleteProductHandler } = require("../handlers/ProductHandlers");
+//const { createHeadersaleHandler } = require('../handlers/headersaleHandlers')
 const router = Router();
 
 router.get('/loadingDb', fullDbData);
@@ -18,5 +19,6 @@ router.post('/register', validateDni, validatePassword, registerUserHandler);
 router.post('/products', createProductsHandler);
 router.get('/products', getProductsHandler)
 router.delete('/products/:name', deleteProductHandler)
+//router.post('/createSale', createHeadersaleHandler)
 
 module.exports = router;
