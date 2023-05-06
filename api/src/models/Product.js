@@ -30,9 +30,12 @@ module.exports = (sequelize) => {
     image: {
         type:DataTypes.STRING,
         allowNull:false
-    }
+    },
+
+    state:{
+        type: DataTypes.ENUM("Active", "Inactive"),
+        allowNull: false
+      }
     
-
-
 });
 };
