@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
-//import { postRegister } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postProductCreate } from "../../redux/actions";
 
 const FormaCreate = () => {
   //const [isRegistering, setRegistering] = useState(false);
@@ -22,7 +22,7 @@ const FormaCreate = () => {
         initialValues={{
           name: "",
           price: "",
-          quantity: "",
+          //quantity: "",
           description: "",
           image: "",
         }}
@@ -42,9 +42,9 @@ const FormaCreate = () => {
         onSubmit={(valores, { resetForm }) => {
           resetForm();
           console.log("FORM SENT");
-          console.log(valores)
-        //dispatch(postRegister(valores));
-          navigate("/");
+          //console.log(valores)
+        dispatch(postProductCreate(valores));
+          //navigate("/");
           changeProductCreate(true);
           setTimeout(() => changeProductCreate(false), 5000);
         }}
@@ -87,7 +87,7 @@ const FormaCreate = () => {
            />
          
          </div>
-         <div className=" text-lg font-medium mt-2 text-slate-50">
+         {/*<div className=" text-lg font-medium mt-2 text-slate-50">
             <label htmlFor="quantity">Quantity </label>
           <input className ="w-96 bg-grey-lighter text-slate-950 py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold" 
           type="number"  
@@ -98,13 +98,13 @@ const FormaCreate = () => {
           onBlur={handleBlur}
            />
         
-         </div>
+         </div>*/}
             <div className=" text-lg font-medium mt-2 text-slate-50">
-            <label htmlFor="image"> Imagen </label>
+            <label htmlFor="image"> Image </label>
           <input className ="w-96 border-gray p-4 bg-grey-lighter  text-slate-950 py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold" 
           type="text"  
           name="image"
-          placeholder="urlimage"
+          placeholder="image"
           value={values.image}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -138,14 +138,14 @@ const FormaCreate = () => {
   
 </div>
 
-            <div className="mt-8 flex justify-between items-center">
-        
+           {/* <div className="mt-8 flex justify-between items-center">
+        {
               <Link to="/">
                 <button className="ml-2  font-medium text-base text-yellow-500">
                   Sign up
                 </button>
-              </Link>
-            </div>
+        </Link>
+            </div>*/}
           </form>
         )}
       </Formik>
