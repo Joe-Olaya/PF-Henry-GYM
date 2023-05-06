@@ -1,24 +1,13 @@
 const {Bodysale} = require('../db')
-const {getProductById} = require('./ProductsControllers')
 
-const createNewBody = (headerId, productList) => {
-    productList = {
-        product_id,
+const createNewBody = async (price, units, ProductId, HeadersaleId) => {
+    const bodySale = await Bodysale.create({
+        price,
         units,
-    }
-    const bodies = [];
-    productList.map(async (e) => {
-        const product = await getProductById(e.product_id);
-        const price = product.price * e.units
-        const bodySale = await Bodysale.create({
-            price: price,
-            units: e.units,
-            ProductId: product.id,
-            HeadersaleId: headerId
-        })
-        bodies.push(bodySale)
+        ProductId,
+        HeadersaleId
     })
-    return bodies;
+    return bodySale;
 }
 
 module.exports = {

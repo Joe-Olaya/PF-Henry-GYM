@@ -4,7 +4,7 @@ const { fullDbData } = require("../handlers/dbDataHandlers")
 const { validateDni, validatePassword } = require("../handlers/validationsHandlers");
 const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/exercisesHandlers");
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
-const { createProductsHandler, getProductsHandler, deleteProductHandler } = require("../handlers/ProductHandlers");
+const { createProductsHandler, getProductsHandler, deleteProductHandler } = require("../handlers/productHandlers");
 //const { createHeadersaleHandler } = require('../handlers/headersaleHandlers')
 const router = Router();
 
