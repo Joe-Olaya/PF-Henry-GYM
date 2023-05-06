@@ -179,7 +179,7 @@ const Registration = () => {
                 Create User{" "}
               </button>
               {formularioEnviado && (
-                <p className="exito flex justify-between items-center  font-medium text-base text-yellow-500">
+                <p className="flex justify-between items-center  font-medium text-base text-yellow-500">
                   {" "}
                   Formulario enviado con exito{" "}
                 </p>
