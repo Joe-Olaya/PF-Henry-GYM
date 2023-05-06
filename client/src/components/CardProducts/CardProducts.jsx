@@ -3,14 +3,16 @@ import "./CardProducts.css";
 const CardProducts = (props) => {
     return(
         <div className="cardPrd">
-            <img className="productImg" src={props.imagen_url}/>
+            <popup trigger={false}>
+                <img className="productImg" src={props.image}/>
+                </popup>
             <div className="infoPrd">
             <h1 className="titlePrd">
-            <p>{props.name}</p>
+            <p>Name: {props.name}</p>
             </h1>
             <div className="descriptionPrd">
-                <h1>Description: {props.descripcion}</h1>
-                <h1>Price: {props.precio}</h1>
+                <h1>Description: {props.description}</h1>
+                <h1>Price: {props.price}</h1>
             </div>
 
             </div>

@@ -21,6 +21,16 @@ export const getExercises = () => {
   };
 };
 
+export const getProducts = () => {
+  return async function (dispatch) {
+    const productsData = (await axios.get(`${URL}/products`)).data;
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: productsData,
+    });
+  };
+};
+
 export const getExerciseById = (idExercise) => {
   return async function (dispatch) {
     const exerciseData = (await axios.get(`${URL}/exercises/${idExercise}`))
