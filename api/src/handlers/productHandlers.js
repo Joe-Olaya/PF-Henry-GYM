@@ -1,11 +1,27 @@
 const { createProducts, getAllProducts, deleteProduct, reactiveProduct } = require ("../controllers/productsControllers");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  //configuramos cloudinary
+  cloud_name: "datqa8u9o",
+  api_key: "521123927693672",
+  api_secret: "6aaO--X7Qx1Bmg1UUEIyjJRSaUM",
+}); ///a futuro seria guardar esto en el archivo .env
 
 
 
 const createProductsHandler = async(req, res) => {
    const {name, description, price, image}= req.body;
    try {
-    const newProduct = await createProducts(name, description, price, image);
+    const imageupload= await cloudinary.uploader.upload(image, {
+      resource_type: "image",
+      folder: "supplies and training",
+      public_id: "private_image",
+      type: "private",
+    })
+    const urlImage= imageupload.secure_url
+
+    const newProduct = await createProducts(name, description, price, urlImage);
        res.status(200).send(newProduct)
    } catch (error) {
     console.log(error)
@@ -41,6 +57,9 @@ const reactiveProductHandler = async (req,res) => {
       res.status(404).json({ error: error.message });
     }
   }
+
+
+
 
 module.exports={
     createProductsHandler,

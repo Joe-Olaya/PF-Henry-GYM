@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const { Router } = require('express');
 const { fullDbData } = require("../handlers/dbDataHandlers")
 const { validateDni, validatePassword } = require("../handlers/validationsHandlers");
@@ -7,6 +8,7 @@ const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHan
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
 const { createSaleHandler } = require('../handlers/headersaleHandlers')
 const router = Router();
+
 
 router.get('/loadingDb', fullDbData);
 router.get('/exercises', getExercisesHandler);
@@ -21,5 +23,8 @@ router.get('/products', getProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
+router.post('/image', async(req, res)=>{
+  res.send(urlImage)
+})
 
 module.exports = router;
