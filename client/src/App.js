@@ -11,6 +11,8 @@ import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
 import NavSec from "../src/components/NavSec/NavSec";
 import FormCreate from "./components/FormCreate/FormCreate";
+import Login from "./components/Login/Login";
+import Store from "./components/Store/Store";
 
 const App = () => {
   const location = useLocation();
@@ -46,6 +48,8 @@ const App = () => {
         />
         <Route path="/*" element={<Error />} />
         <Route path="/create" element={<FormCreate/>} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/store" element={<Store/>}/>
         <Route
           path="/register"
           element={
