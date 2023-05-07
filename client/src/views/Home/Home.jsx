@@ -1,98 +1,93 @@
 import "./Home.css";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import images from "../../constants/images.js";
 
 export const Home = () => {
-  const exercises = useSelector((state) => state.exercises);
-  const limitedExercises = exercises.slice(0, 4);
   return (
-      
-    <div className="div_container">
-     
-      <div className="div_container_exercises">
-        <section className="section_title">
-          <h1>Supplies & Training</h1>
-          <h3>Wanna train something today?</h3>
-          <h3>See all the exercises we have for you</h3>
-        </section>
-        <section className="section_cards">
-          <h1>EXERCISES</h1>
-          <div className="card_container">
-            {limitedExercises.map((exercise) => {
-              return (
-                <div className="card_section" key={exercise.id}>
-                  <h2>{exercise.name}</h2>
-                  <h3>{exercise.muscle}</h3>
-                  <h3>{exercise.body_part}</h3>
-                  <img src={exercise.gif_url} alt="exercise_name" />
-                </div>
-              );
-            })}
+    <div>
+      <div className="sectionExercises">
+        <div className="backExSection">
+          <h1 className="h1Title">Supplies & Training</h1>
+          <h3 className="h3Text">
+            Wanna <span class="palabra-destacada">train</span> something today?
+          </h3>
+          <h3 className="h3Text">
+            See all the <span class="palabra-destacada">exercises</span> we have
+            for you
+          </h3>
+          <div className="carouselExercises">
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <main id="carousel">
+              <div class="item">
+                <img className="imagesEx" src={images.gif1} />
+              </div>
+              <div class="item">
+                <img className="imagesEx" src={images.gif2} />
+              </div>
+              <div class="item">
+                <img className="imagesEx" src={images.gif3} />
+              </div>
+              <div class="item">
+                <img className="imagesEx" src={images.gif4} />
+              </div>
+              <div class="item">
+                <img className="imagesEx" src={images.gif5} />
+              </div>
+            </main>
           </div>
-          {/* <div className="card_container">
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del ejercicio</h2>
-            </div>
-
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del ejercicio</h2>
-            </div>
-
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del ejercicio</h2>
-            </div>
-
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del ejercicio</h2>
-            </div>
-          </div> */}
-
-          <div className="div_button">
-            <button className="button_Viewall"><Link to='/exercises'>View more</Link></button>
+          <div className="button-container">
+            <Link to="/exercises">
+              <button className="exercises-button">Explore Exercises</button>
+            </Link>
           </div>
-        </section>
+        </div>
       </div>
-      {/*       <div className="div_container_store">
-        <section className="section_cards">
-          
-          <h1>STORE</h1>
 
-          <div className="card_container">
-            
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del item de la store</h2>
-            </div>
-            
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del item de la store</h2>
-            </div>
-            
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del item de la store</h2>
-            </div>
-            
-            <div className="card_section">
-              <img src="" alt="SIN IMAGEN" />
-              <h2>Titulo del item de la store</h2>
-            </div>
-            
+      <div className="sectionStore">
+        <div className="backStSection">
+          <h1 className="h1Store">Store</h1>
+          <h3 className="h3TextStore">
+            Wanna <span class="palabra-destacada">train</span> something today?
+          </h3>
+          <h3 className="h3TextStore">
+            See all the <span class="palabra-destacada">products</span>{" "}
+            available in our store
+          </h3>
+          <div className="carouselExercises">
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <main id="carousel">
+              <div class="item1">
+                <img className="imgStore" src={images.store1}></img>
+              </div>
+              <div class="item1">
+                <img className="imgStore" src={images.store2}></img>
+              </div>
+              <div class="item1">
+                <img className="imgStore" src={images.store3}></img>
+              </div>
+              <div class="item1">
+              <img className="imgStore" src={images.store4}></img>
+              </div>
+              <div class="item1">
+              <img className="imgStore" src={images.store5}></img>
+              </div>
+            </main>
           </div>
-          
-            <div className="div_button">
-                <button className="button_Viewall">View more</button>
-            </div>
-        
-        </section>
-        //solo de prueba 
-      </div> */}
-      <div className="flex justify-center "></div>
+          <div className="button-container">
+            <Link to="/store">
+              <button className="store-button">Explore Store</button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
