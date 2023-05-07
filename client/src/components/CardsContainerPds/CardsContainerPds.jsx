@@ -2,14 +2,14 @@ import { useSelector } from "react-redux";
 import CardProducts from "../CardProducts/CardProducts";
 import "./CardsContainerPds.css"
 
-const CardsContainerPds = () => {
+const CardsContainerPds = ({ start, end }) => {
 
   const products = useSelector((state) => state.products);
 
 
     return(
         <div className="product">
-            {products.map(product => {
+            {products.slice(start, end).map((product) => {
                 return (
                     <div className="product" key={product.id}>
                         <div className="cardProduct">
