@@ -10,6 +10,16 @@ import card4 from "../assets/card4.png";
 import linkedin from "../assets/linkedin.png";
 import logohenry from "../assets/logohenry.png";
 import mail from "../assets/mail.png";
+import gif1 from "../assets/1.gif";
+import gif2 from "../assets/2.gif";
+import gif3 from "../assets/3.gif";
+import gif4 from "../assets/4.gif";
+import gif5 from "../assets/5.gif";
+import store1 from "../assets/1.webp";
+import store2 from "../assets/2.webp";
+import store3 from "../assets/3.webp";
+import store4 from "../assets/4.webp";
+import store5 from "../assets/5.webp";
 
 export default {
   bg,
@@ -23,5 +33,15 @@ export default {
   card4,
   linkedin,
   logohenry,
-  mail
+  mail,
+  gif1,
+  gif2,
+  gif3,
+  gif4,
+  gif5,
+  store1,
+  store2,
+  store3,
+  store4,
+  store5
 };

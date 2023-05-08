@@ -1,6 +1,7 @@
 const {
   getAndLoadDbExercises,
   getAndLoadDbBodyParts,
+  getAndLoadDbMuscle,
 } = require("../controllers/loadDbControllers");
 
 const fullDbData = async (req, res) => {

@@ -15,6 +15,11 @@ const getUserByName = async (name) => {
   return userFiltered;
 };
 
+const getUserById = async (id) => {
+  const user = await User.findByPk(id);
+  return user
+}
+
 const cleanUserData = (arr) => {
   let data = [];
     arr.map((el) => {
@@ -101,5 +106,6 @@ module.exports = {
   getAllUsers,
   getUserByName,
   deleteUserById,
-  reactiveUserById
+  reactiveUserById,
+  getUserById
 };

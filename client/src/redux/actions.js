@@ -5,7 +5,8 @@ import {
   GET_PRODUCTS,
   GET_USERS,
   POST_REGISTER,
-  ORDER_BY_NAME
+  ORDER_BY_NAME,
+  POST_PRODUCT_CREATE
 } from "./action_types";
 import axios from "axios";
 
@@ -17,6 +18,16 @@ export const getExercises = () => {
     dispatch({
       type: GET_EXERCISES,
       payload: exercisesData,
+    });
+  };
+};
+
+export const getProducts = () => {
+  return async function (dispatch) {
+    const productsData = (await axios.get(`${URL}/products`)).data;
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: productsData,
     });
   };
 };
@@ -76,7 +87,20 @@ export const filterByMuscle = (muscle) => {
             console.log(error.message)
          }};
     };
-
+    export function postProductCreate(payload){
+      console.log(payload)
+      return async function(dispatch) {
+          try {
+              //console.log(payload)
+              const createProduct = await axios.post(`${URL}/products`, payload)
+              console.log(createProduct)
+              return createProduct
+    
+          }catch(errors){
+              console.log(errors);
+          }
+      }
+    };
 
  export const orderByName = (payload) => {
    return {
