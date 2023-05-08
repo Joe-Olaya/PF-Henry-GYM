@@ -9,6 +9,21 @@ const createHeadersale = async (clientId, clientName, clientAddress) => {
   return newHeadersale;
 };
 
+const getRemitById = async (remitId) => {
+  const remit = await Headersale.findOne({
+    where : {
+      id : remitId
+  }})
+  const jsonRemit = {
+    id:remit.id,
+    clientId: remit.clientId,
+    clientName: remit.clientName,
+    clientAddress: remit.clientAddress
+  }
+  return jsonRemit
+}
+
 module.exports = {
-    createHeadersale
+    createHeadersale,
+    getRemitById
 }

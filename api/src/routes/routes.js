@@ -6,7 +6,7 @@ const { validateDni, validatePassword } = require("../handlers/validationsHandle
 const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/exercisesHandlers");
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
-const { createSaleHandler } = require('../handlers/headersaleHandlers')
+const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers')
 const router = Router();
 
 
@@ -23,6 +23,7 @@ router.get('/products', getProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
+router.get('/remit/:id', getRemitByIdHandler);
 router.post('/image', async(req, res)=>{
   res.send(urlImage)
 })
