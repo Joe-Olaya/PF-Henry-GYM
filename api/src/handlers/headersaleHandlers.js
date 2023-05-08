@@ -1,5 +1,5 @@
-const { createHeadersale } = require("../controllers/headersaleControllers");
-const { createNewBody } = require("../controllers/bodysaleControllers");
+const { createHeadersale, getRemitById } = require("../controllers/headersaleControllers");
+const { createNewBody, getBodies } = require("../controllers/bodysaleControllers");
 const { getProductById } = require("../controllers/productsControllers");
 const { getUserById } = require("../controllers/usersControllers");
 
@@ -44,6 +44,43 @@ const createBodySales = async (arr, headerId) => {
   });
 };
 
+const getRemitByIdHandler = async (req,res) => {
+  const { id } = req.params
+  try {
+    const remit = await getRemitById(id)
+    const bodies = await getBodiesWhitName(remit.id)
+    // let bodies = await getBodies(remit.id)
+    // bodies.map(async e => {
+    //   let productData = await getProductById(e.productId);
+    //   e.productName = productData.name;
+    //   console.log(e)
+    // })
+    // console.log(bodies)
+    res.status(200).json({
+      remit : remit,
+      bodies : bodies
+    })
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+const getBodiesWhitName = async (remitId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let bodies = await getBodies(remitId)
+      for (const elemento of bodies) {
+        let productData = await getProductById(elemento.productId);
+        elemento.productName = productData.name;
+      }
+      resolve(bodies);
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+
 module.exports = {
   createSaleHandler,
+  getRemitByIdHandler
 };

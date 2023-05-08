@@ -16,6 +16,25 @@ const createNewBody = async (price, units, productId, headersaleId) => {
     return bodyJson;
 }
 
+const getBodies = async (remitId) => {
+    const bodies = await Bodysale.findAll({
+        where:{
+            headersaleId:remitId
+        }
+    })
+    bodiesJson = []
+    bodies.forEach(e => {
+        bodiesJson.push({
+            productId : e.productId,
+            productName: "",
+            units: e.units,
+            price: e.price
+        })
+    });
+    return bodiesJson;
+}
+
 module.exports = {
-    createNewBody
+    createNewBody,
+    getBodies
 }
