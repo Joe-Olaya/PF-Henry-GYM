@@ -1,11 +1,12 @@
 const axios = require("axios");
 const { Product } = require("../db.js");
 
-const createProducts = async (name, description, price, image) => {
+const createProducts = async (name, description, price, stock, image) => {
   const newProduct = await Product.create({
     name: name,
     description: description,
     price: price,
+    stock: stock,
     image: image,
     state: "Active"
   });

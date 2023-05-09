@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const FormProducts = () => {
  const [image,setImage]=useState('')
- const [input, setInput]=useState({name:'', description:'', price:0, image:''})
+ const [input, setInput]=useState({name:'', description:'', price:0, stock:0, image:''})
 
   const setFile = (file) => {
     //funcion que convierte la imagen en datos legibles
@@ -53,6 +53,9 @@ const FormProducts = () => {
 
        <label> product price </label>
        <input type="number" name="price" value={input.price} onChange={handleOnChange}/>
+
+       <label> product stock </label>
+       <input type="number" name="stock" value={input.stock} onChange={handleOnChange}/>
 
        <label> Image </label>
        <input type="file" onChange={handleImage}/>

@@ -12,7 +12,7 @@ cloudinary.config({
 
 
 const createProductsHandler = async(req, res) => {
-   const {name, description, price, image}= req.body;
+   const {name, description, price, stock, image}= req.body;
    try {
     const imageupload= await cloudinary.uploader.upload(image, {
       resource_type: "image",
@@ -22,7 +22,7 @@ const createProductsHandler = async(req, res) => {
     })
     const urlImage= imageupload.secure_url
 
-    const newProduct = await createProducts(name, description, price, urlImage);
+    const newProduct = await createProducts(name, description, price, stock, urlImage);
        res.status(200).send(newProduct)
    } catch (error) {
     console.log(error)
