@@ -3,10 +3,21 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/routes.js');
-
 const server = express();
+const { auth } = require('express-openid-connect');
+require('dotenv').config()
+const {SECRET, BASEURL, CLIENTID, ISSUERBASEURL} = process.env
 
 server.name = 'API';
+
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: SECRET,
+//   baseURL: BASEURL,
+//   clientID: CLIENTID,
+//   issuerBaseURL: ISSUERBASEURL
+// };
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
@@ -19,6 +30,7 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+// server.use(auth(config));
 
 server.use('/', routes);
 
