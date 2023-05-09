@@ -1,4 +1,4 @@
-const { createProducts, getAllProducts, deleteProduct, reactiveProduct } = require ("../controllers/productsControllers");
+const { createProducts, getAllProducts, deleteProduct, reactiveProduct, getProductByName } = require ("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
 require('dotenv').config();
 const {CLOUD_NAME, API_KEY, API_SECRET} = process.env
@@ -23,7 +23,7 @@ const createProductsHandler = async(req, res) => {
     const urlImage= imageupload.secure_url
 
     const newProduct = await createProducts(name, description, price, stock, urlImage);
-       res.status(200).send(newProduct)
+       res.status(200).send('Product created successfully')
    } catch (error) {
     console.log(error)
        res.status(400).send('product not created 😢')
@@ -31,12 +31,13 @@ const createProductsHandler = async(req, res) => {
 };
 
 const getProductsHandler = async(req, res) => {
-    try {
-         const allProducts = await getAllProducts();
-        res.status(200).send(allProducts)
-     } catch (error) {
-        res.status(404).send(error)
-     };
+  const { name } = req.query;
+  try {
+        const allProducts = name ? await getProductByName(name) : await getAllProducts();
+      res.status(200).send(allProducts)
+    } catch (error) {
+      res.status(404).send(error)
+    };
 };
 
 const deleteProductHandler = async(req, res) => {

@@ -13,6 +13,31 @@ const createProducts = async (name, description, price, stock, image) => {
   return newProduct;
 };
 
+const getProductByName = async (name) => {
+  const products = await Product.findAll();
+  const cleanData = cleanProductData(products);
+  const productsFiltered = cleanData.filter((d) =>
+    d.name.toLowerCase().includes(name.toLowerCase())
+  );
+  return productsFiltered
+}
+
+const cleanProductData = (arr) => {
+  let data = [];
+    arr.map((el) => {
+      data.push({
+        id: el.id,
+        name: el.name,
+        price: el.price,
+        description: el.description,
+        image: el.image,
+        stock: el.stock,
+        state: el.state
+      });
+    });
+  return data;
+};
+
 const getProductById = async (id) => {
   const product = await Product.findByPk(id);
   return product;
@@ -50,5 +75,6 @@ module.exports = {
   getAllProducts,
   deleteProduct,
   getProductById,
-  reactiveProduct
+  reactiveProduct,
+  getProductByName
 };
