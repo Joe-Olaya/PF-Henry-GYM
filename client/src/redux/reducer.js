@@ -8,8 +8,7 @@ import {
   ORDER_BY_NAME,
   GET_NAME_EXERCISES,
   POST_PRODUCT_CREATE,
-
-  
+  ORDER_PRODUCTS
 } from "./action_types";
 
 const initialState = {
@@ -90,6 +89,27 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
+        case ORDER_PRODUCTS:
+      let products;
+      if (action.payload === "A-Z" || action.payload === "Z-A") {
+        products = state.products.sort((a, b) => {
+          if (a.name > b.name) return 1;
+          if (a.name < b.name) return -1;
+          return 0;
+        });
+        if (action.payload === "Z-A") products = products.reverse();
+      }
+      if (action.payload === "minMax" || action.payload === "maxMin") {
+        products = state.products.sort((a, b) => {
+          return a.price - b.price;
+        });
+        if (action.payload === "maxMin") products = products.reverse();
+      }
+
+      return {
+        ...state,
+        products,
+      };
 
     
 

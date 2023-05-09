@@ -6,7 +6,8 @@ import {
   GET_USERS,
   POST_REGISTER,
   ORDER_BY_NAME,
-  POST_PRODUCT_CREATE
+  POST_PRODUCT_CREATE,
+  ORDER_PRODUCTS
 } from "./action_types";
 import axios from "axios";
 
@@ -107,6 +108,10 @@ export const filterByMuscle = (muscle) => {
      type: ORDER_BY_NAME,
       payload
    };
-};  
+};
+
+export function orderProducts(payload) {
+  return { type: ORDER_PRODUCTS, payload };
+}
 
 
