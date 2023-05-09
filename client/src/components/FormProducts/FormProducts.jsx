@@ -21,7 +21,11 @@ const FormProducts = () => {
   const handleSubmit= async() => {
     const postRequest = await axios.post('http://localhost:3001/products', input);
           console.log(postRequest.data)
-          setImage(postRequest.data.image)
+          if(postRequest.data == "Product created successfully"){
+            alert(postRequest.data)
+          } else {
+            alert(postRequest.data)
+          }
   };
 
   const handleOnChange = (e) => {
