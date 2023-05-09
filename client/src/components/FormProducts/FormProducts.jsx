@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const FormProducts = () => {
  const [image,setImage]=useState('')
- const [input, setInput]=useState({name:'', description:'', price:0, image:''})
+ const [input, setInput]=useState({name:'', description:'', price:0, image:'',quantity:''})
 
   const setFile = (file) => {
     //funcion que convierte la imagen en datos legibles
@@ -50,29 +50,42 @@ const FormProducts = () => {
       </h1>
       <form className="mt-8 w-96" action="" style={{margin:'0 auto'}}> 
       <div className="text-lg font-medium text-slate-50">
-       <label> product Name: </label>
+      <label htmlFor="name">Name</label>
        <input   className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
        type="text" name="name" value={input.name} onChange={handleOnChange} />
        </div>
        <div className="text-lg font-medium text-slate-50">
-       <label> product description </label>
+       <label htmlFor="description">Description</label>
        <input   className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
        type="text" name="description" value={input.description} onChange={handleOnChange} />
        </div>
+
        <div className="text-lg font-medium text-slate-50">
-       <label> product price </label>
+       <label htmlFor="price">Price</label>
        <input   className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
        type="number" name="price" value={input.price} onChange={handleOnChange}/>
        </div>
+       <div className=" text-lg font-medium mt-2 text-slate-50">
+            <label htmlFor="quantity">Quantity </label>
+          <input className ="w-96 bg-grey-lighter text-slate-950 py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold" 
+          type="number"  
+          name="quantity"
+
+          placeholder="quantity"
+          onChange={handleOnChange}
+          
+           />
+        
+         </div>
        <div className="text-lg font-medium text-slate-50">
-       <label> Image </label>
+       <label htmlFor="image">Image </label>
        <input  className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
        type="file" onChange={handleImage}/>
        </div>
 
       <img src={image} weight="200" height={200} />
 
-       <button className="w-1/3 flex justify-center items-center active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-green-500 text-white text-lg font-bold" onClick={handleSubmit} type='button'> submit </button>
+       <button className="w-1/3 flex justify-center items-center active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-green-500 text-white text-lg font-bold" onClick={handleSubmit} type='button'> Create </button>
     
   
       </form>
