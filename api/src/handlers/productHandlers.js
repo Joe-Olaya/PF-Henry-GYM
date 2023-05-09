@@ -1,12 +1,13 @@
 const { createProducts, getAllProducts, deleteProduct, reactiveProduct } = require ("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
+require('dotenv').config();
+const {CLOUD_NAME, API_KEY, API_SECRET} = process.env
 
 cloudinary.config({
-  //configuramos cloudinary
-  cloud_name: "datqa8u9o",
-  api_key: "521123927693672",
-  api_secret: "6aaO--X7Qx1Bmg1UUEIyjJRSaUM",
-}); ///a futuro seria guardar esto en el archivo .env
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET,
+});
 
 
 
