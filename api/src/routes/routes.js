@@ -27,5 +27,8 @@ router.get('/remit/:id', getRemitByIdHandler);
 router.post('/image', async(req, res)=>{
   res.send(urlImage)
 })
+// router.get('/', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
 
 module.exports = router;
