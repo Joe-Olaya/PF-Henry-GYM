@@ -1,4 +1,4 @@
-const { createProducts, getAllProducts, deleteProduct } = require ("../controllers/ProductsControllers");
+const { createProducts, getAllProducts, deleteProduct } = require ("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
