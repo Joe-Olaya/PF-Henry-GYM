@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Product } = require("../db.js");
-const mercadopago = require("mercadopago")
+
 
 const createProducts = async (name, description, price, image) => {
   const newProduct = await Product.create({
