@@ -1,4 +1,4 @@
-const { createProducts, getAllProducts, deleteProduct } = require ("../controllers/productsControllers");
+const { createProducts, getAllProducts, deleteProduct, reactiveProduct } = require ("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -39,15 +39,24 @@ const getProductsHandler = async(req, res) => {
 };
 
 const deleteProductHandler = async(req, res) => {
-      const name = req.params.name
-      console.log(name)
+      const {id} = req.params;
     try {
-        const deleteProducts = await deleteProduct(name)
+        const deleteProducts = await deleteProduct(id)
         res.status(200).send('product deleted succesfully 👌')
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).json({error: error.message})
     }
-}  
+}
+
+const reactiveProductHandler = async (req,res) => {
+    const {id} = req.params;
+    try {
+      const result = await reactiveProduct(id)
+      res.status(200).json({ result });
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
+  }
 
 
 
@@ -55,5 +64,6 @@ const deleteProductHandler = async(req, res) => {
 module.exports={
     createProductsHandler,
     getProductsHandler,
-    deleteProductHandler
+    deleteProductHandler,
+    reactiveProductHandler
 }

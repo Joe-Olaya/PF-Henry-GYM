@@ -1,118 +1,510 @@
-body{
-    background: url('../../assets/background.jpg');
-    background-size:cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat; 
- }
- .div_container{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
- }
- 
- 
- .section_title{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     font-weight: 600;
-     color: rgb(247, 248, 170)
- 
- }
- .section_title h1 {
-     font-size: 35px;
-     font-weight: bolder;
-     padding: 10px;
- }
- 
- .section_title h3{
-     font-size: 25px;
-     margin-bottom: 20px;
- }
- 
- .card_container{
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content: center;
-     padding: 5px;
-     width: 700px;
-     height: 300px;
-     border-radius: 10px;
- }
- .card_section{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     background-color: rgba(231, 235, 15, 0.8);
-     padding: 5px;
-     margin: 2px;
-     width: 80%;
-     height: 90%;
-     border-radius: 5px;
-     box-shadow: 2px 2px 2px 1px grey
- }
- .card_section:hover{
-     transform:translate3d(1px, 2%, 3em);
-     transition-duration: 0.2s;
- }
- .card_section h2{
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-     text-align: center;
-     text-transform: uppercase;
- }
- .card_section h3{
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-     text-align: center;
-     text-size-adjust:calc();
-     text-transform: uppercase;
- }
- 
- 
- .section_cards{
-     display: flex;
-     flex-direction: column;
-     background-color: rgba(231, 235, 15, 0.6);
-     border: 2px solid black;
-     box-shadow: 5px 10px 15px #333;
-     border-radius: 10px;
-     margin: 5px;
-     padding: 20px;
- }
- .section_cards .div_button{
-     display: flex;
-     justify-content: flex-end;
- }
- .section_cards h1{
-     font-size: xx-large;
-     font-style: oblique;
-     font-weight: bolder;
-     display: flex;
-     justify-content: center;
-     margin-bottom: 10px;
- }
- .div_button{
-     margin: 1px;
-     padding: 3px;
- }
- 
- .button_Viewall{
-     border-radius: 10px;
-     padding: 5px;
-     margin: 2px;
-     background-color: rgb(0, 0, 0);
-     color: white;
-     font-weight: 700;
- }
- .button_Viewall:hover{
-     background-color: grey;
-     transition-duration: 1.5s;
-     transform: rotateY(1turn);
- }
- 
- .div_container_exercises{
-     padding: 20px;
-     margin: 15px;
- }
+.sectionExercises {
+    border-top: 2px solid white !important;
+    border-bottom: 10px solid #FDB813;
+    margin: 0 0 0 0;
+    padding-bottom: 50px;
+    background-image: url("../../assets/fondoex.png");
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.sectionStore {
+    border-top: 2px solid rgb(255, 255, 255) !important;
+    border-bottom: 10px solid #FDB813;
+    margin: 0 0 0 0;
+    padding-bottom: 50px;
+    background-image: url("../../assets/Sin\ título-1.png");
+    background-size: cover !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.backExSection{
+    background-color: black;
+    height: 550px;
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: -50px;
+}
+
+.backStSection{
+    background-color: rgb(255, 255, 255);
+    height: 550px;
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: -50px;
+}
+
+.h1Title {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    font-family: Montserrat;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-feature-settings: "tnum" on, "lnum" on;
+    line-height: 29.9px;
+    font-size: 30px;
+}
+
+.h1Store {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-family: Montserrat;
+    color: rgb(0, 0, 0);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-feature-settings: "tnum" on, "lnum" on;
+    line-height: 29.9px;
+    font-size: 30px;
+}
+
+.h3Text {
+    font-family: Montserrat;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.h3TextStore {
+    font-family: Montserrat;
+    color: rgb(2, 2, 2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.palabra-destacada {
+    font-family: Montserrat;
+    color: #FDB813;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.exercises-button {
+    position: absolute;
+    bottom: -175px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    overflow: hidden;
+    z-index: 1;
+    color: #FDB813;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #000000;
+    border: 1px solid #FDB813;
+}
+
+.exercises-button:active {
+    color: #666;
+}
+
+.exercises-button:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.exercises-button:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #FDB813;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.exercises-button:hover {
+    color: #000000;
+    font-weight: 500;
+    border: 1px solid #FDB813;
+}
+
+.exercises-button:hover:before {
+    top: -35%;
+    background-color: #FDB813;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.exercises-button:hover:after {
+    top: -45%;
+    background-color: #FDB813;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* --------------------------Store---------------------------- */
+.store-button {
+    position: absolute;
+    bottom: -175px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    overflow: hidden;
+    z-index: 1;
+    color: #000000;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #ffffff;
+    border: 1px solid #000000;
+}
+
+.store-button:active {
+    color: #666;
+}
+
+.store-button:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.store-button:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #FDB813;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.store-button:hover {
+    color: #000000;
+    font-weight: 500;
+    border: 1px solid #FDB813;
+}
+
+.store-button:hover:before {
+    top: -35%;
+    background-color: #FDB813;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.store-button:hover:after {
+    top: -45%;
+    background-color: #FDB813;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+
+.carouselExercises {
+    height: 150px;
+    margin: 40px 0 0 0;
+    display: grid;
+    grid-template-rows: 200px 100px;
+    grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+main#carousel {
+    grid-row: 1 / 2;
+    grid-column: 1 / 8;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 600px;
+    --items: 5;
+    --middle: 3;
+    --position: 3;
+    pointer-events: none;
+}
+
+
+div.item {
+    position: absolute;
+    width: 180px;
+    height: 240px;
+    background-color: #000000;
+    border: black solid 5px;
+    --r: calc(var(--position) - var(--offset));
+    --abs: max(calc(var(--r) * -1), var(--r));
+    transition: all 0.25s linear;
+    transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-180px * var(--r)));
+    z-index: calc((var(--position) - var(--abs)));
+}
+div.item:nth-of-type(1) {
+    --offset: 1;
+    background-color: #ffffff;
+}
+
+div.item:nth-of-type(2) {
+    --offset: 2;
+    background-color: #ffffff;
+}
+
+div.item:nth-of-type(3) {
+    --offset: 3;
+    background-color: #ffffff;
+}
+
+div.item:nth-of-type(4) {
+    --offset: 4;
+    background-color: #ffffff;
+}
+
+div.item:nth-of-type(5) {
+    --offset: 5;
+    background-color: #ffffff;
+}
+
+input:nth-of-type(1) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(1):checked~main#carousel {
+    --position: 1;
+}
+
+input:nth-of-type(2) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(2):checked~main#carousel {
+    --position: 2;
+}
+
+input:nth-of-type(3) {
+    grid-column: 4 /5;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(3):checked~main#carousel {
+    --position: 3;
+}
+
+input:nth-of-type(4) {
+    grid-column: 5 / 6;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(4):checked~main#carousel {
+    --position: 4;
+}
+
+input:nth-of-type(5) {
+    grid-column: 6 / 7;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(5):checked~main#carousel {
+    --position: 5;
+}
+.imagesEx{
+    margin-top: 20px;
+    width: 100%;
+    height: 80%;
+}
+.imgStore {
+    margin-top: 20px;
+    width: 100%;
+    height: 80%;
+}
+
+
+div.item1 {
+    position: absolute;
+    width: 180px;
+    height: 240px;
+    background-color: #FDB813;
+    border: #ffffff solid 2px;
+    --r: calc(var(--position) - var(--offset));
+    --abs: max(calc(var(--r) * -1), var(--r));
+    transition: all 0.25s linear;
+    transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-180px * var(--r)));
+    z-index: calc((var(--position) - var(--abs)));
+}
+
+div.item1:nth-of-type(1) {
+    --offset: 1;
+    background-color: transparent !important;
+}
+
+div.item1:nth-of-type(2) {
+    --offset: 2;
+    background-color: transparent !important;
+}
+
+div.item1:nth-of-type(3) {
+    --offset: 3;
+    background-color: transparent !important;
+}
+
+div.item1:nth-of-type(4) {
+    --offset: 4;
+    background-color:  transparent !important;
+}
+
+div.item1:nth-of-type(5) {
+    --offset: 5;
+    background-color: transparent !important;
+}
+
+input:nth-of-type(1) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(1):checked~main#carousel {
+    --position: 1;
+}
+
+input:nth-of-type(2) {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(2):checked~main#carousel {
+    --position: 2;
+}
+
+input:nth-of-type(3) {
+    grid-column: 4 /5;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(3):checked~main#carousel {
+    --position: 3;
+}
+
+input:nth-of-type(4) {
+    grid-column: 5 / 6;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(4):checked~main#carousel {
+    --position: 4;
+}
+
+input:nth-of-type(5) {
+    grid-column: 6 / 7;
+    grid-row: 2 / 3;
+}
+
+input:nth-of-type(5):checked~main#carousel {
+    --position: 5;
+}
+
+
+
+
+@media screen and (max-width: 650px) {
+    .sectionExercises {
+        margin: 0px;
+    }
+    .h1Title {
+        margin-left: 20px;
+        text-decoration: underline #FDB813;
+    }
+    .h1Store{
+        justify-content: left;
+        margin-left: 20px;
+        text-decoration: underline #FDB813;  
+    }
+    .h3Text {
+        justify-content: left !important;
+        margin-left: 20px;
+    }
+    .h3TextStore{
+        justify-content: left !important;
+        margin-left: 20px;
+    }
+    .exercises-button {
+        font-size: 15px;
+        padding: 0.2em 1.0em;
+        margin-bottom: 10px;
+    }
+    .store-button {
+        font-size: 15px;
+        padding: 0.2em 1.0em;
+        margin-bottom: 10px;
+    }
+    .backExSection{
+        background-color: black;
+        width: 100%;
+        height: 550px;
+        padding-top: 20px;
+        margin-top: 0px;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-bottom: -50px;
+    }
+    .backStSection{
+        background-color: rgb(253, 252, 252);
+        width: 100%;
+        height: 550px;
+        padding-top: 20px;
+        margin-top: 0px;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-bottom: -50px;
+    }
+
+}
