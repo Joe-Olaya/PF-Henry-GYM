@@ -23,8 +23,8 @@ const newSaleMPHandler = async(req,res)=>{
         .create({items})
         .then( (response)=> {
           // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
-          res.send(response.body.id)
           console.log(response)
+          res.send(response.body.id)
         })
         .catch(function (error) {
           console.log(error);
