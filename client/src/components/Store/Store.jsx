@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getProducts, orderProducts } from "../../redux/actions";
 import Pagination from "../Pagination/Pagination";
 import "./Store.css";
+import SearchStore from "../searchStore/searchStore";
 
 const Store = () => {
 
@@ -43,6 +44,9 @@ const Store = () => {
     return(
         <div className="div_container">
             <Navbar/>
+            <section className="ser">
+              <SearchStore/>
+            </section>
             <section className="sort">
         <select value={sortOrder} onChange={handleSort}>
           <option value="A-Z">From A to Z</option>

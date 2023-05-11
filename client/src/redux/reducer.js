@@ -8,7 +8,8 @@ import {
   ORDER_BY_NAME,
   GET_NAME_EXERCISES,
   POST_PRODUCT_CREATE,
-  ORDER_PRODUCTS
+  ORDER_PRODUCTS,
+  GET_NAME_PRODUCTS
 } from "./action_types";
 
 const initialState = {
@@ -110,6 +111,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products,
       };
+      case GET_NAME_PRODUCTS:
+        return {
+          ...state,
+          products: action.payload
+        };
 
     
 
