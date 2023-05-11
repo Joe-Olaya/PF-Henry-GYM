@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getProducts, orderProducts } from "../../redux/actions";
 import Pagination from "../Pagination/Pagination";
 import "./Store.css";
-import SearchStore from "../searchStore/searchStore";
+import SearchStore from "../SearchStore/SearchStore";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 

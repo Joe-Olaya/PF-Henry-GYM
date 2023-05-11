@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getNameProducts} from '../../redux/actions';
-
+import "./SearchStore.css"
 
 export default function SearchStore () {
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ function handleSubmit(e){
 }
 
   return (
-<div class="container">
+<div className="storeContainer">
   <input type="text" name="text" class="input" placeholder="Search..." onChange={(e) => handleInputChange(e)}/>
   <button type="submit" className="search__btn" onClick={(e) => handleSubmit(e)}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">

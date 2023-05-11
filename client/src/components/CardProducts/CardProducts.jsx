@@ -18,7 +18,7 @@ const CardProducts = (props) => {
                 quantity:props.price
              }]
            }
-         const peticion =await axios.post('http://localhost:3001/prueba',product)
+         const peticion =await axios.post('http://localhost:3001/mpcompra',product)
          setId(peticion.data)
        }
 
@@ -36,14 +36,12 @@ const CardProducts = (props) => {
             <div className="descriptionPrd">
                 <h1>Description: {props.description}</h1>
                 <h1>Price: {props.price}</h1>
-       
-            <button onClick={()=>console.log(id)}>ver id</button>
-            <button onClick={getidmercadopago}>traer info</button>
-            <div>
-            <button >
-                <Wallet initialization={{ preferenceId: id}} />
-            </button>
-            </div>
+        
+                <button onClick={()=>console.log(id)}>ver id</button>
+                <button onClick={getidmercadopago}>traer info</button>
+                <button >
+                    <Wallet initialization={{ preferenceId: id}} />
+                </button>
             </div>
             </div>
         </div>
