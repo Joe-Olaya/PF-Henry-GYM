@@ -1,25 +1,20 @@
 const axios = require("axios");
 const { Product } = require("../db.js");
 
-
 const createProducts = async (name, description, price, image) => {
   const newProduct = await Product.create({
     name: name,
     description: description,
     price: price,
     image: image,
-    stock: stock,
     state: "Active"
   });
   return newProduct;
 };
-
 const getProductById = async (id) => {
   const product = await Product.findByPk(id);
   return product;
 };
-
-
 
 const getAllProducts = async () => {
   const allProducts = await Product.findAll();

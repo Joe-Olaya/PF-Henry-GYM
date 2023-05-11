@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import '../FormProducts/FormProducts.css'
+
 
 const FormProducts = () => {
  const [image,setImage]=useState('')
@@ -43,7 +45,7 @@ const FormProducts = () => {
   };
   return (
 
-    <div> 
+    <div className='container'> 
       <form action="" style={{margin:'0 auto'}}>
        <label> product Name: </label>
        <input type="text" name="name" value={input.name} onChange={handleOnChange} />

@@ -10,7 +10,6 @@ import images from "../src/assets/card4.png";
 import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
 import NavSec from "../src/components/NavSec/NavSec";
-import FormCreate from "./components/FormCreate/FormCreate";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
@@ -50,7 +49,7 @@ const App = () => {
         />
         <Route exact path="/formProducts" element={<FormProducts/>}/>
         <Route path="/*" element={<Error />} />
-        <Route path="/create" element={<FormCreate/>} />
+        <Route path="/create" element={<FormProducts/>} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/store" element={<Store/>}/>
         <Route

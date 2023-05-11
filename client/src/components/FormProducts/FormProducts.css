@@ -1,0 +1,10 @@
+.container {
+    background-color: blue;
+    color: azure;
+    padding-top: 200px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
