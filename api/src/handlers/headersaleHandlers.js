@@ -1,5 +1,5 @@
 const { createHeadersale, getRemitById } = require("../controllers/headersaleControllers");
-const { createNewBody, getBodies } = require("../controllers/bodysaleControllers");
+const { createNewBody, getBodies } = require("../controllers/bodySaleControllers");
 const { getProductById } = require("../controllers/productsControllers");
 const { getUserById } = require("../controllers/usersControllers");
 

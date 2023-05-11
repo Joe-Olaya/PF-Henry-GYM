@@ -31,11 +31,17 @@ module.exports = (sequelize) => {
         type:DataTypes.STRING,
         allowNull:false
     },
+    
+    stock:{
+        type: DataTypes.INTEGER,
+        default: 0,
+    },
 
     state:{
         type: DataTypes.ENUM("Active", "Inactive"),
         allowNull: false
-    }
+    }, 
+
     
 });
 };

@@ -60,6 +60,10 @@ router.post('/prueba',async(req,res)=>{
   }
 
 })
-  
+
+// router.get('/', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
+
 
 module.exports = router;
