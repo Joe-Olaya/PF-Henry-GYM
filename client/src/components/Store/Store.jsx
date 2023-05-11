@@ -6,6 +6,8 @@ import { getProducts, orderProducts } from "../../redux/actions";
 import Pagination from "../Pagination/Pagination";
 import "./Store.css";
 import SearchStore from "../searchStore/searchStore";
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+
 
 const Store = () => {
 
@@ -32,6 +34,7 @@ const Store = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    
     const products = useSelector(state => state.products);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 9;
@@ -40,9 +43,14 @@ const Store = () => {
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    initMercadoPago('TEST-c64788b2-8aa3-431e-8e04-4295bcce4784');
 
     return(
+        
         <div className="div_container">
+             <div id="wallet_container">
+              </div>
+              
             <Navbar/>
             <section className="ser">
               <SearchStore/>
@@ -64,6 +72,9 @@ const Store = () => {
                 totalExercises={products.length}
                 paginate={paginatePrd}
             />
+            <button>
+             <Wallet initialization={{ preferenceId: '240811749-8dfa722c-9a66-44f0-a325-7f0123f3f20d'}}/>
+             </button>
         </div>
     )
 }

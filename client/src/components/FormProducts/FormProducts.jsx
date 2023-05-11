@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import '../FormProducts/FormProducts.css'
+
 
 const FormProducts = () => {
  const [image,setImage]=useState('')
@@ -64,6 +66,7 @@ const FormProducts = () => {
        type="text" name="description" value={input.description} onChange={handleOnChange} />
        </div>
 
+
        <div className="text-lg font-medium text-slate-50">
        <label htmlFor="price">Price</label>
        <input   className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
@@ -84,6 +87,8 @@ const FormProducts = () => {
        <input  className="w-96 bg-grey-lighter text-2xl text-slate-950 py-2 rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
        type="file" onChange={handleImage}/>
        </div>
+
+  
 
       <img src={image} weight="200" height={200} />
 
