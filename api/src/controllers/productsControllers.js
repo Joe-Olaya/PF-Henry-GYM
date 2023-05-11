@@ -11,7 +11,6 @@ const createProducts = async (name, description, price, image) => {
   });
   return newProduct;
 };
-
 const getProductById = async (id) => {
   const product = await Product.findByPk(id);
   return product;
