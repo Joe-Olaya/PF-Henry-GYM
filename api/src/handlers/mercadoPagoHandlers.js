@@ -2,7 +2,7 @@
 const mercadopago = require("mercadopago");
 // Agrega credenciales
 mercadopago.configure({
-    access_token:"APP_USR-4683237095917088-051018-4d88d52cf5afad12e4afd3c940705070-240811749"
+    access_token:"TEST-4683237095917088-051018-7920e7a930b8e6449685bc6da8bfeb03-240811749"
 });
 let preference = {
   items: [
@@ -24,7 +24,7 @@ const newSaleMPHandler = async(req,res)=>{
         .then( (response)=> {
           // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
           res.send(response.body.id)
-          console.log(response)
+          // console.log(response)
         })
         .catch(function (error) {
           console.log(error);

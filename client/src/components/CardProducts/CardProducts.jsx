@@ -6,23 +6,22 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 
 const CardProducts = (props) => {
-    initMercadoPago('APP_USR-61af0d9c-d680-4246-ac67-d35a916e71e8');
-    const [id,setId]=useState(0)
-
- 
+    initMercadoPago('TEST-c64788b2-8aa3-431e-8e04-4295bcce4784');
+    const [id,setId]=useState('')
+    useEffect(()=>{
       const getidmercadopago =async()=>{
             let product={
                 items:[{
                 title:props.name,
-                unit_price:10,
+                unit_price:1,
                 quantity:props.price
              }]
            }
          const peticion =await axios.post('http://localhost:3001/mpcompra',product)
          setId(peticion.data)
        }
-
-    
+   getidmercadopago()
+    },[props])
     
      
     
@@ -36,12 +35,11 @@ const CardProducts = (props) => {
             <div className="descriptionPrd">
                 <h1>Description: {props.description}</h1>
                 <h1>Price: {props.price}</h1>
-        
-                <button onClick={()=>console.log(id)}>ver id</button>
-                <button onClick={getidmercadopago}>traer info</button>
-                <button >
-                    <Wallet initialization={{ preferenceId: id}} />
-                </button>
+       
+            <button onClick={()=>console.log(id)}>ver id</button>
+           {id&& <div>
+                <Wallet initialization={{ preferenceId: id}} />
+            </div>}
             </div>
             </div>
         </div>
