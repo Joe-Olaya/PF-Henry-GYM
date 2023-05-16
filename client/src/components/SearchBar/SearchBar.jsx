@@ -19,7 +19,7 @@ function handleSubmit(e){
 }
 
   return (
-<div className="container">
+<div className="containerExercise">
   <input type="text" name="text" className="input" placeholder="Search..." onChange={(e) => handleInputChange(e)}/>
   <button type="submit" className="search__btn" onClick={(e) => handleSubmit(e)}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">

@@ -20,6 +20,9 @@ import store2 from "../assets/2.webp";
 import store3 from "../assets/3.webp";
 import store4 from "../assets/4.webp";
 import store5 from "../assets/5.webp";
+import imageIntro from "../assets/imageIntro.png";
+import portade from "../assets/portadepng.png";
+
 
 export default {
   bg,
@@ -43,5 +46,7 @@ export default {
   store2,
   store3,
   store4,
-  store5
+  store5,
+  imageIntro,
+  portade,
 };

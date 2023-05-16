@@ -1,0 +1,254 @@
+.app__header__store {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url("../../assets/storeIntro.png");
+    background-position: center;
+    background-size: cover;
+    margin-top: -100px;
+    margin-left: -15px;
+}
+
+.p__opensans_store {
+    margin-top: 15%;
+    margin-left: 5%;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat;
+    color: black;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 28px;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.arrowButton {
+    position: fixed;
+    bottom: 40px;
+    right: 48%;
+    width: 60px;
+    height: 60px;
+    background-color: #000000;
+    color: #000000;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    border: #FDB813 solid 4px;
+    transition: 0.5s;
+}
+
+.arrowButton:hover {
+    transform: scale(1.1);
+}
+
+.arrowButton:active {
+    background-color: #FFA500;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35%;
+    margin-bottom: 35%;
+    border-top: 15px solid white;
+}
+
+.videoIntro {
+    background-image: url("../../assets/portadepng.png");
+    background-size: cover;
+    background-position: 750px;
+}
+
+
+.app__wrapper_img_store {
+    width: 60%;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonCont {
+    position: relative;
+    top: 230px;
+    right: 300px;
+}
+
+.storeExButton {
+    width: 200px;
+    background: linear-gradient(to right, #FDB813, #FFA500);
+    color: #FFFFFF;
+    border: none;
+    color: var(--color-black);
+    font-family: Montserrat;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 28px;
+    font-size: 16px;
+    padding: 0.5rem 0.2rem;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.app__wrapper_img_store img {
+    max-width: 100%;
+}
+
+
+.stilesProducts {
+    background-color: rgb(232, 233, 235);
+}
+
+.CategoriesStore {
+    position: relative;
+    top: 50px;
+    list-style-type: none;
+    margin: 0 100px 0 100px;
+    border-radius: 30px;
+    display: flex;
+    background-color: #f9f9f9;
+    box-shadow: -1px 15px 30px -12px black;
+}
+
+.CategoriesStore li {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+}
+
+.CategoriesStore li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    text-decoration: none;
+    padding: 14px 16px;
+    transition: background-color 0.3s ease;
+}
+.CategoriesStore li:first-child a {
+    border-radius: 30px 0 0 30px;
+  }
+  
+  .CategoriesStore li:last-child a {
+    border-radius: 0 30px 30px 0;
+  }
+  
+  .CategoriesStore li:first-child:hover{
+    border-radius: 30px 0 0 30px;
+    background-color: #ddd;
+  }
+  .CategoriesStore li:last-child:hover {
+    border-radius: 0 30px 30px 0;
+    background-color: #ddd;
+  }
+ 
+
+.CategoriesStore li a:hover {
+    background-color: #ddd;
+}
+
+.CategoriesStore li a div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.CategoriesStore li a span {
+    margin-top: 8px;
+}
+
+
+
+.divStoreCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardsProducts {
+    margin-bottom: 1rem;
+}
+
+.pagitaionContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 10px;
+}
+
+
+
+.sortStore {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1130px) {
+    .app__header__store {
+        height: 600px;
+        margin-left: -15px;
+    }
+
+    .storeExButton {
+        position: relative;
+        bottom: 60px;
+        left: 50px;
+    }
+
+    .p__opensans_store {
+        margin-top: 18%;
+        width: 35%;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        line-height: 12px;
+        font-size: 13px;
+        padding: 2px;
+        box-sizing: border-box;
+    }
+
+    .videoIntro {
+        background-position: 600px;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .app__header__store {
+        margin-left: -15px;
+        background-position: -20px;
+    }
+
+    .divStoreCont {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 651px) {
+    .app__header__store {
+        margin-top: -100px;
+        margin-left: 0px;
+    }
+
+}
