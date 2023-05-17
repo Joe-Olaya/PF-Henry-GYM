@@ -7,7 +7,8 @@ const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
 const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers')
-const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers')
+const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers');
+const { forgotPassword, subscription } = require("../handlers/nodeMailerHandlers");
 const router = Router();
 
 
@@ -26,6 +27,8 @@ router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);
 router.post('/mpcompra', newSaleMPHandler);
+router.get('/passwordreset', forgotPassword)
+router.get('/subscription', subscription)
 
 // router.get('/', (req, res) => {
 //   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
