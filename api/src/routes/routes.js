@@ -27,8 +27,8 @@ router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);
 router.post('/mpcompra', newSaleMPHandler);
-router.get('/passwordreset', forgotPassword)
-router.get('/subscription', subscription)
+router.post('/passwordreset', forgotPassword)
+router.post('/subscription', subscription)
 
 // router.get('/', (req, res) => {
 //   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
