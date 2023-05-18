@@ -8,28 +8,30 @@ const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHan
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
 const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers')
 const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers')
+const { getCategoriesProductsHandler } = require('../handlers/categoriesProductsHandlers')
 const router = Router();
 
-
+// CARGAR DB
 router.get('/loadingDb', fullDbData);
+// EJERCICIOS
 router.get('/exercises', getExercisesHandler);
 router.get('/exercises/:id', getExecercisesByIdHandler);
+// USUARIOS
 router.get('/users', getAllUsersHandler);
 router.delete('/users/:id', deleteUserHandler);
 router.post('/users/:id', reactiveUserHandler);
 router.get('/login', validateDni, validatePassword, loginUserHandler);
 router.post('/register', validateDni, validatePassword, registerUserHandler);
+// PRODUCTOS
 router.post('/products', createProductsHandler);
 router.get('/products', getProductsHandler);
+router.get('/categoriesproducts', getCategoriesProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
+// VENTAS
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);
 router.post('/mpcompra', newSaleMPHandler);
-
-// router.get('/', (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-// });
 
 
 module.exports = router;

@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: true
+        allowNull: false
     }, 
     
     name: {
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
 
     description: {
         type:DataTypes.TEXT,
-        allowNull:false
+        allowNull:true
     },
 
     image: {
@@ -40,6 +40,12 @@ module.exports = (sequelize) => {
     state:{
         type: DataTypes.ENUM("Active", "Inactive"),
         allowNull: false
+    }, 
+
+    offer:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        default: false
     }, 
 
     
