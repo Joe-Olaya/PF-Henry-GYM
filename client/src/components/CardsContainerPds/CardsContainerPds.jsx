@@ -5,7 +5,7 @@ import "./CardsContainerPds.css"
 const CardsContainerPds = ({ start, end }) => {
 
   const products = useSelector((state) => state.products);
-
+console.log(products)
 
     return(
         <div className="product">
@@ -19,8 +19,11 @@ const CardsContainerPds = ({ start, end }) => {
                             description={product.description}
                             image={product.image}
                             price={product.price}
-                            />
+                            stock={product.stock}                                  
+                           
+                            /> 
                         </div>
+                        
                     </div>
                 );
             })}

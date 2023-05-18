@@ -6,6 +6,9 @@ import { getProducts, orderProducts } from "../../redux/actions";
 import Pagination from "../Pagination/Pagination";
 import "./Store.css";
 
+
+
+
 const Store = () => {
 
     const dispatch = useDispatch();
@@ -42,7 +45,7 @@ const Store = () => {
 
     return(
         <div className="div_container">
-            <Navbar/>
+        <Navbar/>
             <section className="sort">
         <select value={sortOrder} onChange={handleSort}>
           <option value="A-Z">From A to Z</option>

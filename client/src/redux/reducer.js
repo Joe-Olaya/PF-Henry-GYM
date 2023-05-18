@@ -8,16 +8,19 @@ import {
   ORDER_BY_NAME,
   GET_NAME_EXERCISES,
   POST_PRODUCT_CREATE,
-  ORDER_PRODUCTS
+  ORDER_PRODUCTS,
+  ADD_PRODUCTS,
 } from "./action_types";
 
-const initialState = {
+export const initialState = {
   exercise: [],
   exercises: [],
   exercisesOrigin: [],
   products: [],
   users: [],
   //register:[],
+  cart:[],
+  
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -110,8 +113,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products,
       };
-
-    
+      case ADD_PRODUCTS:
+        let item = action.payload
+        let id = item.id
+        localStorage.setItem(id, JSON.stringify(item))
+        let services = JSON.parse(localStorage.getItem(id))
+        console.log(localStorage)
+  
+      
+   
+        return {
+          ...state,
+          cart: [...state.cart, services]}
 
 
     default:

@@ -7,7 +7,8 @@ import {
   POST_REGISTER,
   ORDER_BY_NAME,
   POST_PRODUCT_CREATE,
-  ORDER_PRODUCTS
+  ORDER_PRODUCTS,
+  ADD_PRODUCTS,
 } from "./action_types";
 import axios from "axios";
 
@@ -114,4 +115,12 @@ export function orderProducts(payload) {
   return { type: ORDER_PRODUCTS, payload };
 }
 
+export const Addcart = (item) => {
+  
+  return   {
+      type: ADD_PRODUCTS,
+      payload: item,
+    };
+ 
+};
 

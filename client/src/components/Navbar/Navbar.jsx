@@ -15,6 +15,9 @@ const Navbar = () => {
       </div>
       <ul className="app__navbar-links">
       <li className="p__opensans">
+          <a href="/shopping" >🛒</a>
+        </li>
+      <li className="p__opensans">
           <a href="/formProducts">Supplies</a>
         </li>
         <li className="p__opensans">

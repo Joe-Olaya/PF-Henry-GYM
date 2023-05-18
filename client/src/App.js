@@ -14,6 +14,7 @@ import FormCreate from "./components/FormCreate/FormCreate";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 const App = () => {
   const location = useLocation();
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/create" element={<FormCreate/>} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/store" element={<Store/>}/>
+        <Route path="/shopping" element={<ShoppingCart/>}/>
         <Route
           path="/register"
           element={
