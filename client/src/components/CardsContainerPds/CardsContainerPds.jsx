@@ -6,7 +6,6 @@ const CardsContainerPds = ({ start, end }) => {
 
   const products = useSelector((state) => state.products);
 
-
     return(
         <div className="product">
             {products.slice(start, end).map((product) => {
@@ -19,8 +18,11 @@ const CardsContainerPds = ({ start, end }) => {
                             description={product.description}
                             image={product.image}
                             price={product.price}
-                            />
+                            stock={product.stock}                                  
+                           
+                            /> 
                         </div>
+                        
                     </div>
                 );
             })}

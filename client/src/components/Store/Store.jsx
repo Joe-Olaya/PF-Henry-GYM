@@ -16,6 +16,7 @@ import {
   FaArrowUp,
   FaUndo,
 } from "react-icons/fa";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const Store = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  const cart = useSelector((state) => state.cart);
 
   initMercadoPago("TEST-c64788b2-8aa3-431e-8e04-4295bcce4784");
 
@@ -183,6 +185,19 @@ const Store = () => {
             totalExercises={products.length}
             paginate={paginatePrd}
           />
+           {cart.map((item) => {
+                return (
+                    <div>
+                        <div>
+                            <ShoppingCart
+                            name={item.name}
+                            price={item.price}                     
+                            /> 
+                        </div>
+                        {/* {console.log(item.id)} */}
+                    </div>
+                );
+            })}
         </div>
       </div>
     </div>
@@ -191,36 +206,3 @@ const Store = () => {
 
 export default Store;
 
-{
-  /* <h3>Order For: </h3>
-          <section className="sortStore">
-            <select value={sortOrder} onChange={handleSort}>
-              <option value="A-Z">From A to Z</option>
-              <option value="Z-A"> From Z to A </option>
-              <option value="minMax">Min Max</option>
-              <option value="maxMin">Max Min</option>
-            </select>
-          </section>
-          <h3>Reset Filters</h3>
-          <button className="sidebarButton" onClick={handleReset}>
-            Reset
-          </button>
-          <button className="sidebarButton">Most Valued</button>
-          <button
-            className={`sidebarButtonCategories ${isOpen ? "open" : ""}`}
-            onClick={toggleMenu}
-          >
-            <span className="arrow-categories">⮞</span>
-            Categories
-          </button>
-
-          {isOpen && (
-            <ul className="ButtonCategories">
-              <li className="categoriesLi"><button>Protein</button></li>
-              <li className="categoriesLi"><button>Pre-Workout</button></li>
-              <li className="categoriesLi"><button>Performance</button></li>
-              <li className="categoriesLi"><button>Weight Management</button></li>
-              <li className="categoriesLi"><button>Vitamins & Health</button></li>
-            </ul>
-          )} */
-}
