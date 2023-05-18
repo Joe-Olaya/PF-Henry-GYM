@@ -118,9 +118,6 @@ const rootReducer = (state = initialState, action) => {
         let id = item.id
         localStorage.setItem(id, JSON.stringify(item))
         let services = JSON.parse(localStorage.getItem(id))
-        console.log(localStorage)
-  
-      
    
         return {
           ...state,

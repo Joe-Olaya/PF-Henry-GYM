@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 
-  const ShoppingCart = () => {
+  const ShoppingCart = ({name,price}) => {
     const cart = useSelector((state) => state.cart);
-    console.log(localStorage)
-  
+    
     return (
       <div>
         
-            <h3 style={{color:"white"}}>name</h3>
-            <p style={{color:"white"}}>Price:price</p>
+            <h3 style={{color:"white"}}>{name}</h3>
+            <p style={{color:"white"}}>Price: ${price}</p>
           
           </div>
         )
