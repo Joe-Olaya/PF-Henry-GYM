@@ -1,5 +1,5 @@
-const axios = require("axios");
 const { Product } = require("../db.js");
+const { Op } = require("sequelize");
 
 const createProducts = async (name, description, price, stock, image) => {
   const newProduct = await Product.create({
@@ -8,34 +8,9 @@ const createProducts = async (name, description, price, stock, image) => {
     price: price,
     stock: stock,
     image: image,
-    state: "Active"
+    state: "Active",
   });
   return newProduct;
-};
-
-const getProductByName = async (name) => {
-  const products = await Product.findAll();
-  const cleanData = cleanProductData(products);
-  const productsFiltered = cleanData.filter((d) =>
-    d.name.toLowerCase().includes(name.toLowerCase())
-  );
-  return productsFiltered
-}
-
-const cleanProductData = (arr) => {
-  let data = [];
-    arr.map((el) => {
-      data.push({
-        id: el.id,
-        name: el.name,
-        price: el.price,
-        description: el.description,
-        image: el.image,
-        stock: el.stock,
-        state: el.state
-      });
-    });
-  return data;
 };
 
 const getProductById = async (id) => {
@@ -43,13 +18,44 @@ const getProductById = async (id) => {
   return product;
 };
 
-const getAllProducts = async () => {
-  const allProducts = await Product.findAll();
-  return allProducts;
+const getProducts = async (
+  page,
+  size,
+  name,
+  orderBy,
+  order,
+  offer,
+  res
+) => {
+  
+  let filterOps = {
+    [Op.and]: [
+      {
+        name: { [Op.like]: `${name}%` },
+      },
+      offer ? { offer: true } : {},
+    ],
+  };
+
+  let options = {
+    where: filterOps,
+    order: [[`${orderBy}`, `${order}`]],
+    limit: +size,
+    offset: +page * +size,
+  };
+  try {
+    const { count, rows } = await Product.findAndCountAll(options);
+    res.status(200).send({
+      total: count,
+      products: rows,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 const deleteProduct = async (id) => {
-  const inactiveProduct = await Product.Update(
+  const inactiveProduct = await Product.update(
     {
       state: "Inactive",
     },
@@ -72,10 +78,8 @@ const reactiveProduct = async (id) => {
 
 module.exports = {
   createProducts,
-  getAllProducts,
   deleteProduct,
   getProductById,
   reactiveProduct,
-  getProductByName
+  getProducts,
 };
-

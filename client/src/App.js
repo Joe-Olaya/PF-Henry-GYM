@@ -10,9 +10,11 @@ import images from "../src/assets/card4.png";
 import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
 import NavSec from "../src/components/NavSec/NavSec";
+import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 const App = () => {
   const location = useLocation();
@@ -28,16 +30,20 @@ const App = () => {
               <Header />
               <Services />
               <Footer />
-            
             </div>
           }
         />
         <Route path="/contact" element={<Contact />} />
-        
-        <Route path="/home" element={<div>
-            <NavSec />
-            <Home />
-          </div>} />
+
+        <Route
+          path="/home"
+          element={
+            <div>
+              <NavSec />
+              <Home />
+            </div>
+          }
+        />
         <Route
           path="/exercises"
           element={
@@ -47,11 +53,23 @@ const App = () => {
             </div>
           }
         />
-        <Route exact path="/formProducts" element={<FormProducts/>}/>
+        <Route exact path="/formProducts" element={<FormProducts />} />
         <Route path="/*" element={<Error />} />
-        <Route path="/create" element={<FormProducts/>} />
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/store" element={<Store/>}/>
+        <Route path="/create" element={<FormProducts />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/store"
+          element={
+            <div>
+              <NavStore/>
+              <Store />
+            </div>
+          }
+        />
+        <Route exact path="/products/:productId" element={            <div>
+              <NavStore/>
+              <ProductDetail />
+            </div>} />
         <Route
           path="/register"
           element={
