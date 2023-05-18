@@ -1,12 +1,12 @@
 require("dotenv").config();
 
 const { Router } = require('express');
-const { fullDbData } = require("../handlers/dbDataHandlers")
+const { fullDbData } = require("../handlers/dbDataHandlers");
 const { validateDni, validatePassword } = require("../handlers/validationsHandlers");
 const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/exercisesHandlers");
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
-const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers')
+const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers');
 const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers');
 const { forgotPassword, subscription } = require("../handlers/nodeMailerHandlers");
 const router = Router();
@@ -27,8 +27,8 @@ router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);
 router.post('/mpcompra', newSaleMPHandler);
-router.post('/passwordreset', forgotPassword)
-router.post('/subscription', subscription)
+router.post('/passwordreset', forgotPassword);
+router.post('/subscription', subscription);
 
 // router.get('/', (req, res) => {
 //   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
