@@ -27,7 +27,7 @@ router.post('/products/:id', reactiveProductHandler);
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);
 router.post('/mpcompra', newSaleMPHandler);
-router.post('/passwordreset', forgotPassword);
+//router.post('/passwordreset', forgotPassword);
 router.post('/subscription', subscription);
 
 // router.get('/', (req, res) => {
