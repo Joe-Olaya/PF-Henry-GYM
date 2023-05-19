@@ -15,6 +15,8 @@ const Navbar = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
 
+  const actualCart = JSON.parse(localStorage.getItem("carrito")) || [];
+
   return (
     <nav className="app__navbarstore">
       <div className="app__navbarstore-logo">
@@ -67,10 +69,23 @@ const Navbar = () => {
             <circle cx="10.5" cy="19.5" r="1.5"></circle>
             <circle cx="17.5" cy="19.5" r="1.5"></circle>
           </svg>
+          <span className="cartStoreNumber">{actualCart.length}</span>
         </button>
         {isCartMenuOpen && (
-          <ul className="CartMenu">
-          </ul>
+          <div className="cartMenuContainer">
+            <ul className="cartMenu">
+              {actualCart ? (
+                actualCart.map((e) => (
+                  <>
+                    <li key={e.name}>{e.name}</li>
+                    <li key={e.price}>${e.price}</li>
+                  </>
+                ))
+              ) : (
+                  <li> "No items here! Check the store"</li>
+              )}
+            </ul>
+          </div>
         )}
       </div>
     </nav>

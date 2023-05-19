@@ -30,7 +30,7 @@ export const getProducts = () => {
     const productsData = (await axios.get(`${URL}/products`)).data;
     dispatch({
       type: GET_PRODUCTS,
-      payload: productsData,
+      payload: productsData.products,
     });
   };
 };
