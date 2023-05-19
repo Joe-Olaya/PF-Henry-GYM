@@ -45,9 +45,18 @@
 
 
 .cartStoreButton {
+  display: flex;
   margin-left: 10px;
   margin-right: 2px;
   margin-bottom: 2px;
+}
+
+.cartStoreNumber{
+  background-color: grey;
+  color: white;
+  border-radius:100%;
+  width: 20px;
+  padding: 2px;
 }
 
 .cartStoreButton:hover {
@@ -182,4 +191,27 @@
   .app__navbarstore-logo img {
     width: 110px;
   }
+}
+
+.cartMenuContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:25vh;
+  left: 50%;
+  width: 100%;
+  height: 90%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.cartMenu {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
 }
