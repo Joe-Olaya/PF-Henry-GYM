@@ -49,7 +49,7 @@ const getAllProducts = async () => {
 };
 
 const deleteProduct = async (id) => {
-  const inactiveProduct = await Product.Update(
+  const inactiveProduct = await Product.update(
     {
       state: "Inactive",
     },
