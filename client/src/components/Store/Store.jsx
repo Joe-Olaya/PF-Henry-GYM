@@ -98,10 +98,10 @@ const Store = () => {
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  // const currentProducts = products.slice(
+  //   indexOfFirstProduct,
+  //   indexOfLastProduct
+  // );
   const cart = useSelector((state) => state.cart);
 
   initMercadoPago("TEST-c64788b2-8aa3-431e-8e04-4295bcce4784");
@@ -163,9 +163,9 @@ const Store = () => {
                   value={searchQuery}
                   onChange={handleSearchInputChange}
                 />
-                <button class="search__button" type="sumbit">
+                <button className="search__button" type="sumbit">
                   <svg
-                    class="search__icon"
+                    className="search__icon"
                     aria-hidden="true"
                     viewBox="0 0 24 24"
                   >
