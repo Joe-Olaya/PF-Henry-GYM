@@ -2,9 +2,11 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import images from "../../constants/images.js";
 
+
 export const Home = () => {
   return (
     <div>
+     
       <div className="sectionExercises">
         <div className="backExSection">
           <h1 className="h1Title">Supplies & Training</h1>
