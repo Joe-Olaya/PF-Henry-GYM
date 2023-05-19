@@ -8,7 +8,7 @@ const createReviewsHandler = async (req,res) =>{
 }
 
 const getReviewsHandler = async (req,res) => {
-    const { productId, page } = req.query
+    const { productId, page = 0 } = req.query
     const reviews = await getReviews(productId, page, res);
 
     return reviews

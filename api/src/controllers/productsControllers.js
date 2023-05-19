@@ -40,7 +40,7 @@ const getProducts = async (
       categoryproductId ? {categoryproductId} : {},
     ],
   };
-
+  
   let options = {
     where: filterOps,
     order: [[`${orderBy}`, `${order}`]],

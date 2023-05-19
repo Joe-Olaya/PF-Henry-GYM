@@ -16,18 +16,21 @@ const createReview = async (userId, productId, punctuation, review, res) => {
 
 const getReviews = async (productId, page, res) => {
       let options = {
-        where: {productId},
+        where: {productId:productId},
         order: [['createdAt', 'ASC']],
         limit: 5,
         offset: +page * 5,
       };
+      console.log(productId)
       try {
         const { count, rows } = await Review.findAndCountAll(options);
+        console.log('reviews controller');
         
         res.status(200).send({
-          total: count,
           products: rows,
-          total_pages : Math.ceil(count / limit)
+          actual_page: ++page,
+          total_products: count,
+          total_pages : Math.ceil(count / 5)
         });
       } catch (error) {
         res.status(500).send(error);
