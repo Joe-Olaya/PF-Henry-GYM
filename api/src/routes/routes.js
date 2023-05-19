@@ -24,8 +24,8 @@ router.post('/users/:id', reactiveUserHandler);
 router.get('/login', validateDni, validatePassword, loginUserHandler);
 router.post('/register', validateDni, validatePassword, registerUserHandler);
 // PRODUCTOS
-router.post('/products', createProductsHandler);
 router.get('/products', getProductsHandler);
+router.post('/products', createProductsHandler);
 router.get('/categoriesproducts', getCategoriesProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
