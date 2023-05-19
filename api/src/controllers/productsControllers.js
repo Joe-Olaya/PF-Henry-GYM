@@ -27,6 +27,7 @@ const getProducts = async (
   orderBy,
   order,
   offer,
+  categoryproductId,
   res
 ) => {
   
@@ -36,6 +37,7 @@ const getProducts = async (
         name: { [Op.like]: `${name}%` },
       },
       offer ? { offer: true } : {},
+      categoryproductId ? {categoryproductId} : {},
     ],
   };
 

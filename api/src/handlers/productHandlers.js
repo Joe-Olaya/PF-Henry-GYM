@@ -55,8 +55,9 @@ const getProductsHandler = async (req, res) => {
     orderBy = "id",
     order = "ASC",
     offer = false,
+    categoryproductId = null,
   } = req.query;
-  
+
   const products = await getProducts(
     page,
     size,
@@ -64,6 +65,7 @@ const getProductsHandler = async (req, res) => {
     orderBy,
     order,
     offer,
+    categoryproductId,
     res
   );
   
