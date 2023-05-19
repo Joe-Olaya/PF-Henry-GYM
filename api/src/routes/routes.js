@@ -32,7 +32,7 @@ router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
 // REVIEWS
 router.post('/reviews', createReviewsHandler);
-router.get('/reviews/', getReviewsHandler);
+router.get('/reviews', getReviewsHandler);
 router.get('/punctuation/:productId', getPunctuationHandler);
 // VENTAS
 router.post('/createSale', createSaleHandler);

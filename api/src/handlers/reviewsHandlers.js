@@ -1,10 +1,16 @@
 const {createReview, getReviews, getAllReviews} = require('../controllers/reviewsControllers')
+const { updateProduct } = require('../controllers/productsControllers')
 
 const createReviewsHandler = async (req,res) =>{
     const {userId, productId, punctuation, review} = req.body;
-    const newReview = await createReview(userId, productId, punctuation, review, res);
-
-    return newReview
+    try {
+        const newReview = await createReview(userId, productId, punctuation, review, res);
+        const average_score = await puntuacionGeneral(productId)
+        const updatePunctuationProduct = await updateProduct(productId, average_score)
+        res.status(200).send(newReview)
+    } catch (error) {
+        res.status(200).send(error)
+    }
 }
 
 const getReviewsHandler = async (req,res) => {
@@ -14,14 +20,11 @@ const getReviewsHandler = async (req,res) => {
     return reviews
 }
 
-const getPunctuationHandler = async (req,res) => {
-    const { productId } = req.params
-
-    const reviews = await getAllReviews(productId, res);
+const puntuacionGeneral = async (productId) => {
+    const reviews = await getAllReviews(productId);
 
     let punctuation = [];
     let suma = 0;
-
     reviews.forEach(e => {
         if (e.punctuation){
             punctuation.push(+e.punctuation)
@@ -32,9 +35,17 @@ const getPunctuationHandler = async (req,res) => {
         suma += e
     });
     
-    let total = suma / punctuation.length
-
+    let total = Math.ceil(suma / punctuation.length)
     return total
+
+}
+
+const getPunctuationHandler = async (req,res) => {
+    const { productId } = req.params
+
+    const total = await puntuacionGeneral(productId)
+
+    res.status(200).json({total})
 
 }
 

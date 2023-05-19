@@ -29,7 +29,7 @@ const getReviews = async (productId, page, res) => {
         res.status(200).send({
           products: rows,
           actual_page: ++page,
-          total_products: count,
+          total_reviews: count,
           total_pages : Math.ceil(count / 5)
         });
       } catch (error) {
@@ -37,12 +37,12 @@ const getReviews = async (productId, page, res) => {
       }
 }
 
-const getAllReviews = async (productId, res) => {
+const getAllReviews = async (productId) => {
     try {
         const allReviews = await Review.findAll({where:{productId}})
-        res.status(200).json(allReviews)
+        return allReviews
     } catch (error) {
-        res.status(500).json({error})
+        return error
     }
 
 }

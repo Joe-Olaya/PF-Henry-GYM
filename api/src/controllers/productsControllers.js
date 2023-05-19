@@ -83,10 +83,21 @@ const reactiveProduct = async (id) => {
   );
 };
 
+const updateProduct = async (id, punctuation) => {
+  const updatedProduct = await Product.update({
+    average_score: punctuation
+  },{
+    where: { id: id}
+  })
+
+  return updatedProduct
+}
+
 module.exports = {
   createProducts,
   deleteProduct,
   getProductById,
   reactiveProduct,
   getProducts,
+  updateProduct,
 };
