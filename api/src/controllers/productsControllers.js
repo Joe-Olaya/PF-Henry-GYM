@@ -51,8 +51,9 @@ const getProducts = async (
   try {
     const { count, rows } = await Product.findAndCountAll(options);
     res.status(200).send({
-      total: count,
       products: rows,
+      actual_page: ++page,
+      total_products: count,
       total_pages : Math.ceil(count / +size)
     });
   } catch (error) {
