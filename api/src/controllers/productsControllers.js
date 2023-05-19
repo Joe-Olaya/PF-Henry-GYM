@@ -1,13 +1,15 @@
 const { Product } = require("../db.js");
 const { Op } = require("sequelize");
 
-const createProducts = async (name, description, price, stock, image) => {
+const createProducts = async (name, description, price, stock, image, categoryproductId, offer) => {
   const newProduct = await Product.create({
     name: name,
     description: description,
     price: price,
     stock: stock,
     image: image,
+    categoryproductId,
+    offer,
     state: "Active",
   });
   return newProduct;
@@ -48,6 +50,7 @@ const getProducts = async (
     res.status(200).send({
       total: count,
       products: rows,
+      total_pages : Math.ceil(count / limit)
     });
   } catch (error) {
     res.status(500).send(error);

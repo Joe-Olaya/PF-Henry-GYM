@@ -55,6 +55,12 @@ Bodysale.belongsTo(Product);
 Categoryproduct.hasMany(Product);
 Product.belongsTo(Categoryproduct);
 
+Review.belongsTo(Product);
+Product.hasMany(Review);
+
+Review.belongsTo(User);
+User.hasMany(Review);
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');

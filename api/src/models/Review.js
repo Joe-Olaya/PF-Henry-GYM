@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         },
         punctuation:{
             type: DataTypes.ENUM("1","2","3","4","5"),
-            allowNull: false
+            allowNull: true
         },
         review:{
             type: DataTypes.TEXT,
