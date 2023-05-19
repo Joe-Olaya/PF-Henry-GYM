@@ -45,12 +45,13 @@ const getProducts = async (
     limit: +size,
     offset: +page * +size,
   };
+
   try {
     const { count, rows } = await Product.findAndCountAll(options);
     res.status(200).send({
       total: count,
       products: rows,
-      total_pages : Math.ceil(count / limit)
+      total_pages : Math.ceil(count / +size)
     });
   } catch (error) {
     res.status(500).send(error);
