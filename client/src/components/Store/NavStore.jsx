@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import images from "../../constants/images";
 import "./NavStore.css";
 import SearchStore from "../SearchStore/SearchStore";
@@ -6,6 +6,14 @@ import SearchStore from "../SearchStore/SearchStore";
 const Navbar = () => {
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [actualCart, setActualCart] = useState(
+    JSON.parse(localStorage.getItem("carrito")) || []
+  );
+  const [cartItemCount, setCartItemCount] = useState(actualCart.length);
+  
+  useEffect(() => {
+    setCartItemCount(actualCart.length);
+  }, [actualCart]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,7 +23,28 @@ const Navbar = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
 
-  const actualCart = JSON.parse(localStorage.getItem("carrito")) || [];
+  const ids=[];
+  const repetidos = {};
+  let totalPrice = 0
+  const filteredCart = actualCart.filter((e)=>{
+    const id = e.id;
+    totalPrice = totalPrice + e.price
+    ids.push(id);
+    if (!repetidos[id]) {
+      repetidos[id] = 1;
+      return true;
+    } else {
+      repetidos[id]++;
+      return false;
+    }
+  })
+
+  const handleDeleteItem = (id) => {
+    const itemDeletedCart = actualCart.filter(e => e.id !== id)
+    localStorage.setItem('carrito', JSON.stringify(itemDeletedCart));
+    setActualCart(itemDeletedCart);
+    console.log('deleted');
+  }
 
   return (
     <nav className="app__navbarstore">
@@ -26,7 +55,7 @@ const Navbar = () => {
       </div>
       <SearchStore />
       <div className="app__navbarstore-login">
-        <a href="/store" className="navstore_font">
+        <a href="/home" className="navstore_font">
           Home
         </a>
         <a
@@ -74,15 +103,19 @@ const Navbar = () => {
         {isCartMenuOpen && (
           <div className="cartMenuContainer">
             <ul className="cartMenu">
-              {actualCart ? (
-                actualCart.map((e) => (
-                  <>
-                    <li key={e.name}>{e.name}</li>
-                    <li key={e.price}>${e.price}</li>
-                  </>
-                ))
-              ) : (
-                  <li> "No items here! Check the store"</li>
+              {actualCart.length ? (
+                
+                <> {filteredCart.map((e, index) => (
+                  <React.Fragment key={index}>
+                    <li><button onClick={() => handleDeleteItem(e.id)}>❌</button>{e.name} x {repetidos[e.id]} - ${(e.price)*repetidos[e.id]}🛒</li>
+                  </React.Fragment>
+                ))}
+                <button className="cartPayAllButton">Buy: usd {totalPrice}</button>
+                </>) : (
+                  <li>
+                  No items here! Check the<a href="/store">products</a>at the
+                  store
+                </li>
               )}
             </ul>
           </div>
