@@ -27,8 +27,8 @@ const Navbar = () => {
   const repetidos = {};
   let totalPrice = 0
   const filteredCart = actualCart.filter((e)=>{
-    const id = e.id;
-    totalPrice = totalPrice + e.price
+    const id = e.product.id;
+    totalPrice = totalPrice + e.product.price
     ids.push(id);
     if (!repetidos[id]) {
       repetidos[id] = 1;
@@ -40,7 +40,7 @@ const Navbar = () => {
   })
 
   const handleDeleteItem = (id) => {
-    const itemDeletedCart = actualCart.filter(e => e.id !== id)
+    const itemDeletedCart = actualCart.filter(e => e.product.id !== id)
     localStorage.setItem('carrito', JSON.stringify(itemDeletedCart));
     setActualCart(itemDeletedCart);
     console.log('deleted');
@@ -107,7 +107,7 @@ const Navbar = () => {
                 
                 <> {filteredCart.map((e, index) => (
                   <React.Fragment key={index}>
-                    <li><button onClick={() => handleDeleteItem(e.id)}>❌</button>{e.name} x {repetidos[e.id]} - ${(e.price)*repetidos[e.id]}🛒</li>
+                    <li><button onClick={() => handleDeleteItem(e.product.id)}>❌</button>{e.product.name} x {repetidos[e.product.id]} - ${(e.product.price)*repetidos[e.product.id]}🛒</li>
                   </React.Fragment>
                 ))}
                 <button className="cartPayAllButton">Buy: usd {totalPrice}</button>

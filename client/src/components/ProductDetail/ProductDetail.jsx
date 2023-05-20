@@ -8,6 +8,9 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const rating = 4;
   const [quantity, setQuantity] = useState(1);
+  const [actualCart, setActualCart] = useState(
+    JSON.parse(localStorage.getItem("carrito")) || []
+  );
   
   const product = useSelector((state) =>
   state.products.find((product) => product.id === parseInt(productId))
@@ -17,10 +20,11 @@ const ProductDetails = () => {
     return <div>Loading...</div>;
   }
   
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const saveLocal = () => {
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-  }
+  const saveLocal = (item) => {
+    const updatedCart = [...actualCart, item];
+    localStorage.setItem('carrito', JSON.stringify(updatedCart));
+    setActualCart(updatedCart);
+  };
   
   return (
     <div className="divDetail">
@@ -55,10 +59,7 @@ const ProductDetails = () => {
               <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="cart" onClick={() => {
-              carrito.push(product);
-              saveLocal();
-            }} >Add {quantity} to cart</button>
+            <button className="cart" onClick={() => saveLocal({product,quantity})} >Add {quantity} to cart</button>
           </div>
         </div>
       </div>
