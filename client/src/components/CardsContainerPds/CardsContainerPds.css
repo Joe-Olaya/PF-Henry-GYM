@@ -6,7 +6,8 @@
     flex-wrap: wrap;
 }
 .cardProduct {
-    margin-top: 10%;
+    margin-top: -50px;
+    margin-left: -10px;
     height: 30%;
-    width: 400px;
+    width: 300px;
 }

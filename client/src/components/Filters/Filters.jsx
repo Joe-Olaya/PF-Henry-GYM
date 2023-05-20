@@ -6,8 +6,8 @@ import "../Filters/filters.css";
 
 const Filters = () => {
   const [muscle, setMuscle] = useState([]);
-  const [selectedMuscle, setSelectedMuscle] = useState(null);
-  const [sortOrder, setSortOrder] = useState(null);
+  const [selectedMuscle, setSelectedMuscle] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
 
   const dispatch = useDispatch();
   const exercise = useSelector((state) => state.exercisesOrigin);
@@ -40,8 +40,8 @@ const Filters = () => {
   }
 
   function handleReset() {
-    setSelectedMuscle(null);
-    setSortOrder(null);
+    setSelectedMuscle('');
+    setSortOrder('');
     dispatch(getExercises());
   }
 

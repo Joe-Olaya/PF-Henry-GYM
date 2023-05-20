@@ -1,13 +1,15 @@
 const { Product } = require("../db.js");
 const { Op } = require("sequelize");
 
-const createProducts = async (name, description, price, stock, image) => {
+const createProducts = async (name, description, price, stock, image, categoryproductId, offer) => {
   const newProduct = await Product.create({
     name: name,
     description: description,
     price: price,
     stock: stock,
     image: image,
+    categoryproductId,
+    offer,
     state: "Active",
   });
   return newProduct;
@@ -25,6 +27,7 @@ const getProducts = async (
   orderBy,
   order,
   offer,
+  categoryproductId,
   res
 ) => {
   
@@ -34,20 +37,24 @@ const getProducts = async (
         name: { [Op.like]: `${name}%` },
       },
       offer ? { offer: true } : {},
+      categoryproductId ? {categoryproductId} : {},
     ],
   };
-
+  
   let options = {
     where: filterOps,
     order: [[`${orderBy}`, `${order}`]],
     limit: +size,
     offset: +page * +size,
   };
+
   try {
     const { count, rows } = await Product.findAndCountAll(options);
     res.status(200).send({
-      total: count,
       products: rows,
+      actual_page: ++page,
+      total_products: count,
+      total_pages : Math.ceil(count / +size)
     });
   } catch (error) {
     res.status(500).send(error);
@@ -76,10 +83,21 @@ const reactiveProduct = async (id) => {
   );
 };
 
+const updateProduct = async (id, punctuation) => {
+  const updatedProduct = await Product.update({
+    average_score: punctuation
+  },{
+    where: { id: id}
+  })
+
+  return updatedProduct
+}
+
 module.exports = {
   createProducts,
   deleteProduct,
   getProductById,
   reactiveProduct,
   getProducts,
+  updateProduct,
 };

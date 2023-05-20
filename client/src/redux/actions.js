@@ -9,7 +9,6 @@ import {
   POST_PRODUCT_CREATE,
   ORDER_PRODUCTS,
   GET_NAME_PRODUCTS,
-  ADD_PRODUCTS,
 } from "./action_types";
 import axios from "axios";
 
@@ -30,7 +29,7 @@ export const getProducts = () => {
     const productsData = (await axios.get(`${URL}/products`)).data;
     dispatch({
       type: GET_PRODUCTS,
-      payload: productsData,
+      payload: productsData.products,
     });
   };
 };
@@ -130,12 +129,12 @@ export function getNameProducts(name){
      }};
 };
 
-export const Addcart = (item) => {
+/* export const Addcart = (item) => {
   
   return   {
       type: ADD_PRODUCTS,
       payload: item,
     };
  
-};
+}; */
 

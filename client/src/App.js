@@ -3,11 +3,10 @@ import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
 import { Navbar, Contact } from "./components";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Registration from "./components/Registration/Registration";
 import images from "../src/assets/card4.png";
-import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
 import NavSec from "../src/components/NavSec/NavSec";
 import NavStore from "../src/components/Store/NavStore";
@@ -17,7 +16,6 @@ import FormProducts from "./components/FormProducts/FormProducts";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 const App = () => {
-  const location = useLocation();
   return (
     <div>
       <Routes>
@@ -61,15 +59,21 @@ const App = () => {
           path="/store"
           element={
             <div>
-              <NavStore/>
+              <NavStore />
               <Store />
             </div>
           }
         />
-        <Route exact path="/products/:productId" element={            <div>
-              <NavStore/>
+        <Route
+          exact
+          path="/products/:productId"
+          element={
+            <div>
+              <NavStore />
               <ProductDetail />
-            </div>} />
+            </div>
+          }
+        />
         <Route
           path="/register"
           element={

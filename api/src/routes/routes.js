@@ -10,6 +10,7 @@ const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersa
 const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers')
 const { forgotPassword, subscription } = require("../handlers/nodeMailerHandlers");
 const { getCategoriesProductsHandler } = require('../handlers/categoriesProductsHandlers')
+const { createReviewsHandler, getReviewsHandler, getPunctuationHandler} = require('../handlers/reviewsHandlers')
 const router = Router();
 
 // CARGAR DB
@@ -24,11 +25,15 @@ router.post('/users/:id', reactiveUserHandler);
 router.get('/login', validateDni, validatePassword, loginUserHandler);
 router.post('/register', validateDni, validatePassword, registerUserHandler);
 // PRODUCTOS
-router.post('/products', createProductsHandler);
 router.get('/products', getProductsHandler);
+router.post('/products', createProductsHandler);
 router.get('/categoriesproducts', getCategoriesProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
+// REVIEWS
+router.post('/reviews', createReviewsHandler);
+router.get('/reviews', getReviewsHandler);
+router.get('/punctuation/:productId', getPunctuationHandler);
 // VENTAS
 router.post('/createSale', createSaleHandler);
 router.get('/remit/:id', getRemitByIdHandler);

@@ -21,7 +21,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
+  // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach(model => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
@@ -30,7 +30,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale, Headersale, Categoryproduct} = sequelize.models;
+const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale, Headersale, Categoryproduct, Review} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -54,6 +54,12 @@ Bodysale.belongsTo(Product);
 
 Categoryproduct.hasMany(Product);
 Product.belongsTo(Categoryproduct);
+
+Review.belongsTo(Product);
+Product.hasMany(Review);
+
+Review.belongsTo(User);
+User.hasMany(Review);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

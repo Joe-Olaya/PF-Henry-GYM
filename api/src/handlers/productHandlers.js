@@ -15,27 +15,35 @@ cloudinary.config({
 });
 
 const createProductsHandler = async (req, res) => {
-  const { name, description, price, stock, image } = req.body;
+  const { name, description, price, stock, image, categoryproductId } = req.body;
   try {
-    const imageupload = await cloudinary.uploader.upload(image, {
-      resource_type: "image",
-      folder: "supplies and training",
-      public_id: "private_image",
-      type: "private",
-    });
-    const urlImage = imageupload.secure_url;
+    let urlImage = ''
+    if(image){
+      const imageupload = await cloudinary.uploader.upload(image, {
+        resource_type: "image",
+        folder: "supplies and training",
+        public_id: "private_image",
+        type: "private",
+      });
+      urlImage = imageupload.secure_url;
+    } else {
+      urlImage = "no hay foto disponible"
+    }
+
 
     const newProduct = await createProducts(
       name,
       description,
       price,
       stock,
-      urlImage
+      urlImage,
+      categoryproductId,
+      offer = false
     );
     res.status(200).send("Product created successfully");
   } catch (error) {
     console.log(error);
-    res.status(400).send("product not created 😢");
+    res.status(400).send(error);
   }
 };
 
@@ -47,8 +55,9 @@ const getProductsHandler = async (req, res) => {
     orderBy = "id",
     order = "ASC",
     offer = false,
+    categoryproductId = null,
   } = req.query;
-  
+
   const products = await getProducts(
     page,
     size,
@@ -56,6 +65,7 @@ const getProductsHandler = async (req, res) => {
     orderBy,
     order,
     offer,
+    categoryproductId,
     res
   );
   

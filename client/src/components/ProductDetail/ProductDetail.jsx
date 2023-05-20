@@ -7,17 +7,20 @@ import "./ProductDetail.css";
 const ProductDetails = () => {
   const { productId } = useParams();
   const rating = 4;
-
   const [quantity, setQuantity] = useState(1);
-
+  
   const product = useSelector((state) =>
-    state.products.find((product) => product.id === parseInt(productId))
+  state.products.find((product) => product.id === parseInt(productId))
   );
-
+  
   if (!product) {
     return <div>Loading...</div>;
   }
-
+  
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const saveLocal = () => {
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+  }
   
   return (
     <div className="divDetail">
@@ -52,12 +55,16 @@ const ProductDetails = () => {
               <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="cart">Add {quantity} to cart</button>
+            <button className="cart" onClick={() => {
+              carrito.push(product);
+              saveLocal();
+            }} >Add {quantity} to cart</button>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default ProductDetails;

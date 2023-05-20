@@ -48,6 +48,12 @@ module.exports = (sequelize) => {
         default: false
     }, 
 
+    average_score:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        default: null
+    }, 
+
     
 });
 };

@@ -41,32 +41,32 @@ const getAndLoadDbExercises = async (data) => {
   }
 };
 
-const getAndLoadDbBodyParts = async () => {
-  const options = {
-    method: "GET",
-    url: "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-    headers: {
-      "content-type": "application/octet-stream",
-      "X-RapidAPI-Key": "bf730ac0f4msh44114018a91bcb5p103951jsn14fd519029dc",
-      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-    },
-  };
+// const getAndLoadDbBodyParts = async () => {
+//   const options = {
+//     method: "GET",
+//     url: "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+//     headers: {
+//       "content-type": "application/octet-stream",
+//       "X-RapidAPI-Key": "bf730ac0f4msh44114018a91bcb5p103951jsn14fd519029dc",
+//       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+//     },
+//   };
 
-  try {
-    const response = await axios.request(options);
-    response.data.map((e) =>
-      Bodypart.findOrCreate({
-        where: {
-          name: e,
-        },
-      })
-    );
-    return "Body parts loaded correctly";
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
+//   try {
+//     const response = await axios.request(options);
+//     response.data.map((e) =>
+//       Bodypart.findOrCreate({
+//         where: {
+//           name: e,
+//         },
+//       })
+//     );
+//     return "Body parts loaded correctly";
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// };
 
 const getAndLoadDbMuscle = async () => {
   const options = {
@@ -94,14 +94,13 @@ const getAndLoadDbMuscle = async () => {
     return error;
   }
 };
-  // readJson();
+  //readJson();
   //console.log(getAndLoadDbMuscle())
   //console.log(getAndLoadDbExercises());
   //console.log(getAndLoadDbBodyParts())
 
 module.exports = {
   getAndLoadDbExercises,
-  getAndLoadDbBodyParts,
   getAndLoadDbMuscle,
   readJson,
 };

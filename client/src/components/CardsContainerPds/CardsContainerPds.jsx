@@ -5,7 +5,6 @@ import "./CardsContainerPds.css"
 const CardsContainerPds = ({ start, end }) => {
 
   const products = useSelector((state) => state.products);
-
     return(
         <div className="product">
             {products.slice(start, end).map((product) => {
