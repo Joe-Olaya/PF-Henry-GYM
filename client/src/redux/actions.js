@@ -50,7 +50,7 @@ export const getUsers = () => {
     const usersData = (await axios.get(`${URL}/users`)).data;
     dispatch({
       type: GET_USERS,
-      payload: usersData,
+      payload: usersData.results,
     });
   };
 };
@@ -128,5 +128,3 @@ export function getNameProducts(name){
         console.log(error.message)
      }};
 };
-
-

@@ -19,19 +19,12 @@ import Sidebar from "./components/Dashbard/Sidebar";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Nav from "./components/Dashbard/Nav";
 import HomeDash from "./components/Dashbard/HomeDash";
-
-
-useState
-
-
+import Dashboard from "./components/Dashbard/Dashboard";
 
 
 const App = () => {
   const location = useLocation();
-  const [toggle, setToggle]=useState(true)
-  const Toggle =() => {
-    setToggle(!toggle)
-  }
+ 
   return (
     <div>
       <Routes>
@@ -55,19 +48,9 @@ const App = () => {
             <NavSec />
             <Home />
           </div>} />
-          <Route path="/Dashboard" element={<><div className='container-fluid bg-secondary min-vh-100'>
-          <div className='row'>
-          {toggle && <div className='col-4 col-md-2 bg-white vh-100 position-fixed'>
-          <Sidebar />
-          </div>}
-        
-          {toggle &&<div className='col-2 col-md-2'></div>}
-        <div className='col-9 col-md-10'>
-          <HomeDash Toggle={Toggle}/>
-        </div>
-        
-        </div>  
-          </div></>} />
+
+          <Route path="/Dashboard" element={<Dashboard/>} />
+          
         <Route
           path="/exercises"
           element={
