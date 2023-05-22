@@ -217,7 +217,10 @@
 }
 
 .raiting {
-  display: inline-block;
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .rating input[type="radio"] {
   display: none;

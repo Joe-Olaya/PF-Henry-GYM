@@ -17,7 +17,7 @@ const getReviewsHandler = async (req,res) => {
     const { productId, page = 0 } = req.query
     const reviews = await getReviews(productId, page, res);
 
-    return reviews
+    return reviews;
 }
 
 const puntuacionGeneral = async (productId) => {
