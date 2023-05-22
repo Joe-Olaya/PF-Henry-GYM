@@ -2,11 +2,18 @@ const {createReview, getReviews, getAllReviews} = require('../controllers/review
 const { updateProduct } = require('../controllers/productsControllers')
 
 const createReviewsHandler = async (req,res) =>{
-    const {userId, productId, punctuation, review} = req.body;
+    const {userId, productId, punctuation = 0, review} = req.body;
     try {
         const newReview = await createReview(userId, productId, punctuation, review, res);
-        const average_score = await puntuacionGeneral(productId)
-        const updatePunctuationProduct = await updateProduct(productId, average_score)
+        if(punctuation > 0) {
+            const average_score = await puntuacionGeneral(productId)
+            if(average_score !== NaN){
+                const updatePunctuationProduct = await updateProduct(productId, punctuation)
+            } else {
+                const updatePunctuationProduct = await updateProduct(productId, average_score)
+            }
+        }
+
         res.status(200).send(newReview)
     } catch (error) {
         res.status(200).send(error)
@@ -22,7 +29,6 @@ const getReviewsHandler = async (req,res) => {
 
 const puntuacionGeneral = async (productId) => {
     const reviews = await getAllReviews(productId);
-
     let punctuation = [];
     let suma = 0;
     reviews.forEach(e => {
