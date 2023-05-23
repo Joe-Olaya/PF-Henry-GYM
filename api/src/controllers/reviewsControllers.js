@@ -1,16 +1,16 @@
 const {Review} = require("../db.js")
 
-const createReview = async (userId, productId, punctuation, review, res) => {
+const createReview = async (userId, productId, punctuation, review) => {
     try {
         const newReview = await Review.create({
+            userId,
+            productId,
             punctuation,
             review,
-            productId,
-            userId
         })
-        res.status(200).json(newReview)
+        return newReview
     } catch (error) {
-        res.status(400).json(error)
+        return error
     }
 }
 
@@ -21,7 +21,6 @@ const getReviews = async (productId, page, res) => {
         limit: 5,
         offset: +page * 5,
       };
-      console.log(productId)
       try {
         const { count, rows } = await Review.findAndCountAll(options);
         console.log('reviews controller');
