@@ -1,4 +1,4 @@
-const {Review} = require("../db.js")
+const {Review, User} = require("../db.js")
 
 const createReview = async (userId, productId, punctuation, review) => {
     try {
@@ -17,7 +17,11 @@ const createReview = async (userId, productId, punctuation, review) => {
 const getReviews = async (productId, page, res) => {
       let options = {
         where: {productId:productId},
-        order: [['createdAt', 'ASC']],
+        include: {
+          model: User,
+          attributes: ['name']
+        },
+        order: [['createdAt', 'DESC']],
         limit: 5,
         offset: +page * 5,
       };
