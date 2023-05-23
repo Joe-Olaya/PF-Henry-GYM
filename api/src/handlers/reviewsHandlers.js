@@ -2,7 +2,7 @@ const {createReview, getReviews, getAllReviews} = require('../controllers/review
 const { updateProduct } = require('../controllers/productsControllers')
 
 const createReviewsHandler = async (req,res) =>{
-    const {userId, productId = 4, punctuation = null, review = "No hay comentarios"} = req.body;
+    const {userId, productId, punctuation = null, review = "No hay comentarios"} = req.body;
     try {
         if(!userId){
             res.status(400).send('Debe estar logueado para dejar un comentario')
@@ -33,7 +33,6 @@ const getReviewsHandler = async (req,res) => {
 const puntuacionGeneral = async (productId) => {
 
     const reviews = await getAllReviews(productId);
-    console.log(reviews)
     let punctuation = [];
     let suma = 0;
     reviews.forEach(e => {
