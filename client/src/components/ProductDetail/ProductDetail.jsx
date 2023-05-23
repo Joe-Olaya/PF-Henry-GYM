@@ -28,7 +28,7 @@ const ProductDetails = () => {
         localStorage.setItem("userId", JSON.stringify(userId));
       };
       
-      // console.log("ID del usuario:", userId);
+      
       if (!userId) {
         userId = [];
       }
