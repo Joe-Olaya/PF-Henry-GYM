@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
@@ -13,9 +14,16 @@ import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "./components/Dashbard/Sidebar";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Nav from "./components/Dashbard/Nav";
+import HomeDash from "./components/Dashbard/HomeDash";
+import Dashboard from "./components/Dashbard/Dashboard";
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <div>
       <Routes>
@@ -42,6 +50,7 @@ const App = () => {
             </div>
           }
         />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route
           path="/exercises"
           element={
