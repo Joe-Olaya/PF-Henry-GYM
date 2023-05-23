@@ -13,7 +13,6 @@ const createReviewsHandler = async (req,res) =>{
                 const updatePunctuationProduct = await updateProduct(productId, average_score)
             }
         }
-
         res.status(200).send(newReview)
     } catch (error) {
         res.status(200).send(error)

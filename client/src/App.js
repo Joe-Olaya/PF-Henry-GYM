@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
-import { Navbar, Contact } from "./components";
+import { Navbar, Contact, ProductDetail } from "./components";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Registration from "./components/Registration/Registration";
@@ -22,7 +22,6 @@ import HomeDash from "./components/Dashbard/HomeDash";
 import Dashboard from "./components/Dashbard/Dashboard";
 
 const App = () => {
-  const location = useLocation();
 
   return (
     <div>
@@ -50,7 +49,7 @@ const App = () => {
             </div>
           }
         />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/exercises"
           element={
