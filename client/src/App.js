@@ -1,8 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
-import { Navbar, Contact } from "./components";
+import { Navbar, Contact, ProductDetail } from "./components";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Registration from "./components/Registration/Registration";
@@ -13,9 +14,17 @@ import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "./components/Dashbard/Sidebar";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Nav from "./components/Dashbard/Nav";
+import HomeDash from "./components/Dashbard/HomeDash";
+import Dashboard from "./components/Dashbard/Dashboard";
+import axios from 'axios';
+axios.defaults.baseURL = "https://pf-henry-gym-production-135f.up.railway.app"
 
 const App = () => {
+
   return (
     <div>
       <Routes>
@@ -42,6 +51,7 @@ const App = () => {
             </div>
           }
         />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/exercises"
           element={

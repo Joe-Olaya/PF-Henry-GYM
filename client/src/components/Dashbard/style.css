@@ -1,0 +1,17 @@
+.sidebarDash {
+   width:200px;
+   position: absolute;
+   height: 100%;
+   left:0;
+   font-size: 10px;
+}
+
+.list-group a:hover {
+     background-color:blue;
+     color:white;
+     cursor: pointer;
+} 
+
+.col-auto {
+   margin-left: 200px;
+}

@@ -26,10 +26,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },  
-    muscle_target: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    }
 
 
 });

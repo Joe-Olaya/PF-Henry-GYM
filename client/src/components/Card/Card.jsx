@@ -3,20 +3,15 @@ import "./Card.css";
 const Card = (props) => {
   return (
     <div className="cardEx">
+      <div className="imageContainer">
         <img className="exerciseImg" src={props.gif_url}></img>
+      </div>
       <div className="info">
-        <h1 className="title">
-          {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
-        </h1>
+        <h2 className="title">{props.name}</h2>
         {/* <p>Id: {props.id}</p> */}
-        <div className="description">
-        <h1>
-          Muscle: {props.muscle.charAt(0).toUpperCase() + props.muscle.slice(1)}
-        </h1>
-        <h1>
-          Body:{" "}
-          {props.body_part.charAt(0).toUpperCase() + props.body_part.slice(1)}
-        </h1>
+        <div className="descriptionEx">
+          <h3>Muscle: {props.muscle}</h3>
+          <h3>Body: {props.body_part}</h3>
         </div>
       </div>
     </div>

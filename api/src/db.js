@@ -6,7 +6,7 @@ const {
   PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`, {
+const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -40,11 +40,11 @@ const { Exercise, Bodypart, Muscle, Routine, Product, User, Bodysale, Headersale
 // Routine.belongsToMany(Exercise, {through: 'Exercise_Routine'});
 // Exercise.belongsToMany(Routine, {through: 'Exercise_Routine'});
 
-// Muscle.hasMany(Exercise);
-// Exercise.belongsTo(Muscle);
-
 // Bodypart.hasMany(Exercise);
 // Exercise.belongsTo(Bodypart);
+
+Muscle.hasMany(Exercise);
+Exercise.belongsTo(Muscle);
 
 Headersale.hasMany(Bodysale);
 Bodysale.belongsTo(Headersale);
