@@ -17,8 +17,6 @@ const getUserDB = async(user) => {
       if(!userData.name){
         navigate("/register");
       }
-      navigate("/home");
-      
     } catch (error) {
     
   }
