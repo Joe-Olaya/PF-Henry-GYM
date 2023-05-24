@@ -52,6 +52,7 @@ export const getUsers = () => {
     });
   };
 };
+
 export function postRegister(payload){
   console.log(payload)
   return async function(dispatch) {

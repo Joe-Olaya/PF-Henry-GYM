@@ -5,21 +5,34 @@ import images from "../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const getUserDB = async(user) => {
+  let navigate = useNavigate();
+  try {
+      let userDB = await axios.post('/login', {email:user.email})
+      let userData = userDB.data[0]
+      localStorage.setItem("userData", JSON.stringify(userData));
+      if(!userData.name){
+        navigate("/register");
+      }
+    } catch (error) {
+    
+  }
+}
 
 const Navbar = () => {
   const { user, isAuthenticated, isLoading, logout, loginWithRedirect } =
     useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  
-  if (user){
-    console.log(user)
-  }
-  // const dispatch = useDispatch();
-  // useEffect((user) => {
-  // // dispatch(getExercises(user));
-  // },[])
-
+getUserDB(user)
+// if (user){
+//   getUserDB(user)
+// } else {
+//   getUserDB(user)
+// }
 
   return (
     <nav className="app__navbar">
