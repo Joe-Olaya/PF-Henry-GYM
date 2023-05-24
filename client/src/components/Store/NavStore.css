@@ -53,13 +53,13 @@
 
 .cartStoreNumber{
   font-family: Monserrat;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: grey;
-  color: white;
+  background-color: rgba(250, 20, 20, 0.7);
+  color: black;
   border-radius:100%;
   width: 2vh;
   height: 2vh;
@@ -68,6 +68,20 @@
 
 .cartStoreButton:hover {
   transform: scale(1.2);
+}
+
+.cartCloseBtn{
+  display: flex;
+  align-self: center;
+  font-family:Monserrat;
+  font-weight: 400;
+  padding: 0.5vh;
+  border-radius: 10px;
+  width:fit-content;
+  background-color:rgba(0, 0, 0, 0.6);
+  color: white;
+  letter-spacing: 1.5px;
+  font-size: 15px;
 }
 
 .app__navbarstore {
@@ -224,12 +238,26 @@
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
 }
-
-.cartPayAllButton{
+.cartMenu li{
   display: flex;
+  padding:0.5vh;
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
+}
+.cartMenu .cartPayAllButton{
+  display: flex;
+  font-family: monserrat;
+  margin: 0.25vh;
+  padding: 0.5vh;
+  font-size: 15px;
+  align-self: center;
   justify-content: center;
-  color: white;
-  width: 13vh;
-  background-color: grey;
-  border-radius:15px;
+  width: auto;
+  border-radius: 15px;
+  background-color: rgba(244, 213, 40, 0.8);
+}
+
+.cartPayAllButton:hover{
+  transform: scale(1.05);
+  transition-duration: 10ms;
 }

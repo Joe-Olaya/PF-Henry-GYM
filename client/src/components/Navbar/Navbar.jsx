@@ -13,7 +13,7 @@ const Navbar = () => {
 
   
   if (user){
-    console.log(user)
+    localStorage.setItem('user', JSON.stringify(user))
   }
   // const dispatch = useDispatch();
   // useEffect((user) => {

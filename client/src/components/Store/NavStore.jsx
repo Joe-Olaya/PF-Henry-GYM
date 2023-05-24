@@ -98,21 +98,22 @@ const Navbar = () => {
             <circle cx="10.5" cy="19.5" r="1.5"></circle>
             <circle cx="17.5" cy="19.5" r="1.5"></circle>
           </svg>
-          <span className="cartStoreNumber">{actualCart.length}</span>
+          <span className="cartStoreNumber">{cartItemCount}</span>
         </button>
         {isCartMenuOpen && (
           <div className="cartMenuContainer">
             <ul className="cartMenu">
               {actualCart.length ? (
-                
-                <> {filteredCart.map((e, index) => (
+                <> <button className="cartCloseBtn" onClick={toggleCartMenu} >Hide</button>
+                {filteredCart.map((e, index) => (
                   <React.Fragment key={index}>
+                    
                     <li><button onClick={() => handleDeleteItem(e.product.id)}>❌</button>{e.product.name} x {repetidos[e.product.id]} - ${(e.product.price)*repetidos[e.product.id]}🛒</li>
                   </React.Fragment>
                 ))}
                 <button className="cartPayAllButton">Buy: usd {totalPrice}</button>
                 </>) : (
-                  <li>
+                  <li className="cart_TextNoItems">
                   No items here! Check the<a href="/store">products</a>at the
                   store
                 </li>
