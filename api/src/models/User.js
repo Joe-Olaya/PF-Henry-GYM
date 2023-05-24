@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
     },
 
     userType:{
-      type: DataTypes.ENUM("Manager", "Client", "Trainer", "Usersadminister"),
+      type: DataTypes.ENUM("Manager", "Client", "Trainer", "Superadmin"),
       allowNull: false
     },
 

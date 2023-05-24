@@ -12,11 +12,9 @@ import {
 } from "./action_types";
 import axios from "axios";
 
-const URL = "http://localhost:3001";
-
 export const getExercises = () => {
   return async function (dispatch) {
-    const exercisesData = (await axios.get(`${URL}/exercises`)).data;
+    const exercisesData = (await axios.get(`/exercises`)).data;
     dispatch({
       type: GET_EXERCISES,
       payload: exercisesData,
@@ -26,7 +24,7 @@ export const getExercises = () => {
 
 export const getProducts = () => {
   return async function (dispatch) {
-    const productsData = (await axios.get(`${URL}/products`)).data;
+    const productsData = (await axios.get(`/products`)).data;
     dispatch({
       type: GET_PRODUCTS,
       payload: productsData.products,
@@ -36,7 +34,7 @@ export const getProducts = () => {
 
 export const getExerciseById = (idExercise) => {
   return async function (dispatch) {
-    const exerciseData = (await axios.get(`${URL}/exercises/${idExercise}`))
+    const exerciseData = (await axios.get(`/exercises/${idExercise}`))
       .data;
     dispatch({
       type: GET_EXERCISE_BY_ID,
@@ -47,10 +45,10 @@ export const getExerciseById = (idExercise) => {
 
 export const getUsers = () => {
   return async function (dispatch) {
-    const usersData = (await axios.get(`${URL}/users`)).data;
+    const usersData = (await axios.get(`/users`)).data;
     dispatch({
       type: GET_USERS,
-      payload: usersData,
+      payload: usersData.results,
     });
   };
 };
@@ -59,7 +57,7 @@ export function postRegister(payload){
   return async function(dispatch) {
       try {
           console.log(payload)
-          const registerData = await axios.post(`${URL}/register`, payload)
+          const registerData = await axios.post(`/register`, payload)
           console.log(registerData)
           return registerData
 
@@ -78,7 +76,7 @@ export const filterByMuscle = (muscle) => {
      export function getNameExercises(name){
       return async function (dispatch) {
          try {
-           var json = await axios.get(`${URL}/exercises?name=${name}`);
+           var json = await axios.get(`/exercises?name=${name}`);
            console.log(json.data)
            return dispatch ({
               type: 'GET_NAME_EXERCISES', 
@@ -94,7 +92,7 @@ export const filterByMuscle = (muscle) => {
       return async function(dispatch) {
           try {
               //console.log(payload)
-              const createProduct = await axios.post(`${URL}/products`, payload)
+              const createProduct = await axios.post(`/products`, payload)
               console.log(createProduct)
               return createProduct
     
@@ -118,7 +116,7 @@ export function orderProducts(payload) {
 export function getNameProducts(name){
   return async function (dispatch) {
      try {
-       var json = await axios.get(`${URL}/products?name=${name}`);
+       var json = await axios.get(`/products?name=${name}`);
        console.log(json.data)
        return dispatch ({
           type: GET_NAME_PRODUCTS, 
