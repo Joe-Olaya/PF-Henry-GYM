@@ -5,6 +5,10 @@
   align-items: center;
   background-color: black;
   padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  border-bottom: solid 4px white;
 }
 .app__navbarsec-logo {
   display: flex;
@@ -42,11 +46,12 @@
 .app__navbarsec-login a {
   margin: 0 1rem;
   text-decoration: none;
-  transition: 0.5s ease;
+  transition: 0.2s ease;
 }
 
 .app__navbarsec-login a:hover {
   border-bottom: 1px solid #FDB813;
+  color: white;
 }
 
 .app__navbarsec-login div {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"; //Agregamos useState para mantener el número actual de la página
+import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import images from "../../constants/images";
@@ -23,16 +23,10 @@ const getUserDB = async(user) => {
 }
 
 const Navbar = () => {
-  const { user, isAuthenticated, isLoading, logout, loginWithRedirect } =
-    useAuth0();
+  const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
 getUserDB(user)
-// if (user){
-//   getUserDB(user)
-// } else {
-//   getUserDB(user)
-// }
 
   return (
     <nav className="app__navbar">
@@ -42,52 +36,49 @@ getUserDB(user)
         </a>
       </div>
       <ul className="app__navbar-links">
-        <li className="p__opensans">
+        {/* <li className="p__opensans">
           <a href="/formProducts">Supplies</a>
-        </li>
+        </li> */}
+        {isAuthenticated && (
+          <li className="p__opensans">
+            <a href="/home">Home</a>
+          </li>
+        )}
         <li className="p__opensans">
           <a href="#services">Services</a>
         </li>
         <li className="p__opensans">
           <a href="#contact">Contact</a>
         </li>
-      </ul>
-      {isAuthenticated ? (
-            <button
-              className="p__opensans"
-              onClick={() =>
-                logout({ logoutParams: { returnTo: window.location.origin } })
-              }
-            >
-              Log Out
-            </button>
-      ) : (
-        <div className="app__navbar-login">
-          <button className="p__opensans" onClick={() => loginWithRedirect()}>
-            Log In
+        {isAuthenticated ? (
+          <button
+            className="p__opensans LogButton"
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            Log Out
           </button>
-          {/* <a href="/login" className="p__opensans">
-          Log In
-        </a> */}
-          <div />
-          <a href="/register" className="p__opensans">
-            Registration
-          </a>
-        </div>
-      )}
-      {isAuthenticated ?
-        <div>
-          <img src={user.picture} alt={user.name} />
-        </div> :
-        null
-          }
-      {isAuthenticated ?
-        <div>
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-        </div> :
-        null
-      }
+        ) : (
+          <div className="app__navbar-login">
+            <button className="p__opensans LogRegis" onClick={() => loginWithRedirect()}>
+              Log In / Registration
+            </button>
+            <div />
+          </div>
+        )}
+        {isAuthenticated ? (
+          <div>
+            <img src={user.picture} alt={user.name} className="userProfile" />
+          </div>
+        ) : null}
+        {isAuthenticated ? (
+          <div>
+            <h2 className="userName">{user.name}</h2>
+            <p className="userEmail">{user.email}</p>
+          </div>
+        ) : null}
+      </ul>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu
           color="#fff"
@@ -102,7 +93,26 @@ getUserDB(user)
               onClick={() => setToggleMenu(false)}
             />
             <ul className="app__navbar-smallscreen_links">
-              <li></li>
+              {isAuthenticated ? (
+                <div>
+                  <img
+                    src={user.picture}
+                    alt={user.name}
+                    className="userProfileSmall"
+                  />
+                </div>
+              ) : null}
+              {isAuthenticated ? (
+                <div>
+                  <h2 className="userNameSmall">{user.name}</h2>
+                  <p className="userEmailSmall">{user.email}</p>
+                </div>
+              ) : null}
+              {isAuthenticated && (
+                <li className="p__opensans">
+                  <a href="/home">Home</a>
+                </li>
+              )}
               <li>
                 <a href="#services" onClick={() => setToggleMenu(false)}>
                   Services

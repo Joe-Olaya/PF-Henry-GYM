@@ -7,6 +7,10 @@
   font-size: 16px;
 }
 
+.app__navbarstore-login a:hover {
+  color: rgb(49, 47, 47);
+}
+
 
 .CategoriesList {
   position: absolute;
@@ -49,6 +53,7 @@
   margin-left: 10px;
   margin-right: 2px;
   margin-bottom: 2px;
+  transition: .3s ease-in-out;
 }
 
 .cartStoreNumber{

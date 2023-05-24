@@ -12,6 +12,10 @@
   padding-top: 0;
 }
 
+
+.titleImp{
+  text-decoration:underline solid 2px #FDB813;
+}
 .app__footer-links {
   font-family: Montserrat;
   color: white;
@@ -41,6 +45,11 @@
   margin: 0rem 1rem 1rem 1rem;
   text-align: center;
 }
+
+.app__footer-links_contact a{
+  text-decoration: none;
+}
+
 img {
   display: block;
   margin: auto;
