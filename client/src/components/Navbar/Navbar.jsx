@@ -26,6 +26,7 @@ const Navbar = () => {
   const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
+
 getUserDB(user)
 
   return (

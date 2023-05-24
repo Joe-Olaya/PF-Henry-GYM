@@ -27,7 +27,7 @@ const forgotPassword = async (req, res) => {
 };
 
 const subscription = async (req, res) => {
-  const { user_email } = req.body;
+  const {user_email} = req.body;
   const config = {
     host: "smtp.gmail.com",
     port: 587,
@@ -40,7 +40,7 @@ const subscription = async (req, res) => {
     from: "suppliesandtraining@gmail.com",
     to: [user_email],
     subject: "Thanks for subscribing!",
-    text: "Thanks for subscribing to our website, you will receive the latest news!",
+    html: "<div><h3>Hello there!</h3><span>Thanks for subscribing to our website, you will receive the latest news! Follow this <a href='http://localhost:3000/'>link</a> to continue in our website</span></div>" 
   };
   try {
     const transport = nodemailer.createTransport(config);

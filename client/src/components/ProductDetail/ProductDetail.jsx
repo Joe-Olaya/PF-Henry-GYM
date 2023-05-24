@@ -9,6 +9,10 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const rating = 4;
   const [quantity, setQuantity] = useState(1);
+  const [actualCart, setActualCart] = useState(
+    JSON.parse(localStorage.getItem("carrito")) || []
+  );
+
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
 
@@ -19,6 +23,13 @@ const ProductDetails = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  
+  const saveLocal = (item) => {
+    const updatedCart = [...actualCart, item];
+    localStorage.setItem('carrito', JSON.stringify(updatedCart));
+    setActualCart(updatedCart);
+  };
 
   const addComment = async () => {
     if (commentText.trim() !== "") {
@@ -88,9 +99,7 @@ const ProductDetails = () => {
               </span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="cart">
-              Add {quantity} to cart
-            </button>
+            <button className="cart" onClick={() => saveLocal({product,quantity})} >Add {quantity} to cart</button>
           </div>
         </div>
       </div>
