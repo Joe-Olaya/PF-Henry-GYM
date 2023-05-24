@@ -19,7 +19,7 @@ const getReviews = async (productId, page, res) => {
         where: {productId:productId},
         include: {
           model: User,
-          attributes: ['name']
+          attributes: ['name', 'email']
         },
         order: [['createdAt', 'DESC']],
         limit: 5,

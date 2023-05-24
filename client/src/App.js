@@ -20,6 +20,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Nav from "./components/Dashbard/Nav";
 import HomeDash from "./components/Dashbard/HomeDash";
 import Dashboard from "./components/Dashbard/Dashboard";
+import axios from 'axios';
+axios.defaults.baseURL = "http://localhost:3001/"
 
 const App = () => {
 
