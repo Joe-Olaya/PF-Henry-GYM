@@ -5,15 +5,17 @@ import images from "../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { searchUser } from "../../redux/actions";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const getUserDB = async(user) => {
+  let navigate = useNavigate();
   try {
       let userDB = await axios.post('/login', {email:user.email})
       let userData = userDB.data[0]
       localStorage.setItem("userData", JSON.stringify(userData));
       if(!userData.name){
-
+        navigate("/register");
       }
     } catch (error) {
     
@@ -25,61 +27,12 @@ const Navbar = () => {
     useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  // envia el correo al back
-// try {
-//   let userJson = JSON.stringify(user.email);
-//   if (user){
-//     fetch('http://localhost:3000/login', {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: userJson,
-//     });
-//     console.log(user.email);
-//   }
-// } catch (error) {
-
+getUserDB(user)
+// if (user){
+//   getUserDB(user)
+// } else {
+//   getUserDB(user)
 // }
-if (user){
-  getUserDB(user)
-}
-
-
-// try {
-//   if(user){
-//     return(
-//       <div>
-//         <form>
-//         <label>DNI:</label>
-//         <input type="number"/>
-//         <label>Password:</label>
-//         <input type="password"/>
-//         <input type="submit" value="Enviar"></input>
-//         </form>
-//         </div>
-//     )
-//   }
-// } catch (error) {
-  
-// }
-// si este no esta en el back
-
-//   const users = useSelector((state) => state.users);
-
-//   try {
-//   if(users.email === user.email){
-//     return
-//   }
-// } catch (error) {
-//   console.log(error);
-// }
-
-  // const dispatch = useDispatch();
-  // useEffect((user) => {
-  // // dispatch(getExercises(user));
-  // },[])
-
 
   return (
     <nav className="app__navbar">
