@@ -14,17 +14,12 @@ module.exports = (sequelize) => {
 
     dni: {
       type: DataTypes.BIGINT,
-      allowNull: false,
-    },
-
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
 
@@ -35,7 +30,7 @@ module.exports = (sequelize) => {
 
     phone: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: true,
     },
 
     address: {

@@ -1,5 +1,5 @@
 const {
-  getUserByDNI,
+  getUser,
   createUser,
   getAllUsers,
   getUserByName,
@@ -10,10 +10,15 @@ const {
 const {sendMailRegistered} = require("./nodeMailerHandlers.js")
 
 const loginUserHandler = async (req, res) => {
-  const { dni, password } = req.body;
-  try {
-    const results = await getUserByDNI(dni, password);
-    res.status(200).json({ results });
+  const { userJson } = req.body;
+    try {
+    const results = await getUser(userJson);
+    // if(!results.name){
+    //   res.status(200).json({ data: "Cliente creado parcialmente" });
+    // } else {
+    //   res.status(200).json({ data: "Cliente existente" });
+    // }
+    res.status(200).json(results)
   } catch (error) {
     res.status(400).json({ error: error });
   }

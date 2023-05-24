@@ -35,29 +35,20 @@ const cleanUserData = (arr) => {
   return data;
 };
 
-const getUserByDNI = async (dni, password) => {
-  const getUser = await User.findOne({
-    where: {
-      dni: dni,
-    },
-  });
-  if (getUser) {
-    if (getUser.password === password) {
-      let arrUser = [];
-      arrUser.push({
-        dni: getUser.dni,
-        name: getUser.name,
-        email: getUser.email,
-        address: getUser.address,
-        phone: getUser.phone,
-        state: state
-      });
-      return arrUser;
-    } else {
-      return "Contraseña incorrecta";
-    }
-  } else {
-    return "Usuario inexistente";
+const getUser = async (email) => {
+  try {
+    const getUser = await User.findOrCreate({
+      where: {
+        email: email,
+      },
+      defaults: {
+        userType: 'Client',
+        state: 'Active',
+      }
+    });
+    return getUser
+  } catch (error) {
+    return error
   }
 };
 
@@ -101,7 +92,7 @@ const createUser = async (dni, password, name, email, address, phone) => {
 };
 // createUser(37772,"321546","awdawd","joawd@aowdmaw.com","asdaw adw 123",341548)
 module.exports = {
-  getUserByDNI,
+  getUser,
   createUser,
   getAllUsers,
   getUserByName,
