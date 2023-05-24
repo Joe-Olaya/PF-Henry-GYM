@@ -30,12 +30,13 @@ const ProductDetails = () => {
       
       
       if (!userId) {
-        userId = [];
+        userId = null;
       }
 
       try {
         const response = await axios.post("http://localhost:3001/reviews", {
-          review: newComment
+          review: newComment,
+          userId: userId
         });
         console.log(response.data);
         setComments(prevComments => [...prevComments, newComment]);
@@ -46,12 +47,6 @@ const ProductDetails = () => {
     }
   };
   
-
-  // const userId = JSON.parse(localStorage.getItem("userId")) || [];
-  // const saveLocal = () => {
-  //   localStorage.setItem("userId", JSON.stringify(userId));
-  // };
-
   return (
     <div className="divDetail">
       <div className="productDetail">

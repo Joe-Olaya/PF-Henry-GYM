@@ -14,7 +14,7 @@ const Footer = () =>
         <a href="https://www.linkedin.com">
           <img src={images.linkedin} alt="linkedin" />
         </a>
-        <p className="p__opensans">Linkedin</p>
+        <p className="p__opensans titleImp">Linkedin</p>
         <a href="https://www.linkedin.com/in/joel-olaya-302761263/">
         <p className="p__opensans">Joel Olaya</p>
         </a>
@@ -42,12 +42,12 @@ const Footer = () =>
         <a href="https://www.soyhenry.com">
           <img src={images.logohenry} alt="henry" />
         </a>
-        <p className="p__opensans">Proyecto Grupal.</p>
+        <p className="p__opensans titleImp">Proyecto Grupal.</p>
       </div>
 
       <div className="app__footer-links_work">
         <img src={images.mail} alt="linkedin" />
-        <p className="p__opensans">Correo Electrónico:</p>
+        <p className="p__opensans titleImp">Correo Electrónico:</p>
         <p className="p__opensansfooter">joel.olaya@gmail.com</p>
         <p className="p__opensansfooter">alejandrofabian00@hotmail.com</p>
         <p className="p__opensansfooter">joaco.bolzon3@gmail.com</p>
