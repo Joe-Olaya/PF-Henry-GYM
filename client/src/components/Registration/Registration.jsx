@@ -39,12 +39,12 @@ const Registration = () => {
           }
           return errors;
         }}
-        onSubmit={(valores, { resetForm }) => {
+        onSubmit={ async (valores, { resetForm }) => {
           resetForm();
           console.log("FORM SENT");
-          //console.log(valores)
-          dispatch(postRegister(valores));
-          navigate("/exercises");
+          const user = await dispatch(postRegister(valores));
+          localStorage.setItem("userData", JSON.stringify(user.data));
+          navigate("/home");
           cambiarFormularioenviado(true);
           setTimeout(() => cambiarFormularioenviado(false), 5000);
         }}

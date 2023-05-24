@@ -70,30 +70,22 @@ const reactiveUserById = async (id) => {
   return 'Usuario reactivado correctamente'
 }
 
-const createUser = async (dni, password, name, email, address, phone) => {
-  const oldUser = await getUserByDNI(dni);
+const createOrUpdateUser = async (dni, name, email, address, phone) => {
+  const user = await User.findOne({
+    where: {email:email}
+  })
+  user.name = name
+  user.dni = dni
+  user.address = address
+  user.phone = phone
 
-  if (oldUser === "Usuario inexistente") {
-    const newUser = await User.create({
-      dni: dni,
-      password: password,
-      name: name,
-      email: email,
-      address: address,
-      phone: phone,
-      userType: "Client",
-      state: "Active"
-    });
-
-    return "Usuario creado exitosamente";
-  } else {
-    return "El usuario ya existe";
-  }
+  await user.save()
+  return user
 };
 // createUser(37772,"321546","awdawd","joawd@aowdmaw.com","asdaw adw 123",341548)
 module.exports = {
   getUser,
-  createUser,
+  createOrUpdateUser,
   getAllUsers,
   getUserByName,
   deleteUserById,

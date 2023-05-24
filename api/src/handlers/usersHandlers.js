@@ -1,6 +1,6 @@
 const {
   getUser,
-  createUser,
+  createOrUpdateUser,
   getAllUsers,
   getUserByName,
   deleteUserById,
@@ -20,11 +20,11 @@ const loginUserHandler = async (req, res) => {
 };
 
 const registerUserHandler = async (req, res) => {
-  const { dni, password, name, email, address, phone } = req.body;
+  const { dni, name, email, address, phone } = req.body;
   try {
-    const results = await createUser(dni, password, name,  email,address, phone);
+    const results = await createOrUpdateUser(dni, name, email, address, phone);
     // sendMailRegistered(email)
-    res.status(200).json({ results });
+    res.status(200).json( results );
   } catch (error) {
     res.status(400).json({ error: error });
   }

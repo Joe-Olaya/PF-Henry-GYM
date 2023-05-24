@@ -23,7 +23,7 @@ router.get('/users', getAllUsersHandler);
 router.delete('/users/:id', deleteUserHandler);
 router.post('/users/:id', reactiveUserHandler);
 router.post('/login', loginUserHandler);
-router.post('/register', validateDni, validatePassword, registerUserHandler);
+router.post('/register', registerUserHandler);
 // PRODUCTOS
 router.get('/products', getProductsHandler);
 router.post('/products', createProductsHandler);
