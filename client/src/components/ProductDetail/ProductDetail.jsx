@@ -34,7 +34,7 @@ const ProductDetails = () => {
       }
 
       try {
-        const response = await axios.post("http://localhost:3001/reviews", {
+        const response = await axios.post("/reviews", {
           review: newComment,
           userId: userId
         });
