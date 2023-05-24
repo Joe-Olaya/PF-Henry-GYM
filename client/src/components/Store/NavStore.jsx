@@ -14,11 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     setCartItemCount(actualCart.length);
   }, [actualCart]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+  
   const toggleCartMenu = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
@@ -58,32 +54,6 @@ const Navbar = () => {
         <a href="/home" className="navstore_font">
           Home
         </a>
-        <a
-          className={`navstore_font ${isMenuOpen ? "active" : ""}`}
-          role="button"
-          onClick={toggleMenu}
-        >
-          Categories
-        </a>
-        {isMenuOpen && (
-          <ul className="CategoriesList">
-            <li>
-              <a href="/category1">Protein</a>
-            </li>
-            <li>
-              <a href="/category2">Pre-Workout</a>
-            </li>
-            <li>
-              <a href="/category3">Performance</a>
-            </li>
-            <li>
-              <a href="/category4">Weight Management</a>
-            </li>
-            <li>
-              <a href="/category5">Vitamins & Health</a>
-            </li>
-          </ul>
-        )}
         <a href="#products" className="navstore_font">
           Products
         </a>

@@ -3,7 +3,7 @@ import './style.css'
 
 function Sidebar ({changeSection})  {
   return (
-    <div className='bg-white sidebar p-2' >
+    <div className='bg-white sidebarDash p-2' >
         <div className='m-2'>
            <i className='bi bi-bootstrap-fill me-3 fs-4'></i>  
            <span className='brand-name fs-4'> Supplies and training </span>

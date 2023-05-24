@@ -125,7 +125,7 @@ const getAndLoadDbMuscle = async () => {
     return error;
   }
 };
-   readJson();
+  // readJson();
   //console.log(getAndLoadDbMuscle())
   //console.log(getAndLoadDbExercises());
   //console.log(getAndLoadDbBodyParts())

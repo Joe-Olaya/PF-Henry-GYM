@@ -9,22 +9,7 @@
   --width-container: 1200px;
 }
 
-*{
-  border: 0;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html{
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-}
-
-body{
-  height: 100%;
-}
 
 .hero-section{
   align-items: flex-start;
@@ -99,7 +84,7 @@ body{
 }
 
 
-.card1:hover .card__background1{
+.card1:hover .card__background1 {
   transform: scale(1.05) translateZ(0);
 }
 
@@ -148,4 +133,16 @@ body{
   text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
   line-height: 1.4;
   word-spacing: 100vw;
+}
+
+.cardDescription{
+  color: rgb(255, 255, 255);
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  bottom: -225px;
+  width: 105%;
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
 }
