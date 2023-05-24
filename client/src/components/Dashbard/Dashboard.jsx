@@ -15,7 +15,8 @@ export default function Dashboard(){
     GeneralSection:true,
     ProductsSection:false,
     UserSection:false,
-    SalesSection:false
+    SalesSection:false,
+  
   })
     
   const changeSection =(section)=>{
@@ -24,7 +25,8 @@ export default function Dashboard(){
       GeneralSection:false,
       ProductsSection:false,
       UserSection:false,
-      SalesSection:false
+      SalesSection:false,
+      
        }
     defaults[section]=true
      setActualSection( defaults)
@@ -48,6 +50,7 @@ export default function Dashboard(){
             SalesSection={actualSection.SalesSection}
             ProductsSection={actualSection.ProductsSection}
             UserSection={actualSection.UserSection}
+           
             />
         </div>
         

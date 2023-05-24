@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Nav from './Nav'
 import {useSelector,useDispatch} from 'react-redux'
-import { getProducts,getUsers } from '../../redux/actions';
+import { getProducts,getUsers,  } from '../../redux/actions';
 
-function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSection}) {
+function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSection, PostProductSection}) {
    const dispatch=useDispatch();
    const products=useSelector(state=>state.products)
    const users =useSelector(state=>state.users)
@@ -44,6 +44,8 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
             </div>  
          </div>
 
+         
+
          <div className='col-md-3 p-1'>  
             <div className='p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded'>
             <div>                               
@@ -67,6 +69,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
          </div>
          
         
+      
 
          {UserSection&&
       <section>

@@ -15,3 +15,9 @@
 .col-auto {
    margin-left: 200px;
 }
+
+.form {
+ text-decoration: none;
+ color:black;
+  overflow: hidden;
+}
