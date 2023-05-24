@@ -17,8 +17,6 @@ const getUserDB = async(user) => {
       if(!userData.name){
         navigate("/register");
       }
-      navigate("/home");
-      
     } catch (error) {
     
   }
@@ -27,6 +25,7 @@ const getUserDB = async(user) => {
 const Navbar = () => {
   const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
+
 
 getUserDB(user)
 

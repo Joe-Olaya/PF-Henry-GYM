@@ -12,7 +12,7 @@ const Registration = () => {
   const navigate = useNavigate();
 
   // FILTRO EL EMAIL QUE ME TRAE EL LOCALSTORAGE
-  const userEmail =JSON.parse(localStorage.getItem("userData"));
+  const userEmail = JSON.parse(localStorage.getItem("userData"));
   const userFilEmail = userEmail.email;
 
   return (
@@ -35,18 +35,18 @@ const Registration = () => {
             errors.name = "Please, insert a name";
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,20}$/.test(valores.name)) {
             errors.name =
-            "The name can only have letters and spaces and length less than 20"; // ingles
+              "The name can only have letters and spaces and length less than 20"; // ingles
           }
           return errors;
         }}
-        onSubmit={ async (valores, { resetForm }) => {
+        onSubmit={async (valores, { resetForm }) => {
           resetForm();
           console.log("FORM SENT");
           const user = await dispatch(postRegister(valores));
           localStorage.setItem("userData", JSON.stringify(user.data));
-          navigate("/home");
           cambiarFormularioenviado(true);
           setTimeout(() => cambiarFormularioenviado(false), 5000);
+          window.location.href = 'https://suppliesandtraining.vercel.app/home';
         }}
       >
         {({
@@ -58,10 +58,12 @@ const Registration = () => {
           handleBlur,
         }) => (
           <form className="mt-8" onSubmit={handleSubmit}>
-          <div className="text-lg font-medium  text-slate-50">
-          <label htmlFor="email" className="text-yellow-500">E-mail:</label>
-          <p className="text-yellow-500">{userFilEmail}</p>
-          </div>
+            <div className="text-lg font-medium  text-slate-50">
+              <label htmlFor="email" className="text-yellow-500">
+                E-mail:
+              </label>
+              <p className="text-yellow-500">{userFilEmail}</p>
+            </div>
             <div className="text-lg font-medium text-slate-50">
               <label htmlFor="name">Name & Last Name </label>
               <input
@@ -118,9 +120,9 @@ const Registration = () => {
               />
             </div>
             <div className=" mt-8 flex flex-col gap-y-4">
-              <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-yellow-500 text-white text-lg font-bold">
-                Create User{" "}
-              </button>
+                <button className="active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-yellow-500 text-white text-lg font-bold">
+                  Create User{" "}
+                </button>
               {formularioEnviado && (
                 <p className="flex justify-between items-center  font-medium text-base text-yellow-500">
                   {" "}
