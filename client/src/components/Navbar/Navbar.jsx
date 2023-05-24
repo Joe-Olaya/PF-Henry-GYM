@@ -7,6 +7,18 @@ import "./Navbar.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { searchUser } from "../../redux/actions";
 import axios from "axios";
+const getUserDB = async(user) => {
+  try {
+      let userDB = await axios.post('/login', {email:user.email})
+      let userData = userDB.data[0]
+      localStorage.setItem("userData", JSON.stringify(userData));
+      if(!userData.name){
+
+      }
+    } catch (error) {
+    
+  }
+}
 
 const Navbar = () => {
   const { user, isAuthenticated, isLoading, logout, loginWithRedirect } =
@@ -29,15 +41,10 @@ const Navbar = () => {
 // } catch (error) {
 
 // }
-
-try {
-  let userJson = JSON.stringify(user.email);
-  if (user) {
-    axios.get(`http://localhost:3000/login`, userJson)
-  }
-} catch (error) {
-  
+if (user){
+  getUserDB(user)
 }
+
 
 // try {
 //   if(user){

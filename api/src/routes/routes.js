@@ -22,7 +22,7 @@ router.get('/exercises/:id', getExecercisesByIdHandler);
 router.get('/users', getAllUsersHandler);
 router.delete('/users/:id', deleteUserHandler);
 router.post('/users/:id', reactiveUserHandler);
-router.get('/login', loginUserHandler);
+router.post('/login', loginUserHandler);
 router.post('/register', validateDni, validatePassword, registerUserHandler);
 // PRODUCTOS
 router.get('/products', getProductsHandler);
