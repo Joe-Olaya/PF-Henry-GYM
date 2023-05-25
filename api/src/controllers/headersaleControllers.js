@@ -9,21 +9,29 @@ const createHeadersale = async (clientId, clientName, clientAddress) => {
   return newHeadersale;
 };
 
-const getRemitById = async (remitId) => {
-  const remit = await Headersale.findOne({
-    where : {
-      id : remitId
-  }})
-  const jsonRemit = {
-    id:remit.id,
-    clientId: remit.clientId,
-    clientName: remit.clientName,
-    clientAddress: remit.clientAddress
+const getRemits = async (clientId, page, res) => {
+  console.log('estoy en el controller')
+  let options = {
+    where: clientId ? {clientId : clientId} : {},
+    order: [['createdAt', 'DESC']],
+    limit: 10,
+    offset: +page * 10,
+  };
+  try {
+    const { count, rows } = await Headersale.findAndCountAll(options)
+    res.status(200).send({
+      products: rows,
+      actual_page: ++page,
+      total_sales: count,
+      total_pages : Math.ceil(count / 10)
+    });
+  } catch (error) {
+    res.status(400).send(error)
   }
-  return jsonRemit
+
 }
 
 module.exports = {
     createHeadersale,
-    getRemitById
+    getRemits
 }
