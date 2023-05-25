@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Exercise, Bodypart, Muscle } = require("../db");
+const { Exercise, Bodypart, Muscle, Categoryproduct } = require("../db");
 const fs = require('fs/promises')
 const path = require('path');
 const { Sequelize } = require('sequelize')
@@ -124,7 +124,31 @@ const getAndLoadDbMuscle = async () => {
     console.log(error);
     return error;
   }
+  
 };
+
+const createCategoriesProducts = () => {
+  try {
+      const categories = [
+        "Protein",
+        "Pre-Workout",
+        "Performance",
+        "Weight Management",
+        "Vitamins & Health",
+        "Clothes",
+        "Accessories"
+      ]
+      categories.forEach(async element => {
+          const newCategory = await Categoryproduct.create({
+              name : element
+          })
+      });
+  } catch (error) {
+      return error
+  }
+}
+
+  // createCategoriesProducts()
   // readJson();
   //console.log(getAndLoadDbMuscle())
   //console.log(getAndLoadDbExercises());

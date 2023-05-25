@@ -1,14 +1,16 @@
 const { Categoryproduct } = require('../db')
 
-const getCategoriesProducts = async (res) => {
+const getCategoriesProducts = async () => {
     try {
         const categories = await Categoryproduct.findAll();
-        res.status(200).json(categories)
+        return categories
     } catch (error) {
-        res.status(500).json(error)
+        return error
     }
 }
 
+
+
 module.exports = {
-    getCategoriesProducts
+    getCategoriesProducts,
 }
