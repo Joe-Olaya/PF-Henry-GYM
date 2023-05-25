@@ -216,25 +216,25 @@ const Store = () => {
             </div>
             <div className="inputGroup">
               <input
-                id="option3"
-                name="option3"
-                type="checkbox"
+                id="radio1"
+                name="radio"
+                type="radio"
                 onChange={handleFilterChange}
                 value="Min to Max"
               />
               <FaArrowDown className="iconCategory" />
-              <label htmlFor="option3">Min to Max</label>
+              <label htmlFor="radio1">Min to Max</label>
             </div>
             <div className="inputGroup">
               <input
-                id="option4"
-                name="option4"
-                type="checkbox"
+                id="radio2"
+                name="radio"
+                type="radio"
                 onChange={handleFilterChange}
                 value="Max to Min"
               />
               <FaArrowUp className="iconCategory" />
-              <label htmlFor="option4">Max to Min</label>
+              <label htmlFor="radio2">Max to Min</label>
             </div>
           </div>
           <div className="divStoreCont">

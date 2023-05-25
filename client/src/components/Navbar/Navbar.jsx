@@ -8,26 +8,23 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const getUserDB = async(user) => {
+const getUserDB = async (user) => {
   let navigate = useNavigate();
   try {
-      let userDB = await axios.post('/login', {email:user.email})
-      let userData = userDB.data[0]
-      localStorage.setItem("userData", JSON.stringify(userData));
-      if(!userData.name){
-        navigate("/register");
-      }
-    } catch (error) {
-    
-  }
-}
+    let userDB = await axios.post("/login", { email: user.email });
+    let userData = userDB.data[0];
+    localStorage.setItem("userData", JSON.stringify(userData));
+    if (!userData.name) {
+      navigate("/register");
+    }
+  } catch (error) {}
+};
 
 const Navbar = () => {
   const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
-
-getUserDB(user)
+  getUserDB(user);
 
   return (
     <nav className="app__navbar">
@@ -40,6 +37,11 @@ getUserDB(user)
         {/* <li className="p__opensans">
           <a href="/formProducts">Supplies</a>
         </li> */}
+        {isAuthenticated && (
+          <li className="p__opensans">
+            <a href="/dashboard">Dashboard</a>
+          </li>
+        )}
         {isAuthenticated && (
           <li className="p__opensans">
             <a href="/home">Home</a>
@@ -62,7 +64,10 @@ getUserDB(user)
           </button>
         ) : (
           <div className="app__navbar-login">
-            <button className="p__opensans LogRegis" onClick={() => loginWithRedirect()}>
+            <button
+              className="p__opensans LogRegis"
+              onClick={() => loginWithRedirect()}
+            >
               Log In / Registration
             </button>
             <div />

@@ -29,7 +29,7 @@ const CardProducts = (props) => {
 
   return (
     <div className="cardPrd">
-      <Link to={`/products/${props.id}`}>
+      <Link className="LinkEstilo" to={`/products/${props.id}`}>
         <img className="productImg" src={props.image} />
         <div className="starsContainerPreview">
           <StarRatings
@@ -41,11 +41,8 @@ const CardProducts = (props) => {
           />
         </div>
         <div className="infoPrd">
-          <h1 className="titlePrd">
-            <p>{props.name}</p>
-          </h1>
-          <div className
-          ="etiquet-price">
+          <h2 className="titlePrd">{props.name}</h2>
+          <div className="etiquet-price">
             <p>{props.price}</p>
             <div></div>
           </div>
