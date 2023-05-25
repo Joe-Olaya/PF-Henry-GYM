@@ -46,48 +46,43 @@ const Navbar = () => {
     console.log("deleted");
   };
 
-  initMercadoPago("APP_USR-b838ddeb-d87e-458e-9f1e-ba4a7f813447");
+  initMercadoPago("TEST-1a4e511b-8a78-485a-86c8-bc08044345a5");
   const [id, setId] = useState("");
-  useEffect(() => {
-    const handlePostGetId = async () => {
-      let product = {
-        items: [
-          {
-            title: "Total a pagar:",
-            unit_price: totalPrice,
-            quantity: 1,
-            currency_id: "ARS",
-          },
-        ],
-      };
-      const peticion = await axios.post(
-        "http://localhost:3001/mpcompra",
-        product
-      );
-      setId(peticion.data);
+
+  const handlePostGetId = async () => {
+    let product = {
+      items: [
+        {
+          title: "Total a pagar:",
+          unit_price: totalPrice,
+          quantity: 1,
+          currency_id: "ARS",
+        },
+      ],
     };
-    handlePostGetId();
-  }, []);
+    const peticion = await axios.post(
+      "http://localhost:3001/mpcompra",
+      product
+    );
+    setId(peticion.data);
+  };
 
+  const customization = {
+    texts: {
+      action: "buy",
+    },
+    visual: {
+      buttonBackground: "black",
+      borderRadius: "10px",
+    },
+    checkout: {
+      theme: {
+        elementsColor: "#fdb813",
+        headerColor: "#fdb813",
+      },
+    },
+  };
 
-            
-const customization = {
-  texts: {
-    action: 'buy',
-    valueProp: 'none',
-  },
-  visual: {
-    buttonBackground: 'black',
-    borderRadius: '10px',
-},
-checkout: {
-  theme: {
-    elementsColor: '#fdb813',
-    headerColor: '#fdb813'
-  },
-},
- }
- 
   return (
     <nav className="app__navbarstore">
       <div className="app__navbarstore-logo">
@@ -139,7 +134,12 @@ checkout: {
                   <button className="cartPayAllButton">
                     Total: u$d {totalPrice}
                   </button>
-                  <Wallet customization={customization} initialization={{ preferenceId: id}} />
+                  <button onClick={handlePostGetId}>
+                  <Wallet
+                    customization={customization}
+                    initialization={{ preferenceId: id }}
+                  />
+                  </button>
                 </>
               ) : (
                 <li className="cart_TextNoItems">
