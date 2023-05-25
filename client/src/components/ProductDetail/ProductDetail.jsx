@@ -75,6 +75,7 @@ const ProductDetails = () => {
 
       try {
         const response = await axios.post("/reviews", {
+          productId,
           review: newComment,
           userId: userId,
           punctuation: rating
