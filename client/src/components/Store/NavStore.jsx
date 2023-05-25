@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import images from "../../constants/images";
 import "./NavStore.css";
 import SearchStore from "../SearchStore/SearchStore";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
@@ -10,11 +13,12 @@ const Navbar = () => {
     JSON.parse(localStorage.getItem("carrito")) || []
   );
   const [cartItemCount, setCartItemCount] = useState(actualCart.length);
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
     setCartItemCount(actualCart.length);
   }, [actualCart]);
-  
+
   const toggleCartMenu = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
@@ -42,6 +46,48 @@ const Navbar = () => {
     console.log("deleted");
   };
 
+  initMercadoPago("APP_USR-b838ddeb-d87e-458e-9f1e-ba4a7f813447");
+  const [id, setId] = useState("");
+  useEffect(() => {
+    const handlePostGetId = async () => {
+      let product = {
+        items: [
+          {
+            title: "Total a pagar:",
+            unit_price: totalPrice,
+            quantity: 1,
+            currency_id: "ARS",
+          },
+        ],
+      };
+      const peticion = await axios.post(
+        "http://localhost:3001/mpcompra",
+        product
+      );
+      setId(peticion.data);
+    };
+    handlePostGetId();
+  }, []);
+
+
+            
+const customization = {
+  texts: {
+    action: 'buy',
+    valueProp: 'none',
+  },
+  visual: {
+    buttonBackground: 'black',
+    borderRadius: '10px',
+},
+checkout: {
+  theme: {
+    elementsColor: '#fdb813',
+    headerColor: '#fdb813'
+  },
+},
+ }
+ 
   return (
     <nav className="app__navbarstore">
       <div className="app__navbarstore-logo">
@@ -85,14 +131,15 @@ const Navbar = () => {
                         <button onClick={() => handleDeleteItem(e.product.id)}>
                           ❌
                         </button>
-                        {e.product.name} x {repetidos[e.product.id]} - $
+                        {e.product.name} x {repetidos[e.product.id]} - u$d {""}
                         {e.product.price * repetidos[e.product.id]}🛒
                       </li>
                     </React.Fragment>
                   ))}
                   <button className="cartPayAllButton">
-                    Buy: usd {totalPrice}
+                    Total: u$d {totalPrice}
                   </button>
+                  <Wallet customization={customization} initialization={{ preferenceId: id}} />
                 </>
               ) : (
                 <li className="cart_TextNoItems">

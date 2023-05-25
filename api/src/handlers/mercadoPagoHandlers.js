@@ -1,34 +1,27 @@
-// SDK de Mercado Pago
 const mercadopago = require("mercadopago");
-// Agrega credenciales
+require("dotenv").config();
 mercadopago.configure({
-    access_token:"TEST-4683237095917088-051018-7920e7a930b8e6449685bc6da8bfeb03-240811749"
+    access_token: process.env.MERCADOPAGO_TOKEN
 });
-let preference = {
-  items: [
-    {
-      title: "pesas",
-      unit_price: 100,
-      quantity: 1,
-      
-    },
-  ],
-};
 
 const newSaleMPHandler = async(req,res)=>{
-    const {items}=req.body
-    
-    try {
-       mercadopago.preferences
-        .create({items})
+  const {items} = req.body
+  try {
+    let preference = {
+      items:items,
+      back_urls:{
+        success: 'http://localhost:3000/store',
+        failure: 'http://localhost:3000/store',
+      },
+      auto_return: "approved",
+      statement_descriptor:"Supplies & Training"
+    };
+    mercadopago.preferences
+        .create(preference)
         .then( (response)=> {
-          // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
           res.send(response.body.id)
-          // console.log(response)
+          console.log(preference)
         })
-        .catch(function (error) {
-          console.log(error);
-        });
     } catch (error) {
       console.log(error) 
     }

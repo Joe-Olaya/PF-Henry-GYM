@@ -224,10 +224,10 @@
   font-weight: 700;
   position: absolute;
   display: flex;
-  align-items: center;
-  top: 9vh;
-  width: 35vh !important;
-  height: 90%;
+  justify-content: flex-end;
+  top: 5vh;
+  width: 340px!important;
+  height: 35vh!important;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -237,9 +237,9 @@
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  width: auto;
+  width: 400px;
   height:auto;
-  padding: 30px;
+  padding: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
 }
@@ -260,9 +260,4 @@
   width: auto;
   border-radius: 15px;
   background-color: rgba(244, 213, 40, 0.8);
-}
-
-.cartPayAllButton:hover{
-  transform: scale(1.05);
-  transition-duration: 10ms;
 }
