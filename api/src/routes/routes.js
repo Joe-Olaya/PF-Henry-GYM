@@ -10,7 +10,7 @@ const { createSaleHandler, getRemitsHandler } = require('../handlers/headersaleH
 const { getBodiesHandler } = require('../handlers/bodysaleHandler')
 const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers')
 const { forgotPassword, subscription } = require("../handlers/nodeMailerHandlers");
-const { getCategoriesProductsHandler } = require('../handlers/categoriesProductsHandlers')
+const { getCategoriesProductsHandler, createCategoriesProductsHandler } = require('../handlers/categoriesProductsHandlers')
 const { createReviewsHandler, getReviewsHandler, getPunctuationHandler} = require('../handlers/reviewsHandlers')
 const router = Router();
 
@@ -28,9 +28,11 @@ router.post('/register', registerUserHandler);
 // PRODUCTOS
 router.get('/products', getProductsHandler);
 router.post('/products', createProductsHandler);
-router.get('/categoriesproducts', getCategoriesProductsHandler);
 router.delete('/products/:id', deleteProductHandler);
 router.post('/products/:id', reactiveProductHandler);
+// CATEGORIAS
+router.get('/categoriesproducts', getCategoriesProductsHandler);
+//router.post('/categoriesproducts', createCategoriesProductsHandler)
 // REVIEWS
 router.post('/reviews', createReviewsHandler);
 router.get('/reviews', getReviewsHandler);
