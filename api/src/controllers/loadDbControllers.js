@@ -130,8 +130,13 @@ const getAndLoadDbMuscle = async () => {
 const createCategoriesProducts = () => {
   try {
       const categories = [
-          "Indumentaria",
-          "Suplementos"
+        "Protein",
+        "Pre-Workout",
+        "Performance",
+        "Weight Management",
+        "Vitamins & Health",
+        "Clothes",
+        "Accessories"
       ]
       categories.forEach(async element => {
           const newCategory = await Categoryproduct.create({
