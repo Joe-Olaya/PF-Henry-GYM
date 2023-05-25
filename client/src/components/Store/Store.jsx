@@ -9,8 +9,6 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { images } from "../../constants";
 import Intro from "./videoIntro.jsx";
 import { FaStar, FaTag, FaArrowDown, FaArrowUp } from "react-icons/fa";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
-
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -102,7 +100,6 @@ const Store = () => {
   //   indexOfFirstProduct,
   //   indexOfLastProduct
   // );
-  const cart = useSelector((state) => state.cart);
 
   initMercadoPago("TEST-c64788b2-8aa3-431e-8e04-4295bcce4784");
 
@@ -256,19 +253,6 @@ const Store = () => {
           totalExercises={products.length}
           paginate={paginatePrd}
         />
-        {cart.map((item) => {
-                return (
-                    <div>
-                        <div>
-                            <ShoppingCart
-                            name={item.name}
-                            price={item.price}                     
-                            /> 
-                        </div>
-                        {/* {console.log(item.id)} */}
-                    </div>
-                );
-            })}
       </div>
     </div>
   );

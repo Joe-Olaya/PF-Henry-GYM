@@ -6,7 +6,8 @@ const { validateDni, validatePassword } = require("../handlers/validationsHandle
 const { getExercisesHandler, getExecercisesByIdHandler } = require("../handlers/exercisesHandlers");
 const { loginUserHandler, registerUserHandler, getAllUsersHandler, deleteUserHandler, reactiveUserHandler } = require("../handlers/usersHandlers");
 const { createProductsHandler, getProductsHandler, deleteProductHandler, reactiveProductHandler } = require("../handlers/productHandlers");
-const { createSaleHandler, getRemitByIdHandler } = require('../handlers/headersaleHandlers')
+const { createSaleHandler, getRemitsHandler } = require('../handlers/headersaleHandlers')
+const { getBodiesHandler } = require('../handlers/bodysaleHandler')
 const {newSaleMPHandler} = require('../handlers/mercadoPagoHandlers')
 const { forgotPassword, subscription } = require("../handlers/nodeMailerHandlers");
 const { getCategoriesProductsHandler } = require('../handlers/categoriesProductsHandlers')
@@ -22,8 +23,8 @@ router.get('/exercises/:id', getExecercisesByIdHandler);
 router.get('/users', getAllUsersHandler);
 router.delete('/users/:id', deleteUserHandler);
 router.post('/users/:id', reactiveUserHandler);
-router.get('/login', validateDni, validatePassword, loginUserHandler);
-router.post('/register', validateDni, validatePassword, registerUserHandler);
+router.post('/login', loginUserHandler);
+router.post('/register', registerUserHandler);
 // PRODUCTOS
 router.get('/products', getProductsHandler);
 router.post('/products', createProductsHandler);
@@ -36,7 +37,8 @@ router.get('/reviews', getReviewsHandler);
 router.get('/punctuation/:productId', getPunctuationHandler);
 // VENTAS
 router.post('/createSale', createSaleHandler);
-router.get('/remit/:id', getRemitByIdHandler);
+router.get('/remit', getRemitsHandler);
+router.get('/body/:remitId', getBodiesHandler)
 router.post('/mpcompra', newSaleMPHandler);
 //router.post('/passwordreset', forgotPassword);
 router.post('/subscription', subscription);

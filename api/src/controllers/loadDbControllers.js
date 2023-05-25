@@ -2,6 +2,7 @@ const axios = require("axios");
 const { Exercise, Bodypart, Muscle } = require("../db");
 const fs = require('fs/promises')
 const path = require('path');
+const { Sequelize } = require('sequelize')
 
 const readJson = async () =>{
   return new Promise(async (resolve,reject) => {
@@ -18,10 +19,32 @@ const readJson = async () =>{
 }
 
 const getAndLoadDbExercises = async (data) => {
+  // return new Promise(async (resolve, reject) => {
+  //   try {
+  //     const resultados = [];
+  //     for (const elemento of arr) {
+  //       let product = await getProductById(elemento.product_id);
+  //       let price = product.price * elemento.units;
+  //       const resultado = await createNewBody(
+  //         price.toFixed(2),
+  //         elemento.units,
+  //         product.id,
+  //         headerId
+  //       );
+  //       resultados.push(resultado);
+  //     }
+  //     resolve(resultados);
+  //   } catch (error) {
+  //     reject(error);
+  //   }
+  // });
+  return new Promise(async (resolve, reject) => {
   try {
     const obj = JSON.parse(data)
     for (const elemnt of obj){
-      Exercise.findOrCreate({
+      let muscle = await createMuscle(elemnt.target)
+      let muscleId = muscle[0].dataValues.id
+      let exercise = await Exercise.findOrCreate({
         where: {
           id: elemnt.id,
         },
@@ -30,16 +53,24 @@ const getAndLoadDbExercises = async (data) => {
           equipment: elemnt.equipment,
           gif_url: elemnt.gifUrl,
           name: elemnt.name,
-          muscle_target: elemnt.target,
+          muscleId: muscleId
         },
       })
-    }
-    
-    return "Exercises loaded correctly";
+    }  
   } catch (error) {
-    return error;
+    console.log(error)
   }
+  });
 };
+
+const createMuscle = async (data) =>{
+  let muscle = await Muscle.findOrCreate({
+    where : {
+      name : data
+    }
+  })
+  return muscle
+}
 
 // const getAndLoadDbBodyParts = async () => {
 //   const options = {

@@ -1,6 +1,6 @@
 const {
-  getUserByDNI,
-  createUser,
+  getUser,
+  createOrUpdateUser,
   getAllUsers,
   getUserByName,
   deleteUserById,
@@ -10,21 +10,21 @@ const {
 const {sendMailRegistered} = require("./nodeMailerHandlers.js")
 
 const loginUserHandler = async (req, res) => {
-  const { dni, password } = req.body;
-  try {
-    const results = await getUserByDNI(dni, password);
-    res.status(200).json({ results });
+  const  {email}  = req.body;
+    try {
+    const results = await getUser(email);
+    res.status(200).json(results)
   } catch (error) {
     res.status(400).json({ error: error });
   }
 };
 
 const registerUserHandler = async (req, res) => {
-  const { dni, password, name, email, address, phone } = req.body;
+  const { dni, name, email, address, phone } = req.body;
   try {
-    const results = await createUser(dni, password, name,  email,address, phone);
-    sendMailRegistered(email)
-    res.status(200).json({ results });
+    const results = await createOrUpdateUser(dni, name, email, address, phone);
+    // sendMailRegistered(email)
+    res.status(200).json( results );
   } catch (error) {
     res.status(400).json({ error: error });
   }

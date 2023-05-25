@@ -1,21 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
-import { Navbar, Contact } from "./components";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navbar, Contact, ProductDetail } from "./components";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Registration from "./components/Registration/Registration";
 import images from "../src/assets/card4.png";
-import Pagination from "./components/Pagination/Pagination";
 import Exercises from "./components/Exercises/Exercises";
 import NavSec from "../src/components/NavSec/NavSec";
 import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Protectlogin from "./components/ProtectRoutes/Protectlogin";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Dashboard from "./components/Dashbard/Dashboard";
+import axios from 'axios';
+axios.defaults.baseURL = "http://localhost:3001/"
 
 const App = () => {
 
@@ -48,6 +52,7 @@ const App = () => {
           }
         />
         <Route element = {<Protectlogin/>}>
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/exercises"
           element={
@@ -63,20 +68,25 @@ const App = () => {
           path="/store"
           element={
             <div>
-              <NavStore/>
+              <NavStore />
               <Store />
             </div>
           }
         />
         <Route exact path="/formProducts" element={<FormProducts />} />
+        <Route path="/create" element={<FormProducts />} />
         </Route>
         <Route path="/*" element={<Error />} />
-        <Route path="/create" element={<FormProducts />} />
-        <Route path="/login" element={<Login />} />
-        <Route exact path="/products/:productId" element={            <div>
-              <NavStore/>
+        <Route
+          exact
+          path="/products/:productId"
+          element={
+            <div>
+              <NavStore />
               <ProductDetail />
-            </div>} />
+            </div>
+          }
+        />
         <Route
           path="/register"
           element={

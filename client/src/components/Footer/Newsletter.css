@@ -32,6 +32,10 @@
   width: max-content;
 }
 
+.app__newsletter-input-email{
+text-align: center;
+}
+
 @media screen and (min-width: 2000px) {
   .app__newsletter-input input {
     font-size: 2rem;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import images from "../../constants/images";
 import "./NavStore.css";
 import SearchStore from "../SearchStore/SearchStore";
@@ -6,16 +6,41 @@ import SearchStore from "../SearchStore/SearchStore";
 const Navbar = () => {
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [actualCart, setActualCart] = useState(
+    JSON.parse(localStorage.getItem("carrito")) || []
+  );
+  const [cartItemCount, setCartItemCount] = useState(actualCart.length);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+  useEffect(() => {
+    setCartItemCount(actualCart.length);
+  }, [actualCart]);
+  
   const toggleCartMenu = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
 
-  const actualCart = JSON.parse(localStorage.getItem("carrito")) || [];
+  const ids = [];
+  const repetidos = {};
+  let totalPrice = 0;
+  const filteredCart = actualCart.filter((e) => {
+    const id = e.product.id;
+    totalPrice = totalPrice + e.product.price;
+    ids.push(id);
+    if (!repetidos[id]) {
+      repetidos[id] = 1;
+      return true;
+    } else {
+      repetidos[id]++;
+      return false;
+    }
+  });
+
+  const handleDeleteItem = (id) => {
+    const itemDeletedCart = actualCart.filter((e) => e.product.id !== id);
+    localStorage.setItem("carrito", JSON.stringify(itemDeletedCart));
+    setActualCart(itemDeletedCart);
+    console.log("deleted");
+  };
 
   return (
     <nav className="app__navbarstore">
@@ -26,35 +51,9 @@ const Navbar = () => {
       </div>
       <SearchStore />
       <div className="app__navbarstore-login">
-        <a href="/store" className="navstore_font">
+        <a href="/home" className="navstore_font">
           Home
         </a>
-        <a
-          className={`navstore_font ${isMenuOpen ? "active" : ""}`}
-          role="button"
-          onClick={toggleMenu}
-        >
-          Categories
-        </a>
-        {isMenuOpen && (
-          <ul className="CategoriesList">
-            <li>
-              <a href="/category1">Protein</a>
-            </li>
-            <li>
-              <a href="/category2">Pre-Workout</a>
-            </li>
-            <li>
-              <a href="/category3">Performance</a>
-            </li>
-            <li>
-              <a href="/category4">Weight Management</a>
-            </li>
-            <li>
-              <a href="/category5">Vitamins & Health</a>
-            </li>
-          </ul>
-        )}
         <a href="#products" className="navstore_font">
           Products
         </a>
@@ -69,20 +68,36 @@ const Navbar = () => {
             <circle cx="10.5" cy="19.5" r="1.5"></circle>
             <circle cx="17.5" cy="19.5" r="1.5"></circle>
           </svg>
-          <span className="cartStoreNumber">{actualCart.length}</span>
+          <span className="cartStoreNumber">{cartItemCount}</span>
         </button>
         {isCartMenuOpen && (
           <div className="cartMenuContainer">
             <ul className="cartMenu">
-              {actualCart ? (
-                actualCart.map((e) => (
-                  <>
-                    <li key={e.name}>{e.name}</li>
-                    <li key={e.price}>${e.price}</li>
-                  </>
-                ))
+              {actualCart.length ? (
+                <>
+                  {" "}
+                  <button className="cartCloseBtn" onClick={toggleCartMenu}>
+                    Hide
+                  </button>
+                  {filteredCart.map((e, index) => (
+                    <React.Fragment key={index}>
+                      <li>
+                        <button onClick={() => handleDeleteItem(e.product.id)}>
+                          ❌
+                        </button>
+                        {e.product.name} x {repetidos[e.product.id]} - $
+                        {e.product.price * repetidos[e.product.id]}🛒
+                      </li>
+                    </React.Fragment>
+                  ))}
+                  <button className="cartPayAllButton">
+                    Buy: usd {totalPrice}
+                  </button>
+                </>
               ) : (
-                  <li> "No items here! Check the store"</li>
+                <li className="cart_TextNoItems">
+                  No items here! Check the products at the store
+                </li>
               )}
             </ul>
           </div>

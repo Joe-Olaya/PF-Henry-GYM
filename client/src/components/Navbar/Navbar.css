@@ -30,8 +30,13 @@
   cursor: pointer;
 }
 
-.app__navbar-links li:hover {
+.app__navbar-links a {
+  color: white;
+  text-decoration: none;
+}
+.app__navbar-links a:hover {
   color: #FDB813;
+  text-decoration: none;
 }
 
 .app__navbar-login {
@@ -42,12 +47,19 @@
 
 .app__navbar-login a {
   margin: 0 1rem;
-  text-decoration: none;
+  text-decoration: none ;
   transition: 0.5s ease;
 }
 
 .app__navbar-login a:hover {
   border-bottom: 1px solid #FDB813;
+}
+
+.LogRegis{
+  margin-left: 10px;
+}
+.LogRegis:hover{
+  border-bottom: 1px solid #FDB813
 }
 
 .app__navbar-login div {
@@ -81,6 +93,66 @@
   position: absolute;
   top: 20px;
   right: 20px;
+}
+.userProfile{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  max-height: 45px;
+  margin-left: 20px;
+}
+
+.userProfileSmall{
+  height: 150px;
+}
+
+.userName{
+  color: white;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.userName::first-letter{
+  text-transform: uppercase;
+}
+
+
+.userNameSmall{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 27px;
+  color: white;
+  cursor: pointer;
+}
+
+.userEmailSmall{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+  color: white;
+  cursor: pointer;
+}
+
+
+.userEmail{
+  color: white;
+  align-items: center;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.userEmail::first-letter{
+  text-transform: uppercase !important;
+}
+
+.LogButton{
+  margin-left: 10px;
+}
+
+.LogButton:hover{
+  color: #FDB813;
 }
 
 .app__navbar-smallscreen_links {
