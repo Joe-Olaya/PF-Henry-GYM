@@ -11,6 +11,11 @@ const Navbar = () => {
     useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    logout({ returnTo: window.location.origin });
+  };
+
   
   if (user){
     console.log(user)
@@ -40,14 +45,10 @@ const Navbar = () => {
         </li>
       </ul>
       {isAuthenticated ? (
-            <button
-              className="p__opensans"
-              onClick={() =>
-                logout({ logoutParams: { returnTo: window.location.origin } })
-              }
-            >
-              Log Out
-            </button>
+        <button className="p__opensans" onClick={handleLogout}>
+          Log Out
+        </button>
+
       ) : (
         <div className="app__navbar-login">
           <button className="p__opensans" onClick={() => loginWithRedirect()}>

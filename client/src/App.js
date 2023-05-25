@@ -15,9 +15,12 @@ import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
+import Protectlogin from "./components/ProtectRoutes/Protectlogin";
 
 const App = () => {
+
   const location = useLocation();
+ 
   return (
     <div>
       <Routes>
@@ -44,6 +47,7 @@ const App = () => {
             </div>
           }
         />
+        <Route element = {<Protectlogin/>}>
         <Route
           path="/exercises"
           element={
@@ -53,10 +57,8 @@ const App = () => {
             </div>
           }
         />
-        <Route exact path="/formProducts" element={<FormProducts />} />
-        <Route path="/*" element={<Error />} />
-        <Route path="/create" element={<FormProducts />} />
-        <Route path="/login" element={<Login />} />
+
+
         <Route
           path="/store"
           element={
@@ -66,6 +68,11 @@ const App = () => {
             </div>
           }
         />
+        <Route exact path="/formProducts" element={<FormProducts />} />
+        </Route>
+        <Route path="/*" element={<Error />} />
+        <Route path="/create" element={<FormProducts />} />
+        <Route path="/login" element={<Login />} />
         <Route exact path="/products/:productId" element={            <div>
               <NavStore/>
               <ProductDetail />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../FormProducts/FormProducts.css";
+import { Link } from "react-router-dom";
 
 const FormProducts = () => {
   const [image, setImage] = useState("");
@@ -10,8 +11,22 @@ const FormProducts = () => {
     price: 0,
     image: "",
     stock: 0,
+    category:[],
   });
-
+  const category = [
+    "Protein   ",
+    " Pre-Workout   ",
+    " Performance   ",
+    " Weight Management   ",
+    " Vitamins & Health   ",
+    "Clothes" ,
+    "Accessories",];
+    const userCategory = (e) => {
+      setInput({
+        ...input,
+        category: e.target.value,
+      });
+    }
   const setFile = (file) => {
     //funcion que convierte la imagen en datos legibles
     const filereader = new FileReader(); //metodo que convierte en codigo base 64
@@ -113,15 +128,40 @@ const FormProducts = () => {
               </div>
 
               <img src={image} weight="200" height={200} />
+              <select
+  defaultValue={input.category.length === 0 ? "default" : input.category}
+  onChange={(e) => userCategory(e)}
+  className="border rounded p-2"
+>
+  <option value="default" disabled>
+    Choose a category:
+  </option>
+  {category &&
+    category.map((elemento, index) => {
+      return (
+        <option key={index} value={elemento}>
+          {elemento}
+        </option>
+      );
+    })}
+</select>
 
-              <button
-                className="w-1/3 flex justify-center items-center active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-green-500 text-white text-lg font-bold"
-                onClick={handleSubmit}
-                type="button"
-              >
-                {" "}
-                Create{" "}
-              </button>
+              <div className="flex">
+  <button
+    className="w-1/3 flex justify-center items-center active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-green-500 text-white text-lg font-bold mr-2"
+    onClick={handleSubmit}
+    type="button"
+  >
+    Create
+  </button>
+
+  <button
+    className="w-1/3 flex justify-center items-center active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-yellow-500 text-black text-lg font-bold"
+
+  >
+    <Link to="/store">store</Link>
+  </button>
+</div>
             </form>
           </div>
         </div>
