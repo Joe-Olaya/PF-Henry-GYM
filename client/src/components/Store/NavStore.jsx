@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import images from "../../constants/images";
 import "./NavStore.css";
-import SearchStore from "../SearchStore/SearchStore";
 
 const Navbar = () => {
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
@@ -49,7 +48,6 @@ const Navbar = () => {
           <img src={images.logoy} alt="app__logo" />
         </a>
       </div>
-      <SearchStore />
       <div className="app__navbarstore-login">
         <a href="/home" className="navstore_font">
           Home
