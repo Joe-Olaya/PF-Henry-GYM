@@ -24,6 +24,7 @@ const cleanUserData = (arr) => {
   let data = [];
     arr.map((el) => {
       data.push({
+        id: el.id,
         dni: el.dni,
         name: el.name,
         email: el.email,
