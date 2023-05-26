@@ -66,6 +66,11 @@ export const Home = () => {
       </div>
 
       <div className="sectionStore">
+      {loading ? (
+        <div className="div_loader">
+        <Loading>{cambiarEstado()}</Loading>
+        </div>
+      ) : (
         <div className="backStSection">
           <h1 className="h1Store">Store</h1>
           <h3 className="h3TextStore">
@@ -105,6 +110,7 @@ export const Home = () => {
             </Link>
           </div>
         </div>
+      )}
       </div>
     </div>
   );
