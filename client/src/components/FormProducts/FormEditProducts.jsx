@@ -45,7 +45,7 @@ const FormEditProducts = ({ productId, name }) => {
       console.log(error);
       alert("Failed to update product");
     }
-    navigate('/dashboard')
+    navigate("/dashboard")
   };
 
   const handleDescriptionClick = () => {
