@@ -40,7 +40,7 @@ const subscription = async (req, res) => {
     from: "suppliesandtraining@gmail.com",
     to: [user_email],
     subject: "Thanks for subscribing!",
-    html: "<div><h3>Hello there!</h3><span>Thanks for subscribing to our website, you will receive the latest news! Follow this <a href='http://localhost:3000/'>link</a> to continue in our website</span></div>" 
+    html: "<div><h3>Hello there!</h3><span>Thanks for subscribing to our website, you will receive the latest news! Follow this <a href='https://suppliesandtraining.vercel.app/'>link</a> to continue in our website</span></div>" 
   };
   try {
     const transport = nodemailer.createTransport(config);

@@ -9,6 +9,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { images } from "../../constants";
 import Intro from "./videoIntro.jsx";
 import { FaStar, FaTag, FaArrowDown, FaArrowUp } from "react-icons/fa";
+import Loading from "../Loading/Loading";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -16,25 +17,54 @@ const Store = () => {
     dispatch(getProducts());
   }, []);
 
+  // LOADER
+  const [loading, setLoading] = useState(true);
+
+  const cambiarEstado = () => {
+    setTimeout(() =>
+      setLoading(false), 3000);
+  }
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [orderBy, setOrderBy] = useState("id");
   const [order, setOrder] = useState("ASC");
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/products", {
-        params: {
-          page: currentPage,
-          size: 9,
-          name: searchQuery,
-          categoryproductId: selectedCategory,
-          orderBy: "id",
-          order,
-          offer: selectedFilters.includes("Offer"),
-        },
+      const params = {
+        page: currentPage,
+        size: 9,
+        name: searchQuery,
+        orderBy,
+        order,
+        state:"Active",
+        offer: selectedFilters.includes("Offer"),
+      };
+
+      if (selectedCategory) {
+        params.categoryproductId = selectedCategory.id;
+      }
+
+      const response = await axios.get("/products", {
+        params: params,
       });
+
+
+      dispatch(getProducts(response.data.filteredProducts));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(
+        "/categoriesproducts"
+      );
+      setCategories(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +75,9 @@ const Store = () => {
   };
 
   const handleCategorySelectChange = (event) => {
-    setSelectedCategory(event.target.value);
+    const categoryId = event.target.value;
+    const category = categories.find((c) => c.id === categoryId);
+    setSelectedCategory(category);
   };
 
   const handleFilterChange = (event) => {
@@ -90,16 +122,17 @@ const Store = () => {
   };
 
   const products = useSelector((state) => state.products);
+  const filteredProducts = selectedCategory
+    ? products.filter(
+        (product) => product.categoryproductId === selectedCategory.id
+      )
+    : products;
+
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9;
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
-  // const currentProducts = products.slice(
-  //   indexOfFirstProduct,
-  //   indexOfLastProduct
-  // );
 
   initMercadoPago("TEST-c64788b2-8aa3-431e-8e04-4295bcce4784");
 
@@ -125,6 +158,10 @@ const Store = () => {
         window.removeEventListener("scroll", handleScroll);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
   }, []);
 
   return (
@@ -183,11 +220,11 @@ const Store = () => {
                 onChange={handleCategorySelectChange}
               >
                 <option value="">All Categories</option>
-                <option value="Protein">Protein</option>
-                <option value="Pre-Workout">Pre-Workout</option>
-                <option value="Performance">Performance</option>
-                <option value="Weight Management">Weight Management</option>
-                <option value="Vitamins & Health">Vitamins & Health</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
               </select>
             </div>
             <hr className="lineDivider" />
@@ -216,34 +253,42 @@ const Store = () => {
             </div>
             <div className="inputGroup">
               <input
-                id="option3"
-                name="option3"
-                type="checkbox"
+                id="radio1"
+                name="radio"
+                type="radio"
                 onChange={handleFilterChange}
                 value="Min to Max"
               />
               <FaArrowDown className="iconCategory" />
-              <label htmlFor="option3">Min to Max</label>
+              <label htmlFor="radio1">Min to Max</label>
             </div>
             <div className="inputGroup">
               <input
-                id="option4"
-                name="option4"
-                type="checkbox"
+                id="radio2"
+                name="radio"
+                type="radio"
                 onChange={handleFilterChange}
                 value="Max to Min"
               />
               <FaArrowUp className="iconCategory" />
-              <label htmlFor="option4">Max to Min</label>
+              <label htmlFor="radio2">Max to Min</label>
             </div>
           </div>
           <div className="divStoreCont">
+          {loading ? (
+            <div className="div_loader">
+              <Loading>{cambiarEstado()}</Loading>
+            </div>
+      ) : (
             <section className="cardsProducts">
               <CardsContainerPds
+                products={filteredProducts}
                 start={indexOfFirstProduct}
                 end={indexOfLastProduct}
+                selectedCategory={selectedCategory}
               />
             </section>
+                )}
           </div>
         </div>
       </div>

@@ -4,9 +4,10 @@ const getCategoriesProductsHandler = async (req,res) =>{
 
     const categoriesProducts = await getCategoriesProducts()
 
-    return categoriesProducts
+    res.status(200).json(categoriesProducts) 
 }
 
+
 module.exports = {
-    getCategoriesProductsHandler
+    getCategoriesProductsHandler,
 }

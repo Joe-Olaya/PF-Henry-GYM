@@ -1,19 +1,19 @@
 const {createReview, getReviews, getAllReviews} = require('../controllers/reviewsControllers')
-const { updateProduct } = require('../controllers/productsControllers')
+const { updatePunctuationProduct } = require('../controllers/productsControllers')
 
 const createReviewsHandler = async (req,res) =>{
     const {userId, productId, punctuation = null, review = "No hay comentarios"} = req.body;
     try {
         if(!userId){
-            res.status(400).send('Debe estar logueado para dejar un comentario')
+            res.status(400).send('You must be logged in to leave a comment')
         } else {
             const newReview = await createReview(userId, productId, punctuation, review);
             if(punctuation) {
                 const average_score = await puntuacionGeneral(productId)
-                if(average_score !== NaN){
-                    const updatePunctuationProduct = await updateProduct(productId, punctuation)
+                if(average_score == NaN){
+                    const updatedPunctuationProduct = await updatePunctuationProduct(productId, punctuation)
                 } else {
-                    const updatePunctuationProduct = await updateProduct(productId, average_score)
+                    const updatedPunctuationProduct = await updatePunctuationProduct(productId, average_score)
                 }
             }
             res.status(200).send(newReview)
@@ -46,6 +46,7 @@ const puntuacionGeneral = async (productId) => {
     });
     
     let total = Math.ceil(suma / punctuation.length)
+    console.log(total)
     return total
 
 }

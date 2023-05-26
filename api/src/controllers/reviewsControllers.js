@@ -27,10 +27,9 @@ const getReviews = async (productId, page, res) => {
       };
       try {
         const { count, rows } = await Review.findAndCountAll(options);
-        console.log('reviews controller');
         
         res.status(200).send({
-          products: rows,
+          reviews: rows,
           actual_page: ++page,
           total_reviews: count,
           total_pages : Math.ceil(count / 5)

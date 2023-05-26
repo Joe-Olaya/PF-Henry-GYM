@@ -10,7 +10,6 @@ const Card = (props) => {
         <h2 className="title">{props.name}</h2>
         {/* <p>Id: {props.id}</p> */}
         <div className="descriptionEx">
-          <h3>Muscle: {props.muscle}</h3>
           <h3>Body: {props.body_part}</h3>
         </div>
       </div>

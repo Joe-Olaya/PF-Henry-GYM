@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import images from "../../constants/images";
 import "./NavStore.css";
 import SearchStore from "../SearchStore/SearchStore";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Navbar = () => {
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
@@ -10,11 +14,12 @@ const Navbar = () => {
     JSON.parse(localStorage.getItem("carrito")) || []
   );
   const [cartItemCount, setCartItemCount] = useState(actualCart.length);
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
     setCartItemCount(actualCart.length);
   }, [actualCart]);
-  
+
   const toggleCartMenu = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
   };
@@ -42,6 +47,81 @@ const Navbar = () => {
     console.log("deleted");
   };
 
+  initMercadoPago("TEST-1a4e511b-8a78-485a-86c8-bc08044345a5");
+  const [id, setId] = useState("");
+  const [isPaymentReady, setIsPaymentReady] = useState(false);
+  
+  
+  const handlePostGetId = async () => {
+    let product = {
+      items: [
+        {
+          title: "Total a pagar:",
+          unit_price: totalPrice,
+          quantity: 1,
+          currency_id: "ARS",
+        },
+      ],
+    };
+    const peticion = await axios.post("/mpcompra", product);
+    setId(peticion.data);
+    setIsPaymentReady(true);
+  };
+  
+  
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    var currentUrl = window.location.href;
+    var urlObj = new URL(currentUrl);
+    var status = urlObj.searchParams.get("status") || "";
+
+    const handlePayStatus = async () => {
+      const userId = JSON.parse(localStorage.getItem("userData"))
+      const productsArray = filteredCart.map((e) => {
+        return {
+          product_id: e.product.id,
+          units: repetidos[e.product.id]
+        }
+      })
+      const data = {
+        client_id: userId.id,
+        product_list: productsArray
+      }
+      if (status === "approved" || status === "rejected") {
+        const petition = await axios.post("/createSale", data);
+      }
+    }
+    handlePayStatus()
+
+    if (status === "approved") {
+      localStorage.setItem("carrito", JSON.stringify([]));
+      window.alert("Approved! Thanks for purchasing our products");
+      navigate("/home");
+    } else if (status === "rejected") {
+      window.alert("Rejected, please try again");
+      navigate("/store");
+    }
+  }, [navigate]);
+
+
+  const customization = {
+    texts: {
+      action: "buy",
+      valueProp: "none"
+    },
+    visual: {
+      buttonBackground: "black",
+      borderRadius: "10px",
+    },
+    checkout: {
+      theme: {
+        elementsColor: "#fdb813",
+        headerColor: "#fdb813",
+      },
+    },
+  };
+
   return (
     <nav className="app__navbarstore">
       <div className="app__navbarstore-logo">
@@ -49,7 +129,6 @@ const Navbar = () => {
           <img src={images.logoy} alt="app__logo" />
         </a>
       </div>
-      <SearchStore />
       <div className="app__navbarstore-login">
         <a href="/home" className="navstore_font">
           Home
@@ -85,14 +164,24 @@ const Navbar = () => {
                         <button onClick={() => handleDeleteItem(e.product.id)}>
                           ❌
                         </button>
-                        {e.product.name} x {repetidos[e.product.id]} - $
+                        {e.product.name} x {repetidos[e.product.id]} - u$d {""}
                         {e.product.price * repetidos[e.product.id]}🛒
                       </li>
                     </React.Fragment>
                   ))}
                   <button className="cartPayAllButton">
-                    Buy: usd {totalPrice}
+                    Total: u$d {totalPrice}
                   </button>
+                  {isPaymentReady ? (
+                    <button onClick={handlePostGetId}>
+                      <Wallet
+                        customization={customization}
+                        initialization={{ preferenceId: id }}
+                      />
+                    </button>
+                  ) : (
+                    <button onClick={handlePostGetId}>Realizar Pago</button>
+                  )}
                 </>
               ) : (
                 <li className="cart_TextNoItems">
