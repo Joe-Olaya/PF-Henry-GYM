@@ -8,8 +8,8 @@ const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("userData"))
   useEffect(() => {
     setUserType(user.userType)
-  }, [])
-  
+  }, [user])
+
   return (
     <nav className="app__navbarsec">
       <div className="app__navbarsec-logo">
@@ -18,8 +18,10 @@ const Navbar = () => {
         </a>
       </div>
       <div className="app__navbarsec-login">
-        {( userType == "Superadmin") && (
-            <a href="/dashboard" className="p__opensans">Dashboard</a>
+        {userType == "Superadmin" && (
+          <a href="/dashboard" className="p__opensans">
+            Dashboard
+          </a>
         )}
         {location.pathname !== "/home" && (
           <a href="/home" className="p__opensans">

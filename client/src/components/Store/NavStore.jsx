@@ -94,7 +94,7 @@ const Navbar = () => {
         client_id: userId.id,
         product_list: productsArray
       }
-      if (status === "approved" || status === "rejected") {
+      if (status === "approved") {
         const petition = await axios.post("/createSale", data);
       }
     }
