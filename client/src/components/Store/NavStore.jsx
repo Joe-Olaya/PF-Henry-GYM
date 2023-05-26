@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import images from "../../constants/images";
 import "./NavStore.css";
 import SearchStore from "../SearchStore/SearchStore";
@@ -48,7 +49,9 @@ const Navbar = () => {
 
   initMercadoPago("TEST-1a4e511b-8a78-485a-86c8-bc08044345a5");
   const [id, setId] = useState("");
-
+  const [isPaymentReady, setIsPaymentReady] = useState(false);
+  
+  
   const handlePostGetId = async () => {
     let product = {
       items: [
@@ -60,16 +63,44 @@ const Navbar = () => {
         },
       ],
     };
-    const peticion = await axios.post(
-      "http://localhost:3001/mpcompra",
-      product
-    );
+    const peticion = await axios.post("/mpcompra", product);
     setId(peticion.data);
+    setIsPaymentReady(true);
   };
+  
+  
+  const navigate = useNavigate();
+  useEffect(() => {
+    var currentUrl = window.location.href;
+    var urlObj = new URL(currentUrl);
+    var status = urlObj.searchParams.get("status") || "";
+
+    const handlePayStatus = async () => {
+      const userId = JSON.parse(localStorage.getItem("userData"))
+      const data = {
+        client_id: userId.id,
+        product_list:actualCart
+      }
+      const petition = await axios.post("/createSale", data)
+      console.log(petition.data);
+    }
+    handlePayStatus()
+
+    if (status === "approved") {
+      localStorage.setItem("carrito", JSON.stringify([]));
+      window.alert("Approved! Thanks for purchasing our products");
+      navigate("/home");
+    } else if (status === "rejected") {
+      window.alert("Rejected, please try again");
+      navigate("/store");
+    }
+  }, [navigate]);
+
 
   const customization = {
     texts: {
       action: "buy",
+      valueProp: "none"
     },
     visual: {
       buttonBackground: "black",
@@ -134,12 +165,16 @@ const Navbar = () => {
                   <button className="cartPayAllButton">
                     Total: u$d {totalPrice}
                   </button>
-                  <button onClick={handlePostGetId}>
-                  <Wallet
-                    customization={customization}
-                    initialization={{ preferenceId: id }}
-                  />
-                  </button>
+                  {isPaymentReady ? (
+                    <button onClick={handlePostGetId}>
+                      <Wallet
+                        customization={customization}
+                        initialization={{ preferenceId: id }}
+                      />
+                    </button>
+                  ) : (
+                    <button onClick={handlePostGetId}>Realizar Pago</button>
+                  )}
                 </>
               ) : (
                 <li className="cart_TextNoItems">

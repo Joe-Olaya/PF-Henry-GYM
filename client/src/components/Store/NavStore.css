@@ -11,43 +11,9 @@
   color: rgb(49, 47, 47);
 }
 
-
-.CategoriesList {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  width: 150px;
-  margin-top: 132px;
-  margin-right: 101px;
-  border-left: solid 2px black;
-  border-right: solid 2px black;
-  border-bottom: solid 2px black;
-  
+.p.svelte-1a1oxv8.svelte-1a1oxv8{
+  display: none !important;
 }
-
-.CategoriesList a{
-  font-weight: 500;  
-  font-size: 12px;
-
-}
-
-
-.CategoriesList {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  width: 150px;
-  margin-top: 132px;
-  margin-right: 101px;
-  border-left: solid 2px black;
-  border-right: solid 2px black;
-  border-bottom: solid 2px black;
-  
-}
-
-
 .cartStoreButton {
   display: flex;
   margin-left: 10px;
