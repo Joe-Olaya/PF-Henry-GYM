@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import axios from "axios";
 import "./ProductDetail.css";
@@ -15,38 +16,54 @@ const ProductDetails = () => {
 
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
-  
+  const [userRating, setUserRating] = useState(0);
+  const [isRatingEnabled, setIsRatingEnabled] = useState(true);
+  const [userCommented, setUserCommented] = useState(false);
 
   const product = useSelector(state =>
     state.products.find(product => product.id === parseInt(productId))
   );
 
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`/reviews?productId=${productId}`);
+        setComments(response.data.comments);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchPunctuation = async () => {
+      try {
+        const response = await axios.get(`/punctuation?productId=${productId}`);
+        setRating(response.data.punctuation);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchComments();
+    fetchPunctuation();
+  }, [productId]);
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
-  
-  const saveLocal = (item) => {
+  const saveLocal = item => {
     const updatedCart = [...actualCart, item];
-    localStorage.setItem('carrito', JSON.stringify(updatedCart));
+    localStorage.setItem("carrito", JSON.stringify(updatedCart));
     setActualCart(updatedCart);
   };
 
   const addComment = async () => {
     if (commentText.trim() !== "") {
       const newComment = commentText.trim();
-      const userId = JSON.parse(localStorage.getItem("userId")) || [];
-      const saveLocal = () => {
-        localStorage.setItem("userId", JSON.stringify(userId));
-      };
+      const userData = JSON.parse(localStorage.getItem("userData")) || null;
+      const userId = userData.id;
 
-      
-
-      
-      if (userId) {
-        console.log(userId);
-      }
-      else if(!userId) {
+      if (!userId) {
         userId = null;
       }
 
@@ -60,25 +77,28 @@ const ProductDetails = () => {
 
       try {
         const response = await axios.post("/reviews", {
+          productId,
           review: newComment,
           userId: userId,
-          punctuation: rating
+          punctuation: userRating
         });
         console.log(response.data);
-        setComments(prevComments => [...prevComments, newComment]);
+        setComments(prevComments => {
+          if (Array.isArray(prevComments)) {
+            return [...prevComments, newComment];
+          } else {
+            return [newComment];
+          }
+        });
         setCommentText("");
-        setRating(0);
+        // setUserRating(0);
+        setIsRatingEnabled(false);
+        setUserCommented(true);
       } catch (error) {
         console.log(error);
       }
     }
   };
-  
-
-  // const userId = JSON.parse(localStorage.getItem("userId")) || [];
-  // const saveLocal = () => {
-  //   localStorage.setItem("userId", JSON.stringify(userId));
-  // };
 
   return (
     <div className="divDetail">
@@ -90,25 +110,32 @@ const ProductDetails = () => {
 
           <div className="box">
             <div className="row">
-              <h2>
-                {product.name}
-              </h2>
+              <h2>{product.name}</h2>
               <div className="stars-container">
-                <StarRatings
-                  rating={rating}
-                  starRatedColor="gold"
-                  numberOfStars={5}
-                  starDimension="20px"
-                  starSpacing="2px"
-                />
+                {userCommented ? (
+                  <StarRatings
+                    rating={userRating}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    isSelectable={false} 
+                  />
+                ) : (
+                  <StarRatings
+                    rating={userRating}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    isSelectable={isRatingEnabled}
+                    changeRating={setUserRating}
+                  />
+                )}
               </div>
             </div>
-            <p>
-              {product.description}
-            </p>
-            <div className="price">
-              ${product.price}
-            </div>
+            <p>{product.description}</p>
+            <div className="price">${product.price}</div>
             <div className="quantity">
               <button
                 onClick={() => setQuantity(quantity - 1)}
@@ -116,42 +143,68 @@ const ProductDetails = () => {
               >
                 -
               </button>
-              <span>
-                {quantity}
-              </span>
+              <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="cart" onClick={() => saveLocal({product,quantity})} >Add {quantity} to cart</button>
+            <button
+              className="cart"
+              onClick={() => saveLocal({ product, quantity })}
+            >
+              Add {quantity} to cart
+            </button>
           </div>
         </div>
       </div>
 
       <div className="reviews_producDetail">
         <div className="comments">
-          {comments.length === 0
-            ? <p className="commetsCount">No comments yet</p>
-            : comments.map((comment, index) =>
-                <div key={index} className="comments">
-                  <p>
-                    {comment}
-                  </p>
-                </div>
-              )}
-           <div className="stars-container">
-                <StarRatings
-                  rating={rating}
-                  starRatedColor="gold"
-                  numberOfStars={5}
-                  starDimension="20px"
-                  starSpacing="2px"
-                  changeRating={setRating}
-                />
+          {comments && comments.length !== 0 ? (
+            comments.map((comment, index) => (
+              <div key={index} className="comments">
+                <p>{comment}</p>
+                <div className="stars-container">
+                {userCommented ? (
+                  <StarRatings
+                    rating={userRating}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    isSelectable={false} 
+                  />
+                ) : (
+                  <StarRatings
+                    rating={userRating}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    isSelectable={isRatingEnabled}
+                    changeRating={setUserRating}
+                  />
+                )}
               </div>
+              </div>
+            ))
+          ) : (
+            <p className="commetsCount">No comments yet</p>
+          )}
+          
+          <div className="stars-container">
+          <StarRatings
+              rating={userRating}
+              starRatedColor="gold"
+              numberOfStars={5}
+              starDimension="20px"
+              starSpacing="2px"
+              isSelectable={isRatingEnabled}
+              changeRating={setUserRating}
+            />
+          </div>
           <textarea
             placeholder="Add a comment"
             onChange={e => setCommentText(e.target.value)}
           />
-          
           <button className="button_comments" onClick={addComment}>
             Add Comment
           </button>
@@ -161,4 +214,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default ProductDetails;
