@@ -44,11 +44,11 @@ getUserDB(user)
         {/* <li className="p__opensans">
           <a href="/formProducts">Supplies</a>
         </li> */}
-        {isAuthenticated && (
+        {/* {( userType == "Superadmin") && (
           <li className="p__opensans">
             <a href="/dashboard">Dashboard</a>
           </li>
-        )}
+        )} */}
         {isAuthenticated && (
           <li className="p__opensans">
             <a href="/home">Home</a>

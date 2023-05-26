@@ -1,7 +1,7 @@
 const { Product } = require("../db.js");
 const { Op } = require("sequelize");
 
-const createProducts = async (name, description, price, stock, image, categoryproductId, offer) => {
+const createProducts = async (name, description, price, stock, image, categoryproductId, offer, average_score) => {
   const newProduct = await Product.create({
     name: name,
     description: description,
@@ -11,6 +11,7 @@ const createProducts = async (name, description, price, stock, image, categorypr
     categoryproductId,
     offer,
     state: "Active",
+    average_score
   });
   return newProduct;
 };
@@ -34,9 +35,9 @@ const getProducts = async (
   let filterOps = {
     [Op.and]: [
       {
-        name: { [Op.like]: `${name}%` },
+        name: { [Op.iLike]: `${name}%` },
       },
-      offer ? { offer: true } : {},
+      offer ? { offer } : {},
       categoryproductId ? {categoryproductId} : {},
     ],
   };
