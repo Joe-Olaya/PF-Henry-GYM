@@ -181,7 +181,7 @@ function HomeDash({
           {UserSection && (
             <section>
               <table className="table caption-top bg bg-white rounded table-users">
-                <caption className="text-white fs-10">Users </caption>
+                <caption className="text-white fs-20">Users </caption>
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -191,6 +191,7 @@ function HomeDash({
                     <th scope="col">Dni</th>
                     <th scope="col">Phone</th>
                     <th scope="col">State</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -205,19 +206,25 @@ function HomeDash({
                       <td>{user.dni}</td>
                       <td>{user.phone}</td>
                       <td>{user.state}</td>
+                      <td>{user.userType}</td>
                       <td>
                         <div className="d-flex">
                           <button
                             className="btn btn-danger me-1"
                             onClick={() => deactivateUser(user.id)}
                           >
-                            Inactive
+                            <RiCloseCircleFill />
                           </button>
                           <button
                             className="btn btn-success me-1"
                             onClick={() => activateUser(user.id)}
                           >
-                            Active
+                            <RiCheckFill />
+                          </button>
+                          <button
+                            className="btn btn-primary"
+                          >
+                            <RiPencilFill />
                           </button>
                         </div>
                       </td>
