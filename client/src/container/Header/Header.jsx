@@ -3,10 +3,23 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { images } from "../../constants";
 import "./Header.css";
-const Header = () => (
-  <div className="app__header app__wrapper flex__center section__padding" id="home">
+import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
+
+const Header = () => {
+
+      // LOADER
+      const [loading, setLoading] = useState(true);
+
+      const cambiarEstado = () => {
+        setTimeout(() =>
+          setLoading(false), 2000);
+      }
+
+  return (
+    <div className="app__header app__wrapper flex__center section__padding" id="home">
     <div className="app__wrapper_info">
-      <div className="app_titleimg">
+        <div className="app_titleimg">
       <img src={images.textintro} className="header_img"/>
       </div>
       <p className="p__opensans" style={{ margin: "2rem 0" }}>
@@ -18,11 +31,17 @@ const Header = () => (
       </button>
       </Link>
     </div>
-
     <div className="app__wrapper_img">
+    {loading ? (
+        <div className="div_loader">
+        <Loading>{cambiarEstado()}</Loading>
+        </div>
+      ) : (
       <img src={images.imgintro} alt="header_img" />
+      )}
     </div>
   </div>
-);
+  )
+};
 
 export default Header;
