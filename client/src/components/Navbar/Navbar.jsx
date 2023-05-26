@@ -46,11 +46,6 @@ getUserDB(user)
         </li> */}
         {isAuthenticated && (
           <li className="p__opensans">
-            <a href="/dashboard">Dashboard</a>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li className="p__opensans">
             <a href="/home">Home</a>
           </li>
         )}
