@@ -24,14 +24,18 @@ const CardProducts = (props) => {
             <p>{props.price}</p>
             <div></div>
           </div>
-          <div className="descriptionPrd">
-          <p>{props.price}</p>
           
             {/* <h1> 
 
             {props.description}
           </h1> */}
-        </div>
+        {/* <div>
+          <button onClick={() => console.log(id)}>ver id</button>
+          <button onClick={getidmercadopago}>traer info</button>
+          <button>
+            <Wallet initialization={{ preferenceId: id }} />
+          </button>
+        </div> */}
         </div>
       </Link>
     </div>
