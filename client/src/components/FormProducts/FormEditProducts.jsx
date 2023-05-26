@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../FormProducts/FormProducts.css";
 
-let navigate = useNavigate();
+// let navigate = useNavigate();
 const FormEditProducts = ({ productId, name }) => {
   const [input, setInput] = useState({
     name: name || "",
@@ -45,7 +45,7 @@ const FormEditProducts = ({ productId, name }) => {
       console.log(error);
       alert("Failed to update product");
     }
-    navigate("/dashboard")
+    // navigate("/dashboard")
   };
 
   const handleDescriptionClick = () => {
