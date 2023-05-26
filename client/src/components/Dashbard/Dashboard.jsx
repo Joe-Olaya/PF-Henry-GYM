@@ -15,6 +15,7 @@ export default function Dashboard(){
     GeneralSection:true,
     ProductsSection:false,
     UserSection:false,
+    CreateSection:false,
     SalesSection:false
   })
     
@@ -24,6 +25,7 @@ export default function Dashboard(){
       GeneralSection:false,
       ProductsSection:false,
       UserSection:false,
+      CreateSection:false,
       SalesSection:false
        }
     defaults[section]=true
@@ -31,7 +33,7 @@ export default function Dashboard(){
     console.log(section)
   }
    return(
-    <div className='container-fluid bg-secondary min-vh-100'>
+    <div className='container-fluid min-vh-100 backgroundStyles'>
          
             <div className='row'>
             {toggle && 
@@ -48,6 +50,7 @@ export default function Dashboard(){
             SalesSection={actualSection.SalesSection}
             ProductsSection={actualSection.ProductsSection}
             UserSection={actualSection.UserSection}
+            CreateSection={actualSection.CreateSection}
             />
         </div>
         
