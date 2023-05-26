@@ -70,6 +70,7 @@ const Navbar = () => {
   
   
   const navigate = useNavigate();
+  
   useEffect(() => {
     var currentUrl = window.location.href;
     var urlObj = new URL(currentUrl);
@@ -77,12 +78,19 @@ const Navbar = () => {
 
     const handlePayStatus = async () => {
       const userId = JSON.parse(localStorage.getItem("userData"))
+      const productsArray = filteredCart.map((e) => {
+        return {
+          product_id: e.product.id,
+          units: repetidos[e.product.id]
+        }
+      })
       const data = {
         client_id: userId.id,
-        product_list:actualCart
+        product_list: productsArray
       }
-      const petition = await axios.post("/createSale", data)
-      console.log(petition.data);
+      if (status === "approved" || status === "rejected") {
+        const petition = await axios.post("/createSale", data);
+      }
     }
     handlePayStatus()
 
