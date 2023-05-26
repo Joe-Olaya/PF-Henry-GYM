@@ -33,22 +33,24 @@ const getReviewsHandler = async (req,res) => {
 const puntuacionGeneral = async (productId) => {
 
     const reviews = await getAllReviews(productId);
-    let punctuation = [];
-    let suma = 0;
-    reviews.forEach(e => {
-        if (e.punctuation){
-            punctuation.push(+e.punctuation)
-        }
-    });
+    if(reviews){
+        let punctuation = [];
+        let suma = 0;
+        reviews.forEach(e => {
+            if (e.punctuation){
+                punctuation.push(+e.punctuation)
+            }
+        });
 
-    punctuation.map(e => {
-        suma += e
-    });
-    
-    let total = Math.ceil(suma / punctuation.length)
-    console.log(total)
-    return total
-
+        punctuation.map(e => {
+            suma += e
+        });
+        
+        let total = Math.ceil(suma / punctuation.length)
+        console.log(total)
+        return total
+    } 
+    return 0
 }
 
 const getPunctuationHandler = async (req,res) => {
