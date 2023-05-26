@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import images from "../../constants/images";
 import { useLocation } from "react-router-dom";
 import "./NavSec.css";
 
 const Navbar = () => {
+  const [userType, setUserType] = useState('')
+  const user = JSON.parse(localStorage.getItem("userData"))
+  useEffect(() => {
+    setUserType(user.userType)
+  }, [])
+  
   return (
     <nav className="app__navbarsec">
       <div className="app__navbarsec-logo">
@@ -12,6 +18,9 @@ const Navbar = () => {
         </a>
       </div>
       <div className="app__navbarsec-login">
+        {( userType == "Superadmin") && (
+            <a href="/dashboard" className="p__opensans">Dashboard</a>
+        )}
         {location.pathname !== "/home" && (
           <a href="/home" className="p__opensans">
             Home

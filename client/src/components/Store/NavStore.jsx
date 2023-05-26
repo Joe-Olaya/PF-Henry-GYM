@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Navbar = () => {
+  const [userType, setUserType] = useState('')
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [actualCart, setActualCart] = useState(
@@ -15,10 +16,15 @@ const Navbar = () => {
   );
   const [cartItemCount, setCartItemCount] = useState(actualCart.length);
   const products = useSelector((state) => state.products);
+  const user = JSON.parse(localStorage.getItem("userData"))
 
   useEffect(() => {
     setCartItemCount(actualCart.length);
   }, [actualCart]);
+
+  useEffect(() => {
+    setUserType(user.userType)
+  }, [user]);
 
   const toggleCartMenu = () => {
     setIsCartMenuOpen(!isCartMenuOpen);
@@ -130,8 +136,14 @@ const Navbar = () => {
         </a>
       </div>
       <div className="app__navbarstore-login">
+        {( userType == "Superadmin") && (
+            <a href="/dashboard" className="navstore_font">Dashboard</a>
+        )}
         <a href="/home" className="navstore_font">
           Home
+        </a>
+        <a href="/exercises" className="navstore_font">
+          Exercises
         </a>
         <a href="#products" className="navstore_font">
           Products
