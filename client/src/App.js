@@ -23,21 +23,21 @@ import axios from 'axios';
 axios.defaults.baseURL = "https://pf-henry-gym-production-135f.up.railway.app";
 
 const App = () => {
-  const [userType, setUserType] = useState("");
-  const user = JSON.parse(localStorage.getItem("userData")) || '';
+  // const [userType, setUserType] = useState("");
+  // const user = JSON.parse(localStorage.getItem("userData")) || '';
 
-  if (user.userType) {
-    useEffect(() => {
-      setUserType(user.userType);
-    }, [user]);
-  }
+  // if (user.userType) {
+  //   useEffect(() => {
+  //     setUserType(user.userType);
+  //   }, [user]);
+  // }
 
   return (
     <div>
       <Routes>
-        {userType == "Superadmin" && (
-          <Route path="/dashboard" element={<Dashboard />} />
-        )}
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* {userType == "Superadmin" && (
+        )} */}
         <Route
           exact
           path="/"
