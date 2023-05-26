@@ -68,7 +68,7 @@ const ProductDetails = () => {
     const updatedCart = [...actualCart, item];
     localStorage.setItem("carrito", JSON.stringify(updatedCart));
     setActualCart(updatedCart);
-    window.location.reload()
+    window.location.href = 'https://suppliesandtraining.vercel.app/store';
   };
 
   const addComment = async () => {
@@ -85,7 +85,6 @@ const ProductDetails = () => {
           punctuation: userRating,
         });
         fetchComments(1);
-        console.log(response.data);
         setCommentText("");
         setIsRatingEnabled(false);
         setUserCommented(true);
@@ -120,7 +119,7 @@ const ProductDetails = () => {
             </div>
             <p>{product.description}</p>
             <div className="price">${product.price}</div>
-            <div className="quantity">
+{/*             <div className="quantity">
               <button
                 onClick={() => setQuantity(quantity - 1)}
                 disabled={quantity === 1}
@@ -129,12 +128,12 @@ const ProductDetails = () => {
               </button>
               <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
-            </div>
+            </div> */}
             <button
               className="cart"
               onClick={() => saveLocal({ product, quantity })}
             >
-              Add {quantity} to cart
+              Add item to cart
             </button>
           </div>
         </div>
