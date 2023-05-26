@@ -31,6 +31,7 @@ const Store = () => {
         name: searchQuery,
         orderBy,
         order,
+        state: "active",
         offer: selectedFilters.includes("Offer"),
       };
 
