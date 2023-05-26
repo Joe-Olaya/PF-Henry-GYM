@@ -33,7 +33,7 @@ const getReviewsHandler = async (req,res) => {
 const puntuacionGeneral = async (productId) => {
 
     const reviews = await getAllReviews(productId);
-    if(reviews){
+    if(reviews.length){
         let punctuation = [];
         let suma = 0;
         reviews.forEach(e => {
@@ -45,9 +45,7 @@ const puntuacionGeneral = async (productId) => {
         punctuation.map(e => {
             suma += e
         });
-        
         let total = Math.ceil(suma / punctuation.length)
-        console.log(total)
         return total
     } 
     return 0
