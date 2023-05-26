@@ -148,7 +148,7 @@ const createCategoriesProducts = () => {
   }
 }
 
-  // createCategoriesProducts()
+   //createCategoriesProducts()
   // readJson();
   //console.log(getAndLoadDbMuscle())
   //console.log(getAndLoadDbExercises());

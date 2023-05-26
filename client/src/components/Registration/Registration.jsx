@@ -46,7 +46,7 @@ const Registration = () => {
             cambiarFormularioenviado(true);
             setTimeout(() => cambiarFormularioenviado(false), 5000);
             window.location.href =
-              "https://suppliesandtraining.vercel.app/home";
+              "http://localhost:3000/home";
           }}
         >
           {({

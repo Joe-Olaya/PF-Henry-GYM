@@ -3,6 +3,7 @@ const {
   getProducts,
   deleteProduct,
   reactiveProduct,
+  updateProduct
 } = require("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
@@ -42,7 +43,6 @@ const createProductsHandler = async (req, res) => {
     );
     res.status(200).send("Product created successfully");
   } catch (error) {
-    console.log(error);
     res.status(400).send(error);
   }
 };
@@ -92,9 +92,20 @@ const reactiveProductHandler = async (req, res) => {
   }
 };
 
+const updateProductsHandler = async (req,res) => {
+  const { productId, price, stock, description} = req.body
+  try {
+    const result = await updateProduct(productId, price, stock, description)
+    res.status(200).json("Product updated succesfully")
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
 module.exports = {
   createProductsHandler,
   getProductsHandler,
   deleteProductHandler,
   reactiveProductHandler,
+  updateProductsHandler
 };

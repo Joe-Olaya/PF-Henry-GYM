@@ -7,7 +7,6 @@ const server = express();
 const { auth } = require('express-openid-connect');
 require('dotenv').config()
 const { URL_HOST } = process.env
-console.log(URL_HOST)
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));

@@ -59,7 +59,7 @@ const deleteUserById = async (id) => {
   },{
     where: {id:id}
   })
-  return 'Usuario dado de baja correctamente'
+  return 'User terminated successfully'
 }
 
 const reactiveUserById = async (id) => {
@@ -68,7 +68,7 @@ const reactiveUserById = async (id) => {
   },{
     where: {id:id}
   })
-  return 'Usuario reactivado correctamente'
+  return 'User reactivated successfully'
 }
 
 const createOrUpdateUser = async (dni, name, email, address, phone) => {

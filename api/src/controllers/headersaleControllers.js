@@ -10,7 +10,6 @@ const createHeadersale = async (clientId, clientName, clientAddress) => {
 };
 
 const getRemits = async (clientId, page, res) => {
-  console.log('estoy en el controller')
   let options = {
     where: clientId ? {clientId : clientId} : {},
     order: [['createdAt', 'DESC']],

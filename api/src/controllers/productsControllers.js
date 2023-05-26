@@ -82,15 +82,25 @@ const reactiveProduct = async (id) => {
     }
   );
 };
+const updateProduct = async (productId, price, stock, description) => {
+  const prodUpdated = await Product.update({
+    price,
+    stock,
+    description
+  },{
+    where: {id:productId}
+  })
+  return prodUpdated
+}
 
-const updateProduct = async (id, punctuation) => {
-  const updatedProduct = await Product.update({
+const updatePunctuationProduct = async (id, punctuation) => {
+  const updatePunctuationProduct = await Product.update({
     average_score: punctuation
   },{
     where: { id: id}
   })
 
-  return updatedProduct
+  return updatePunctuationProduct
 }
 
 module.exports = {
@@ -99,5 +109,6 @@ module.exports = {
   getProductById,
   reactiveProduct,
   getProducts,
-  updateProduct,
+  updatePunctuationProduct,
+  updateProduct
 };

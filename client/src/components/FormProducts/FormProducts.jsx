@@ -19,9 +19,7 @@ const FormProducts = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/categoriesproducts"
-        );
+        const response = await axios.get("/categoriesproducts");
         setCategories(response.data);
       } catch (error) {
         console.log(error);
@@ -48,10 +46,7 @@ const FormProducts = () => {
       categoryproductId: input.category,
     };
 
-    const postRequest = await axios.post(
-      "http://localhost:3001/products",
-      postData
-    );
+    const postRequest = await axios.post("/products", postData);
 
     console.log(postRequest.data);
 

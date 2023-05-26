@@ -7,7 +7,7 @@ import "./Newsletter.css";
 const Newsletter = () => {
   const handleSubmitMail = async (mail) => {
     try {
-      const sendMail = await axios.post("http://localhost:3001/subscription", {
+      const sendMail = await axios.post("/subscription", {
         user_email: mail,
       });
       alert("Thanks for subscribing to our newsletter!");

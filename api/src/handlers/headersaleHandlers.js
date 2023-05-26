@@ -48,7 +48,6 @@ const getRemitsHandler = async (req,res) => {
   const { clientId, page = 0 } = req.query
   try {
     const remit = await getRemits(clientId, page, res)
-    console.log('estoy en el handler')
     res.status(200).json(remit)
   } catch (error) {
     res.status(400).json(error)

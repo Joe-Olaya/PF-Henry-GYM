@@ -45,7 +45,7 @@ function HomeDash({
   };
 
   const deactivateProduct = (productId) => {
-    fetch(`http://localhost:3001/products/${productId}`, {
+    fetch(`/products/${productId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -65,7 +65,7 @@ function HomeDash({
   };
 
   const activateProduct = (productId) => {
-    fetch(`http://localhost:3001/products/${productId}`, {
+    fetch(`/products/${productId}`, {
       method: "POST",
     })
       .then((response) => response.json())

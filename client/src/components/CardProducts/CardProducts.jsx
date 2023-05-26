@@ -21,7 +21,7 @@ const CardProducts = (props) => {
       ],
     };
     const peticion = await axios.post(
-      "http://localhost:3001/mpcompra",
+      "/mpcompra",
       product
     );
     setId(peticion.data);
