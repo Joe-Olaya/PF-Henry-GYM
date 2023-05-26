@@ -38,7 +38,7 @@ const ProductDetails = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `/reviews?productId=${productId}&page=1`
+          `/reviews?productId=${productId}&page=0`
         );
         setComments(response.data.reviews);
       } catch (error) {
@@ -144,9 +144,18 @@ const ProductDetails = () => {
           {/* Show existing comments */}
           {comments && comments.length !== 0 ? (
             comments.map((comment, index) => (
-              <div key={index} className="comments">
+              <div key={index} className="comment">
                 <p>{comment.review}</p>
-                {/* Render other properties of the comment object */}
+                <div className="stars-container">
+                  <StarRatings
+                    rating={parseFloat(comment.punctuation)}
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="2px"
+                    isSelectable={false}
+                  />
+                </div>
               </div>
             ))
           ) : (
