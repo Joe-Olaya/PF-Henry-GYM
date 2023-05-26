@@ -9,7 +9,6 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { images } from "../../constants";
 import Intro from "./videoIntro.jsx";
 import { FaStar, FaTag, FaArrowDown, FaArrowUp } from "react-icons/fa";
-import Loading from "../Loading/Loading";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -17,20 +16,13 @@ const Store = () => {
     dispatch(getProducts());
   }, []);
 
-  // LOADER
-  const [loading, setLoading] = useState(true);
-
-  const cambiarEstado = () => {
-    setTimeout(() =>
-      setLoading(false), 3000);
-  }
-
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [orderBy, setOrderBy] = useState("id");
   const [order, setOrder] = useState("ASC");
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
   const fetchProducts = async () => {
     try {
@@ -38,20 +30,16 @@ const Store = () => {
         page: currentPage,
         size: 9,
         name: searchQuery,
-        orderBy,
+        orderBy: orderBy,
         order,
-        state:"Active",
+        state: "active",
         offer: selectedFilters.includes("Offer"),
+        categoryproductId: selectedCategoryId,
       };
-
-      if (selectedCategory) {
-        params.categoryproductId = selectedCategory.id;
-      }
 
       const response = await axios.get("/products", {
         params: params,
       });
-
 
       dispatch(getProducts(response.data.filteredProducts));
     } catch (error) {
@@ -61,9 +49,7 @@ const Store = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(
-        "/categoriesproducts"
-      );
+      const response = await axios.get("/categoriesproducts");
       setCategories(response.data);
     } catch (error) {
       console.log(error);
@@ -76,8 +62,7 @@ const Store = () => {
 
   const handleCategorySelectChange = (event) => {
     const categoryId = event.target.value;
-    const category = categories.find((c) => c.id === categoryId);
-    setSelectedCategory(category);
+    setSelectedCategoryId(categoryId);
   };
 
   const handleFilterChange = (event) => {
@@ -216,7 +201,7 @@ const Store = () => {
               <select
                 name="category"
                 className="selectCategories"
-                value={selectedCategory}
+                value={selectedCategoryId}
                 onChange={handleCategorySelectChange}
               >
                 <option value="">All Categories</option>
@@ -230,15 +215,19 @@ const Store = () => {
             <hr className="lineDivider" />
             <h2 className="h2Text">Filters:</h2>
             <div className="inputGroup">
-              <input
-                id="option1"
-                name="option1"
-                type="checkbox"
-                onChange={handleFilterChange}
-                value="Most Value"
-              />
-              <FaStar className="iconCategory" />
-              <label htmlFor="option1">Most Value</label>
+              <select
+                className="selectCategories"
+                id="orderBy"
+                name="orderBy"
+                value={orderBy}
+                onChange={(e) => setOrderBy(e.target.value)}
+              >
+                <option value="id">ID</option>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="average_score">Average Score</option>
+                <option value="stock">Stock</option>
+              </select>
             </div>
             <div className="inputGroup">
               <input
@@ -275,11 +264,6 @@ const Store = () => {
             </div>
           </div>
           <div className="divStoreCont">
-          {loading ? (
-            <div className="div_loader">
-              <Loading>{cambiarEstado()}</Loading>
-            </div>
-      ) : (
             <section className="cardsProducts">
               <CardsContainerPds
                 products={filteredProducts}
@@ -288,7 +272,6 @@ const Store = () => {
                 selectedCategory={selectedCategory}
               />
             </section>
-                )}
           </div>
         </div>
       </div>

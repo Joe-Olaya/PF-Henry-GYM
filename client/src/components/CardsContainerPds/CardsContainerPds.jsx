@@ -25,6 +25,7 @@ const CardsContainerPds = ({ start, end }) => {
               price={product.price}
               stock={product.stock}
               categoryproductId={product.categoryproductId}
+              average_score={product.average_score}
             />
           </div>
         </div>
