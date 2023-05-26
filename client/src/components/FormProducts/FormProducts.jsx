@@ -1,7 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../FormProducts/FormProducts.css";
-
 
 const FormProducts = () => {
   const [image, setImage] = useState("");
@@ -11,15 +10,30 @@ const FormProducts = () => {
     price: 0,
     image: "",
     stock: 0,
+    category: "",
   });
   const [showDescription, setShowDescription] = useState(true);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/categoriesproducts"
+        );
+        setCategories(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const setFile = (file) => {
-    //funcion que convierte la imagen en datos legibles
-    const filereader = new FileReader(); //metodo que convierte en codigo base 64
-    filereader.readAsDataURL(file); //leemos la data que devuelve
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
     filereader.onload = () => {
-      //le decimos que hacer
       setInput({
         ...input,
         image: filereader.result,
@@ -27,14 +41,20 @@ const FormProducts = () => {
       setImage(filereader.result);
     };
   };
-
   const handleSubmit = async () => {
+    const postData = {
+      ...input,
+      categoryproductId: input.category,
+    };
+
     const postRequest = await axios.post(
       "http://localhost:3001/products",
-      input
+      postData
     );
+
     console.log(postRequest.data);
-    if (postRequest.data == "Product created successfully") {
+
+    if (postRequest.data === "Product created successfully") {
       alert(postRequest.data);
     } else {
       alert(postRequest.data);
@@ -58,12 +78,12 @@ const FormProducts = () => {
   };
 
   const handleImage = (e) => {
-    const file = e.target.files[0]; ///accedemos a la imagen/video que vamos a subir
-    file.type.includes("video") || file.type.includes("image") ///si recibimos videos o imagenes haremos la subida en el input file
+    const file = e.target.files[0];
+    file.type.includes("video") || file.type.includes("image")
       ? setFile(file)
-      : alert("Archivo no valido"); ///si no lanzo una alerta de que el archivo no es valido(probado que funciona con un archivo zip,rar)
-    //aunque tambien se podria implementar
+      : alert("Archivo no válido");
   };
+
   return (
     <div className="contFormP">
       <div className="formContainerP">
@@ -93,7 +113,6 @@ const FormProducts = () => {
               />
               <span>Price</span>
             </label>
-
             <label>
               <input
                 placeholder=""
@@ -105,6 +124,21 @@ const FormProducts = () => {
               <span>Stock</span>
             </label>
           </div>
+          <label>
+            <select
+              className="input"
+              name="category"
+              value={input.category}
+              onChange={handleOnChange}
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </label>
           <label>
             <textarea
               placeholder=""
@@ -127,7 +161,7 @@ const FormProducts = () => {
               onChange={handleImage}
               id="file-input"
             />
-            <img src={image} className="previewImage" />
+            {image && <img src={image} className="previewImage" alt="" />}
           </div>
           <button className="submitP" onClick={handleSubmit}>
             Submit
@@ -137,4 +171,5 @@ const FormProducts = () => {
     </div>
   );
 };
+
 export default FormProducts;
