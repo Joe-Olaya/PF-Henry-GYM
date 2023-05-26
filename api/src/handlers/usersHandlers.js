@@ -1,8 +1,7 @@
 const {
-  getUser,
+  getUserByEmail,
   createOrUpdateUser,
-  getAllUsers,
-  getUserByName,
+  getUsers,
   deleteUserById,
   reactiveUserById
 } = require("../controllers/usersControllers");
@@ -12,7 +11,7 @@ const {sendMailRegistered} = require("./nodeMailerHandlers.js")
 const loginUserHandler = async (req, res) => {
   const  {email}  = req.body;
     try {
-    const results = await getUser(email);
+    const results = await getUserByEmail(email);
     res.status(200).json(results)
   } catch (error) {
     res.status(400).json({ error: error });
@@ -30,14 +29,12 @@ const registerUserHandler = async (req, res) => {
   }
 };
 
-const getAllUsersHandler = async (req, res) => {
-  const { name } = req.query;
-  try {
-    const results = name ? await getUserByName(name) : await getAllUsers();
-    res.status(200).json({ results });
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
+const getUsersHandler = async (req, res) => {
+  const { name = null, userType = null, state = null, dni = null, page = 0, orderBy = "id", order = "ASC"} = req.query;
+ 
+  const results = await getUsers(name, userType, state, dni, page, orderBy, order, res);
+  
+  return results
 };
 
 const deleteUserHandler = async (req,res) => {
@@ -63,7 +60,7 @@ const reactiveUserHandler = async (req,res) => {
 module.exports = {
   loginUserHandler,
   registerUserHandler,
-  getAllUsersHandler,
+  getUsersHandler,
   deleteUserHandler,
   reactiveUserHandler
 };

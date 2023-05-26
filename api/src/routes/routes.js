@@ -13,7 +13,7 @@ const {
 const {
   loginUserHandler,
   registerUserHandler,
-  getAllUsersHandler,
+  getUsersHandler,
   deleteUserHandler,
   reactiveUserHandler,
 } = require("../handlers/usersHandlers");
@@ -52,7 +52,7 @@ router.get("/loadingDb", fullDbData);
 router.get("/exercises", getExercisesHandler);
 router.get("/exercises/:id", getExecercisesByIdHandler);
 // USUARIOS
-router.get("/users", getAllUsersHandler);
+router.get("/users", getUsersHandler);
 router.delete("/users/:id", deleteUserHandler);
 router.post("/users/:id", reactiveUserHandler);
 router.post("/login", loginUserHandler);

@@ -25,7 +25,6 @@ function HomeDash({
   const [editPopupOpen, setEditPopupOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProductName, setSelectedProductName] = useState("");
-
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getUsers());
@@ -102,7 +101,7 @@ function HomeDash({
           <div className="col-md-3 p-1">
             <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
               <div>
-                <h3 className="fs-2">{users.length}</h3>
+                <h3 className="fs-2">{users.total_users}</h3>
                 <p className="fs-5">Users</p>
                 <i className="bi bi-people p-3 fs-1"></i>
               </div>
@@ -156,7 +155,7 @@ function HomeDash({
                 </thead>
 
                 <tbody className=" ">
-                  {users.map((i, key) => (
+                  {users.users.map((i, key) => (
                     <tr key={key}>
                       <th scope="row">{key + 1}</th>
                       <td>{i.name}</td>

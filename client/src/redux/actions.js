@@ -46,9 +46,10 @@ export const getExerciseById = (idExercise) => {
 export const getUsers = () => {
   return async function (dispatch) {
     const usersData = (await axios.get(`/users`)).data;
+    console.log(usersData)
     dispatch({
       type: GET_USERS,
-      payload: usersData.results,
+      payload: usersData,
     });
   };
 };

@@ -1,19 +1,35 @@
 const { User } = require("../db");
+const { Op } = require("sequelize");
 
-const getAllUsers = async () => {
-  const allUsers = await User.findAll();
-  const cleanData = cleanUserData(allUsers);
-  return cleanData;
-};
+const getUsers = async (name, userType, state, dni, page, orderBy, order, res) => {
+  let filterOps = {
+    [Op.and]: [
+      name ? {name: { [Op.iLike]: `${name}%` }} : {},
+      dni ? {dni: { [Op.like]: `${dni}%`}} : {},
+      userType ? { userType } : {},
+      state ? { state } : {},
+    ],
+  };
+  
+  let options = {
+    where: filterOps,
+    order: [[`${orderBy}`, `${order}`]],
+    limit: 10,
+    offset: +page * 10,
+  };
 
-const getUserByName = async (name) => {
-  const user = await User.findAll();
-  const cleanData = cleanUserData(user);
-  const userFiltered = cleanData.filter((d) =>
-    d.name.toLowerCase().includes(name.toLowerCase())
-  );
-  return userFiltered;
-};
+  try {
+    const { count, rows } = await User.findAndCountAll(options);
+    res.status(200).send({
+      users: rows,
+      actual_page: ++page,
+      total_users: count,
+      total_pages : Math.ceil(count / 10)
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
 
 const getUserById = async (id) => {
   const user = await User.findByPk(id);
@@ -36,7 +52,7 @@ const cleanUserData = (arr) => {
   return data;
 };
 
-const getUser = async (email) => {
+const getUserByEmail = async (email) => {
   try {
     const getUser = await User.findOrCreate({
       where: {
@@ -85,10 +101,9 @@ const createOrUpdateUser = async (dni, name, email, address, phone) => {
 };
 // createUser(37772,"321546","awdawd","joawd@aowdmaw.com","asdaw adw 123",341548)
 module.exports = {
-  getUser,
+  getUserByEmail,
   createOrUpdateUser,
-  getAllUsers,
-  getUserByName,
+  getUsers,
   deleteUserById,
   reactiveUserById,
   getUserById

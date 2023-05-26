@@ -10,7 +10,7 @@ const createReviewsHandler = async (req,res) =>{
             const newReview = await createReview(userId, productId, punctuation, review);
             if(punctuation) {
                 const average_score = await puntuacionGeneral(productId)
-                if(average_score !== NaN){
+                if(average_score == NaN){
                     const updatedPunctuationProduct = await updatePunctuationProduct(productId, punctuation)
                 } else {
                     const updatedPunctuationProduct = await updatePunctuationProduct(productId, average_score)
@@ -46,6 +46,7 @@ const puntuacionGeneral = async (productId) => {
     });
     
     let total = Math.ceil(suma / punctuation.length)
+    console.log(total)
     return total
 
 }
