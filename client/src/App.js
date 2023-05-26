@@ -20,20 +20,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Dashboard from "./components/Dashbard/Dashboard";
 import axios from 'axios';
-axios.defaults.baseURL = "http://localhost:3001"
+axios.defaults.baseURL = "http://localhost:3001";
 
 const App = () => {
- const [userType, setUserType] = useState('')
-  const user = JSON.parse(localStorage.getItem("userData"))
-  useEffect(() => {
-    setUserType(user.userType)
-  }, [user])
+  const [userType, setUserType] = useState("");
+  const user = JSON.parse(localStorage.getItem("userData")) || '';
+
+  if (user.userType) {
+    useEffect(() => {
+      setUserType(user.userType);
+    }, [user]);
+  }
 
   return (
     <div>
       <Routes>
-      {( userType == "Superadmin") && (
-           <Route path="/dashboard" element={<Dashboard />} /> 
+        {userType == "Superadmin" && (
+          <Route path="/dashboard" element={<Dashboard />} />
         )}
         <Route
           exact
@@ -58,29 +61,32 @@ const App = () => {
             </div>
           }
         />
-        <Route element = {<Protectlogin/>}>
-        
-        <Route
-          path="/exercises"
-          element={
-            <div>
-              <NavSec />
-              <Exercises />
-            </div>
-          }
-        />
-        <Route
-          path="/store"
-          element={
-            <div>
-              <NavStore />
-              <Store />
-            </div>
-          }
-        />
-        <Route exact path="/formEditProducts" element={<FormEditProducts />} />
-        <Route exact path="/formProducts" element={<FormProducts />} />
-        <Route path="/create" element={<FormProducts />} />
+        <Route element={<Protectlogin />}>
+          <Route
+            path="/exercises"
+            element={
+              <div>
+                <NavSec />
+                <Exercises />
+              </div>
+            }
+          />
+          <Route
+            path="/store"
+            element={
+              <div>
+                <NavStore />
+                <Store />
+              </div>
+            }
+          />
+          <Route
+            exact
+            path="/formEditProducts"
+            element={<FormEditProducts />}
+          />
+          <Route exact path="/formProducts" element={<FormProducts />} />
+          <Route path="/create" element={<FormProducts />} />
         </Route>
         <Route path="/*" element={<Error />} />
         <Route

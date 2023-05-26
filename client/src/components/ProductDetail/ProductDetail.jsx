@@ -68,6 +68,7 @@ const ProductDetails = () => {
     const updatedCart = [...actualCart, item];
     localStorage.setItem("carrito", JSON.stringify(updatedCart));
     setActualCart(updatedCart);
+    window.location.reload()
   };
 
   const addComment = async () => {
