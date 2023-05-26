@@ -99,12 +99,24 @@ const createOrUpdateUser = async (dni, name, email, address, phone) => {
   await user.save()
   return user
 };
-// createUser(37772,"321546","awdawd","joawd@aowdmaw.com","asdaw adw 123",341548)
+
+const updateUser = async (id, userType, address, phone) => {
+  const user = await User.findOne({
+    where: {id}
+  })
+  if(userType) user.userType = userType;
+  if(address) user.address = address;
+  if(phone) user.phone = phone;
+
+  await user.save()
+  return user
+}
 module.exports = {
   getUserByEmail,
   createOrUpdateUser,
   getUsers,
   deleteUserById,
   reactiveUserById,
-  getUserById
+  getUserById,
+  updateUser
 };

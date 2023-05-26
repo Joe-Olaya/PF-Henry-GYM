@@ -3,7 +3,8 @@ const {
   createOrUpdateUser,
   getUsers,
   deleteUserById,
-  reactiveUserById
+  reactiveUserById,
+  updateUser
 } = require("../controllers/usersControllers");
 
 const {sendMailRegistered} = require("./nodeMailerHandlers.js")
@@ -57,10 +58,22 @@ const reactiveUserHandler = async (req,res) => {
   }
 }
 
+const updateUserHandler = async (req,res) => {
+  const {id} = req.params
+  const {userType, address, phone} = req.body
+  try {
+    const results = await updateUser(id, userType, address, phone)
+    res.status(200).json(results)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
 module.exports = {
   loginUserHandler,
   registerUserHandler,
   getUsersHandler,
   deleteUserHandler,
-  reactiveUserHandler
+  reactiveUserHandler,
+  updateUserHandler,
 };
