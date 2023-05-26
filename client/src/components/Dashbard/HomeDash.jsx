@@ -6,7 +6,7 @@ import { getProducts, getUsers } from "../../redux/actions";
 import { RiCloseCircleFill, RiCheckFill, RiPencilFill } from "react-icons/ri";
 import FormEditProducts from "../FormProducts/FormEditProducts.jsx";
 import "./style.css";
-import axios from 'axios'
+import axios from "axios";
 
 function HomeDash({
   Toggle,
@@ -57,7 +57,8 @@ function HomeDash({
   };
 
   const deactivateProduct = (productId) => {
-    axios.delete(`/products/${productId}`)
+    axios
+      .delete(`/products/${productId}`)
       .then((response) => response.data)
       .then((data) => {
         const updatedProductIndex = updatedProducts.findIndex(
@@ -75,7 +76,8 @@ function HomeDash({
   };
 
   const activateProduct = (productId) => {
-    axios.post(`/products/${productId}`)
+    axios
+      .post(`/products/${productId}`)
       .then((response) => response.data)
       .then((data) => {
         const updatedProductIndex = updatedProducts.findIndex(
@@ -85,6 +87,44 @@ function HomeDash({
           const updatedProductsCopy = [...updatedProducts];
           updatedProductsCopy[updatedProductIndex].state = "Active";
           setUpdatedProducts(updatedProductsCopy);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const deactivateUser = (userId) => {
+    axios
+      .delete(`/users/${userId}`)
+      .then((response) => response.data)
+      .then((data) => {
+        const updatedUserIndex = users.users.findIndex(
+          (user) => user.id === userId
+        );
+        if (updatedUserIndex !== -1) {
+          const updatedUsersCopy = [...users.users];
+          updatedUsersCopy[updatedUserIndex].state = "Inactive";
+          dispatch(getUsers(updatedUsersCopy));
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const activateUser = (userId) => {
+    axios
+      .post(`/users/${userId}`)
+      .then((response) => response.data)
+      .then((data) => {
+        const updatedUserIndex = users.users.findIndex(
+          (user) => user.id === userId
+        );
+        if (updatedUserIndex !== -1) {
+          const updatedUsersCopy = [...users.users];
+          updatedUsersCopy[updatedUserIndex].state = "Active";
+          dispatch(getUsers(updatedUsersCopy));
         }
       })
       .catch((error) => {
@@ -140,8 +180,8 @@ function HomeDash({
 
           {UserSection && (
             <section>
-              <table className="table caption-top bg bg-white rounded">
-                <caption className="text-white fs-4">Users </caption>
+              <table className="table caption-top bg bg-white rounded table-users">
+                <caption className="text-white fs-10">Users </caption>
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -151,19 +191,36 @@ function HomeDash({
                     <th scope="col">Dni</th>
                     <th scope="col">Phone</th>
                     <th scope="col">State</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
 
                 <tbody className=" ">
-                  {users.users.map((i, key) => (
+                  {users.users.map((user, key) => (
                     <tr key={key}>
                       <th scope="row">{key + 1}</th>
-                      <td>{i.name}</td>
-                      <td>{i.email}</td>
-                      <td>{i.address}</td>
-                      <td>{i.dni}</td>
-                      <td>{i.phone}</td>
-                      <td>{i.state}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>{user.address}</td>
+                      <td>{user.dni}</td>
+                      <td>{user.phone}</td>
+                      <td>{user.state}</td>
+                      <td>
+                        <div className="d-flex">
+                          <button
+                            className="btn btn-danger me-1"
+                            onClick={() => deactivateUser(user.id)}
+                          >
+                            Inactive
+                          </button>
+                          <button
+                            className="btn btn-success me-1"
+                            onClick={() => activateUser(user.id)}
+                          >
+                            Active
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

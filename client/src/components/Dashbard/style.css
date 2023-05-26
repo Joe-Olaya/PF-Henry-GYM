@@ -43,6 +43,9 @@
    align-items: center;
    z-index: 9999;
 }
+.table-users {
+   font-size: 17px;
+ }
 
 .popup-inner {
    position: relative;
