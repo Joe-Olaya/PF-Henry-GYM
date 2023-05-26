@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import axios from "axios";
 import "./ProductDetail.css";
@@ -20,38 +19,53 @@ const ProductDetails = () => {
   const [isRatingEnabled, setIsRatingEnabled] = useState(true);
   const [userCommented, setUserCommented] = useState(false);
 
-  const product = useSelector(state =>
-    state.products.find(product => product.id === parseInt(productId))
+  const product = useSelector((state) =>
+    state.products.find((product) => product.id === parseInt(productId))
   );
 
+  const fetchComments = async (page) => {
+    try {
+      const response = await axios.get(
+        `/reviews?productId=${productId}&page=${page}`
+      );
+      setComments(response.data.comments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`/reviews?productId=${productId}`);
+        const response = await axios.get(
+          `/reviews?productId=${productId}&page=1`
+        );
         setComments(response.data.comments);
       } catch (error) {
         console.log(error);
       }
     };
 
-    const fetchPunctuation = async () => {
+    const fetchPunctuation = async (productId) => {
       try {
-        const response = await axios.get(`/punctuation?productId=${productId}`);
-        setRating(response.data.punctuation);
+        const response = await axios.get(`/punctuation/${productId}`);
+        const totalPunctuation = response.data.total;
+        setRating(totalPunctuation);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchComments();
-    fetchPunctuation();
+    fetchPunctuation(productId);
   }, [productId]);
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
-  const saveLocal = item => {
+  const saveLocal = (item) => {
     const updatedCart = [...actualCart, item];
     localStorage.setItem("carrito", JSON.stringify(updatedCart));
     setActualCart(updatedCart);
@@ -60,40 +74,22 @@ const ProductDetails = () => {
   const addComment = async () => {
     if (commentText.trim() !== "") {
       const newComment = commentText.trim();
-      const userData = JSON.parse(localStorage.getItem("userData")) || null;
-      const userId = userData.id;
-
-      if (!userId) {
-        userId = null;
-      }
-
-
-      // if (userRating >= 1 && userRating <= 5) {
-      //   rating = userRating;
-      // } else {
-      //   console.log("La puntuación debe estar entre 1 y 5");
-      //   return;
-      // }
+      let userData = JSON.parse(localStorage.getItem("userData")) || null;
+      let userId = userData ? userData.id : null;
 
       try {
-        const response = await axios.post("/reviews", {
+        await axios.post("/reviews", {
           productId,
           review: newComment,
-          userId: userId,
-          punctuation: userRating
+          userId,
+          punctuation: userRating,
         });
+        fetchComments(1);
         console.log(response.data);
-        setComments(prevComments => {
-          if (Array.isArray(prevComments)) {
-            return [...prevComments, newComment];
-          } else {
-            return [newComment];
-          }
-        });
         setCommentText("");
-        // setUserRating(0);
         setIsRatingEnabled(false);
         setUserCommented(true);
+        fetchComments(); // Update comments after adding a new comment
       } catch (error) {
         console.log(error);
       }
@@ -112,26 +108,14 @@ const ProductDetails = () => {
             <div className="row">
               <h2>{product.name}</h2>
               <div className="stars-container">
-                {userCommented ? (
-                  <StarRatings
-                    rating={userRating}
-                    starRatedColor="gold"
-                    numberOfStars={5}
-                    starDimension="20px"
-                    starSpacing="2px"
-                    isSelectable={false} 
-                  />
-                ) : (
-                  <StarRatings
-                    rating={userRating}
-                    starRatedColor="gold"
-                    numberOfStars={5}
-                    starDimension="20px"
-                    starSpacing="2px"
-                    isSelectable={isRatingEnabled}
-                    changeRating={setUserRating}
-                  />
-                )}
+                <StarRatings
+                  rating={rating}
+                  starRatedColor="gold"
+                  numberOfStars={5}
+                  starDimension="20px"
+                  starSpacing="2px"
+                  isSelectable={false}
+                />
               </div>
             </div>
             <p>{product.description}</p>
@@ -158,40 +142,21 @@ const ProductDetails = () => {
 
       <div className="reviews_producDetail">
         <div className="comments">
+          {/* Show existing comments */}
           {comments && comments.length !== 0 ? (
             comments.map((comment, index) => (
               <div key={index} className="comments">
                 <p>{comment}</p>
-                <div className="stars-container">
-                {userCommented ? (
-                  <StarRatings
-                    rating={userRating}
-                    starRatedColor="gold"
-                    numberOfStars={5}
-                    starDimension="20px"
-                    starSpacing="2px"
-                    isSelectable={false} 
-                  />
-                ) : (
-                  <StarRatings
-                    rating={userRating}
-                    starRatedColor="gold"
-                    numberOfStars={5}
-                    starDimension="20px"
-                    starSpacing="2px"
-                    isSelectable={isRatingEnabled}
-                    changeRating={setUserRating}
-                  />
-                )}
-              </div>
+                {/* ... */}
               </div>
             ))
           ) : (
-            <p className="commetsCount">No comments yet</p>
+            <p className="commentsCount">No comments yet</p>
           )}
-          
+
+          {/* Add a new comment */}
           <div className="stars-container">
-          <StarRatings
+            <StarRatings
               rating={userRating}
               starRatedColor="gold"
               numberOfStars={5}
@@ -203,7 +168,8 @@ const ProductDetails = () => {
           </div>
           <textarea
             placeholder="Add a comment"
-            onChange={e => setCommentText(e.target.value)}
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
           />
           <button className="button_comments" onClick={addComment}>
             Add Comment
