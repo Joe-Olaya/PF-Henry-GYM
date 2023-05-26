@@ -22,3 +22,9 @@
 .exerCard{
     margin-top: 2%;
 }
+.div_loader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

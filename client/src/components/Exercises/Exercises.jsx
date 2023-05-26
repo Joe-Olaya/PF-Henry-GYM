@@ -6,9 +6,17 @@ import Pagination from "../Pagination/Pagination.jsx";
 import SearchBar from "../SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters"
 import "./Exercises.css"
-
+import Loading from "../Loading/Loading";
 
 const Exercises = () => {
+
+    // LOADER
+  const [loading, setLoading] = useState(true);
+
+  const cambiarEstado = () => {
+    setTimeout(() =>
+      setLoading(false), 3000);
+  }
 
 const dispatch = useDispatch();
 useEffect(() => {
@@ -38,7 +46,13 @@ return (
 <Filters/>
 </section>
 <section className="exerCard">
-<CardsContainer start={indexOfFirstExercise} end={indexOfLastExercise} />
+{loading ? (
+  <div className="div_loader">
+    <Loading>{cambiarEstado()}</Loading>
+  </div>
+      ) : (
+        <CardsContainer start={indexOfFirstExercise} end={indexOfLastExercise} />
+        )}
 </section>
 <Pagination
         exercisesPerPage={exercisesPerPage}

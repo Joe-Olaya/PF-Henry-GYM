@@ -508,3 +508,11 @@ input:nth-of-type(5):checked~main#carousel {
     }
 
 }
+
+.div_loader{
+    /* margin-top: 0px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

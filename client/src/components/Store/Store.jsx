@@ -9,12 +9,21 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { images } from "../../constants";
 import Intro from "./videoIntro.jsx";
 import { FaStar, FaTag, FaArrowDown, FaArrowUp } from "react-icons/fa";
+import Loading from "../Loading/Loading";
 
 const Store = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+
+  // LOADER
+  const [loading, setLoading] = useState(true);
+
+  const cambiarEstado = () => {
+    setTimeout(() =>
+      setLoading(false), 3000);
+  }
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -265,6 +274,11 @@ const Store = () => {
             </div>
           </div>
           <div className="divStoreCont">
+          {loading ? (
+            <div className="div_loader">
+              <Loading>{cambiarEstado()}</Loading>
+            </div>
+      ) : (
             <section className="cardsProducts">
               <CardsContainerPds
                 products={filteredProducts}
@@ -273,6 +287,7 @@ const Store = () => {
                 selectedCategory={selectedCategory}
               />
             </section>
+                )}
           </div>
         </div>
       </div>
