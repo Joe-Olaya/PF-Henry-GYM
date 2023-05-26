@@ -46,7 +46,7 @@
 
 .popup-inner {
    position: relative;
-   background-color: #fff;
+   background-color: #00000000;
    padding: 20px;
    max-width: 600px;
    max-height: 80vh;
