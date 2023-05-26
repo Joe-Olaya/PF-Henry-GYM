@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts, getUsers } from "../../redux/actions";
 import { RiCloseCircleFill, RiCheckFill, RiPencilFill } from "react-icons/ri";
 import FormEditProducts from "../FormProducts/FormEditProducts.jsx";
+import FormEditUser from "../FormProducts/FormEditUser.jsx";
+
 import "./style.css";
 import axios from "axios";
 
@@ -25,6 +27,10 @@ function HomeDash({
   const [editPopupOpen, setEditPopupOpen] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProductName, setSelectedProductName] = useState("");
+  const [editUserPopupOpen, setEditUserPopupOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUserName, setSelectedUserName] = useState("");
+
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getUsers());
@@ -54,6 +60,12 @@ function HomeDash({
     setSelectedProductId(productId);
     setSelectedProductName(selectedProduct.name);
     setEditPopupOpen(true);
+  };
+
+  const openEditUserPopup = (userId, name) => {
+    setSelectedUserId(userId);
+    setSelectedUserName(name)
+    setEditUserPopupOpen(true);
   };
 
   const deactivateProduct = (productId) => {
@@ -223,6 +235,7 @@ function HomeDash({
                           </button>
                           <button
                             className="btn btn-primary"
+                            onClick={() => openEditUserPopup(user.id)}
                           >
                             <RiPencilFill />
                           </button>
@@ -300,6 +313,20 @@ function HomeDash({
           )}
         </div>
       </div>
+
+      {editUserPopupOpen && (
+        <div className="popup" onClick={() => setEditUserPopupOpen(false)}>
+          <div className="popup-inner" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-popup"
+              onClick={() => setEditUserPopupOpen(false)}
+            >
+              X
+            </button>
+            <FormEditUser userId={selectedUserId} username={selectedUserName} />
+          </div>
+        </div>
+      )}
 
       {editPopupOpen && (
         <div className="popup" onClick={() => setEditPopupOpen(false)}>

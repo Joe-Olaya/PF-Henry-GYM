@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
 const CardProducts = (props) => {
-  const rating = 4;
   
   return (
     <div className="cardPrd">
@@ -11,7 +10,7 @@ const CardProducts = (props) => {
         <img className="productImg" src={props.image} />
         <div className="starsContainerPreview">
           <StarRatings
-            rating={rating}
+            rating={props.average_score}
             starRatedColor="gold"
             numberOfStars={5}
             starDimension="15px"
