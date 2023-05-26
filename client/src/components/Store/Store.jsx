@@ -40,6 +40,7 @@ const Store = () => {
         name: searchQuery,
         orderBy,
         order,
+        state:"Active",
         offer: selectedFilters.includes("Offer"),
       };
 

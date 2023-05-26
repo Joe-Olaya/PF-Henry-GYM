@@ -145,7 +145,6 @@ const ProductDetails = () => {
           {comments && comments.length !== 0 ? (
             comments.map((comment, index) => (
               <div key={index} className="comment">
-                <p>{comment.review}</p>
                 <div className="stars-container">
                   <StarRatings
                     rating={parseFloat(comment.punctuation)}
@@ -156,6 +155,7 @@ const ProductDetails = () => {
                     isSelectable={false}
                   />
                 </div>
+                <p>{comment.review}</p>
               </div>
             ))
           ) : (
