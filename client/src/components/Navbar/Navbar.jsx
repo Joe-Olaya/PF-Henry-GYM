@@ -14,8 +14,6 @@ const getUserDB = async (user) => {
     let userDB = await axios.post("/login", { email: user.email });
     let userData = userDB.data[0];
     localStorage.setItem("userData", JSON.stringify(userData));
-    console.log(userData);
-    
     if (!userData.name) {
       navigate("/register");
     }
@@ -25,11 +23,7 @@ const getUserDB = async (user) => {
 const Navbar = () => {
   const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
-  // let userData = JSON.parse(localStorage.getItem("userData")) || null;
-  // let userType = userData ? userData.userType : "Client"
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData")) || {}
-  );
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
@@ -50,11 +44,11 @@ getUserDB(user)
         {/* <li className="p__opensans">
           <a href="/formProducts">Supplies</a>
         </li> */}
-        {( userType == "Superadmin") && (
+        {/* {( userType == "Superadmin") && (
           <li className="p__opensans">
             <a href="/dashboard">Dashboard</a>
           </li>
-        )}
+        )} */}
         {isAuthenticated && (
           <li className="p__opensans">
             <a href="/home">Home</a>
