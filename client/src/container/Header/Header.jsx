@@ -2,11 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { images } from "../../constants";
 import "./Header.css";
+import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
   const { loginWithRedirect } = useAuth0();
+  const [loading, setLoading] = useState(true);
 
+      const cambiarEstado = () => {
+        setTimeout(() =>
+          setLoading(false), 2000);
+      }
   return (
     <div
       className="app__header app__wrapper flex__center section__padding"
@@ -27,7 +34,13 @@ const Header = () => {
       </div>
 
       <div className="app__wrapper_img">
+        {loading ? (
+          <div className="div_loader">
+          <Loading>{cambiarEstado()}</Loading>
+          </div>
+        ) : (
         <img src={images.imgintro} alt="header_img" />
+        )}
       </div>
     </div>
   );

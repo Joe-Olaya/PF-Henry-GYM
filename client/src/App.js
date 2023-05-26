@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Dashboard from "./components/Dashbard/Dashboard";
 import axios from 'axios';
-axios.defaults.baseURL = "http://localhost:3001/"
+axios.defaults.baseURL = "https://pf-henry-gym-production-135f.up.railway.app"
 
 const App = () => {
  

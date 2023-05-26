@@ -1,13 +1,27 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
 import images from "../../constants/images.js";
-
+import Loading from "../../components/Loading/Loading";
+import { useState } from "react";
 
 export const Home = () => {
+
+    // LOADER
+    const [loading, setLoading] = useState(true);
+
+    const cambiarEstado = () => {
+      setTimeout(() =>
+        setLoading(false), 3000);
+    }
+
   return (
     <div>
-     
       <div className="sectionExercises">
+      {loading ? (
+        <div className="div_loader">
+        <Loading>{cambiarEstado()}</Loading>
+        </div>
+      ) : (
         <div className="backExSection">
           <h1 className="h1Title">Supplies & Training</h1>
           <h3 className="h3Text">
@@ -48,6 +62,7 @@ export const Home = () => {
             </Link>
           </div>
         </div>
+        )}
       </div>
 
       <div className="sectionStore">
