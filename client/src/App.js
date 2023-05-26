@@ -14,6 +14,7 @@ import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
+import Protectlogin from "./components/ProtectRoutes/Protectlogin";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Dashboard from "./components/Dashbard/Dashboard";
@@ -22,6 +23,8 @@ axios.defaults.baseURL = "http://localhost:3001/"
 
 const App = () => {
 
+  const location = useLocation();
+ 
   return (
     <div>
       <Routes>
@@ -48,6 +51,7 @@ const App = () => {
             </div>
           }
         />
+        <Route element = {<Protectlogin/>}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/exercises"
@@ -58,10 +62,8 @@ const App = () => {
             </div>
           }
         />
-        <Route exact path="/formProducts" element={<FormProducts />} />
-        <Route path="/*" element={<Error />} />
-        <Route path="/create" element={<FormProducts />} />
-        <Route path="/login" element={<Login />} />
+
+
         <Route
           path="/store"
           element={
@@ -71,6 +73,10 @@ const App = () => {
             </div>
           }
         />
+        <Route exact path="/formProducts" element={<FormProducts />} />
+        <Route path="/create" element={<FormProducts />} />
+        </Route>
+        <Route path="/*" element={<Error />} />
         <Route
           exact
           path="/products/:productId"

@@ -24,7 +24,13 @@ const Navbar = () => {
   const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  getUserDB(user);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    logout({ returnTo: window.location.origin });
+  };
+
+
+getUserDB(user)
 
   return (
     <nav className="app__navbar">
@@ -53,15 +59,10 @@ const Navbar = () => {
         <li className="p__opensans">
           <a href="#contact">Contact</a>
         </li>
-        {isAuthenticated ? (
-          <button
-            className="p__opensans LogButton"
-            onClick={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
-            }
-          >
-            Log Out
-          </button>
+      {isAuthenticated ? (
+        <button className="p__opensans" onClick={handleLogout}>
+          Log Out
+        </button>
         ) : (
           <div className="app__navbar-login">
             <button

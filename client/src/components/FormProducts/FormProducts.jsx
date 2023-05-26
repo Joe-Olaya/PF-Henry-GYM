@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../FormProducts/FormProducts.css";
+import { Link } from "react-router-dom";
 
 
 const FormProducts = () => {
@@ -11,6 +12,7 @@ const FormProducts = () => {
     price: 0,
     image: "",
     stock: 0,
+    category:[],
   });
   const [showDescription, setShowDescription] = useState(true);
 

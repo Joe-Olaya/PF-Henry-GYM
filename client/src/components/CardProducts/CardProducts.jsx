@@ -47,6 +47,8 @@ const CardProducts = (props) => {
             <div></div>
           </div>
           <div className="descriptionPrd">
+          <p>{props.price}</p>
+          
             {/* <h1> 
 
             {props.description}
