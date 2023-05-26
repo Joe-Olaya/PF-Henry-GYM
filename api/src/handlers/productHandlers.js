@@ -3,7 +3,8 @@ const {
   getProducts,
   deleteProduct,
   reactiveProduct,
-  updateProduct
+  updateProduct,
+  getProductById
 } = require("../controllers/productsControllers");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
@@ -74,6 +75,7 @@ const getProductsHandler = async (req, res) => {
 
 const deleteProductHandler = async (req, res) => {
   const { id } = req.params;
+  console.log('estoy en el handler', id)
   try {
     const deleteProducts = await deleteProduct(id);
     res.status(200).send("product deleted succesfully 👌");
@@ -92,10 +94,22 @@ const reactiveProductHandler = async (req, res) => {
   }
 };
 
-const updateProductsHandler = async (req,res) => {
-  const { productId, price, stock, description} = req.body
+const getProductsByIdHandler = async (req,res) =>{
+  const { id } = req.params
   try {
-    const result = await updateProduct(productId, price, stock, description)
+    const result = await getProductById(id)
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+const updateProductsHandler = async (req,res) => {
+  const { id } = req.params
+  const { price, stock, description} = req.body
+  try {
+    console.log('entre al handler')
+    const result = await updateProduct(id, +price, +stock, description)
     res.status(200).json("Product updated succesfully")
   } catch (error) {
     res.status(400).json(error)
@@ -107,5 +121,6 @@ module.exports = {
   getProductsHandler,
   deleteProductHandler,
   reactiveProductHandler,
-  updateProductsHandler
+  updateProductsHandler,
+  getProductsByIdHandler
 };

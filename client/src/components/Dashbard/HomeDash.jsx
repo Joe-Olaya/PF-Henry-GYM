@@ -6,6 +6,7 @@ import { getProducts, getUsers } from "../../redux/actions";
 import { RiCloseCircleFill, RiCheckFill, RiPencilFill } from "react-icons/ri";
 import FormEditProducts from "../FormProducts/FormEditProducts.jsx";
 import "./style.css";
+import axios from 'axios'
 
 function HomeDash({
   Toggle,
@@ -57,10 +58,8 @@ function HomeDash({
   };
 
   const deactivateProduct = (productId) => {
-    fetch(`/products/${productId}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
+    axios.delete(`/products/${productId}`)
+      .then((response) => response.data)
       .then((data) => {
         const updatedProductIndex = updatedProducts.findIndex(
           (product) => product.id === productId
@@ -77,10 +76,8 @@ function HomeDash({
   };
 
   const activateProduct = (productId) => {
-    fetch(`/products/${productId}`, {
-      method: "POST",
-    })
-      .then((response) => response.json())
+    axios.post(`/products/${productId}`)
+      .then((response) => response.data)
       .then((data) => {
         const updatedProductIndex = updatedProducts.findIndex(
           (product) => product.id === productId
@@ -122,7 +119,7 @@ function HomeDash({
             </div>
           </div>
 
-          <div className="col-md-3 p-1">
+          {/* <div className="col-md-3 p-1">
             <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
               <div>
                 <h3 className="fs-2">250</h3>
@@ -140,7 +137,7 @@ function HomeDash({
                 <i className="bi bi-universal-access p-3 fs-1"></i>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {UserSection && (
             <section>

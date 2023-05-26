@@ -61,7 +61,10 @@ const getProducts = async (
   }
 };
 
+
+
 const deleteProduct = async (id) => {
+  console.log('estoy en el controller', id)
   const inactiveProduct = await Product.update(
     {
       state: "Inactive",
@@ -83,6 +86,7 @@ const reactiveProduct = async (id) => {
   );
 };
 const updateProduct = async (productId, price, stock, description) => {
+  console.log('entre al controller')
   const prodUpdated = await Product.update({
     price,
     stock,
@@ -110,5 +114,5 @@ module.exports = {
   reactiveProduct,
   getProducts,
   updatePunctuationProduct,
-  updateProduct
+  updateProduct,
 };

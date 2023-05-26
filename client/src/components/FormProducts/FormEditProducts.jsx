@@ -14,7 +14,7 @@ const FormEditProducts = ({ productId, name }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/products/${productId}`);
+        const response = await axios.get(`/products/${productId}`);
         const { name, price, stock, description } = response.data;
         setInput({ name, price, stock, description });
       } catch (error) {
@@ -35,7 +35,7 @@ const FormEditProducts = ({ productId, name }) => {
 
     try {
       const putRequest = await axios.put(
-        `http://localhost:3001/products/${productId}`,
+        `/products/${productId}`,
         putData
       );
       console.log(putRequest.data);

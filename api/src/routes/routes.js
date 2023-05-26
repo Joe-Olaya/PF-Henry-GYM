@@ -22,7 +22,8 @@ const {
   getProductsHandler,
   deleteProductHandler,
   reactiveProductHandler,
-  updateProductsHandler
+  updateProductsHandler,
+  getProductsByIdHandler
 } = require("../handlers/productHandlers");
 const {
   createSaleHandler,
@@ -58,8 +59,9 @@ router.post("/login", loginUserHandler);
 router.post("/register", registerUserHandler);
 // PRODUCTOS
 router.get("/products", getProductsHandler);
+router.get("/products/:id", getProductsByIdHandler);
 router.post("/products", createProductsHandler);
-router.put("/products", updateProductsHandler);
+router.put("/products/:id", updateProductsHandler);
 router.delete("/products/:id", deleteProductHandler);
 router.post("/products/:id", reactiveProductHandler);
 // CATEGORIAS
