@@ -2,7 +2,7 @@ const {createReview, getReviews, getAllReviews} = require('../controllers/review
 const { updatePunctuationProduct } = require('../controllers/productsControllers')
 
 const createReviewsHandler = async (req,res) =>{
-    const {userId, productId, punctuation = null, review = "No hay comentarios"} = req.body;
+    const {userId, productId, punctuation = 0, review = "No hay comentarios"} = req.body;
     try {
         if(!userId){
             res.status(400).send('You must be logged in to leave a comment')
