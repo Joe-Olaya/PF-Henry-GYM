@@ -40,7 +40,8 @@ const createProductsHandler = async (req, res) => {
       stock,
       urlImage,
       categoryproductId,
-      offer = false
+      offer = false,
+      average_score = 0
     );
     res.status(200).send("Product created successfully");
   } catch (error) {

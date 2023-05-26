@@ -16,6 +16,8 @@ const {
   getUsersHandler,
   deleteUserHandler,
   reactiveUserHandler,
+  updateUserHandler,
+  getUsersByIdHandler
 } = require("../handlers/usersHandlers");
 const {
   createProductsHandler,
@@ -53,10 +55,12 @@ router.get("/exercises", getExercisesHandler);
 router.get("/exercises/:id", getExecercisesByIdHandler);
 // USUARIOS
 router.get("/users", getUsersHandler);
+router.get("/users/:id", getUsersByIdHandler);
 router.delete("/users/:id", deleteUserHandler);
 router.post("/users/:id", reactiveUserHandler);
 router.post("/login", loginUserHandler);
 router.post("/register", registerUserHandler);
+router.put("/users/:id", updateUserHandler);
 // PRODUCTOS
 router.get("/products", getProductsHandler);
 router.get("/products/:id", getProductsByIdHandler);
