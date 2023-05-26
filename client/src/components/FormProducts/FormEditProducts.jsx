@@ -41,11 +41,11 @@ const FormEditProducts = ({ productId, name }) => {
         putData
       );
       alert("Product updated successfully");
+      window.location.href = 'https://suppliesandtraining.vercel.app/dashboard';
     } catch (error) {
       console.log(error);
       alert("Failed to update product");
     }
-    window.location.href = 'https://suppliesandtraining.vercel.app/dashboard';
     // navigate("/dashboard")
   };
 
