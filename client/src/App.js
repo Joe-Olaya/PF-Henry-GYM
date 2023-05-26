@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Home } from "./views/Home/Home";
 import { Error } from "./views/Error/Error";
 import { Services, Header, Footer } from "./container";
@@ -23,10 +23,18 @@ import axios from 'axios';
 axios.defaults.baseURL = "http://localhost:3001"
 
 const App = () => {
- 
+ const [userType, setUserType] = useState('')
+  const user = JSON.parse(localStorage.getItem("userData"))
+  useEffect(() => {
+    setUserType(user.userType)
+  }, [user])
+
   return (
     <div>
       <Routes>
+      {( userType == "Superadmin") && (
+           <Route path="/dashboard" element={<Dashboard />} /> 
+        )}
         <Route
           exact
           path="/"
@@ -51,7 +59,7 @@ const App = () => {
           }
         />
         <Route element = {<Protectlogin/>}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        
         <Route
           path="/exercises"
           element={
