@@ -24,7 +24,7 @@ const registerUserHandler = async (req, res) => {
   const { dni, name, email, address, phone } = req.body;
   try {
     const results = await createOrUpdateUser(dni, name, email, address, phone);
-    // sendMailRegistered(email)
+    sendMailRegistered(email)
     res.status(200).json( results );
   } catch (error) {
     res.status(400).json({ error: error });

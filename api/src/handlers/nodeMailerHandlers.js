@@ -64,7 +64,7 @@ const sendMailRegistered = async (user_email) => {
     from: "suppliesandtraining@gmail.com",
     to: [user_email],
     subject: "Successfully registered",
-    html: '<div><h1>Welcome to our website!</h1><h3>Click on this <a href="https://pf-henry-gym.vercel.app/">link</a> for see all that we have prepared for you</h3></div>',
+    html: '<div><h1>Welcome to our website!</h1><h3>Click on this <a href="https://suppliesandtraining.vercel.app/home">link</a> for see all that we have prepared for you</h3></div>',
   };
   try {
     const transport = nodemailer.createTransport(config);
