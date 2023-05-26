@@ -8,7 +8,9 @@ import {
   ORDER_BY_NAME,
   POST_PRODUCT_CREATE,
   ORDER_PRODUCTS,
-  GET_NAME_PRODUCTS
+  GET_NAME_PRODUCTS,
+  DISABLE_USER,
+  REACTIVE_USER
 } from "./action_types";
 import axios from "axios";
 
@@ -68,6 +70,28 @@ export function postRegister(payload){
       }
   }
 };
+
+export function deleteUser(id){
+  return async function(dispatch){
+      const userDelete = await axios.delete(`${URL}/users/${id}`)
+     
+      return dispatch({
+        type: DISABLE_USER
+      });
+  };
+};
+
+
+export function reactiveUser(id){
+  return async function(dispatch){
+      const userReactive = await axios.post(`${URL}/users/${id}`)
+    
+      return dispatch({
+        type: REACTIVE_USER
+      });
+  };
+};
+
 
 export const filterByMuscle = (muscle) => {
   return {

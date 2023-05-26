@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import { Link } from 'react-router-dom';
+import { Bar } from 'react-chartjs-2';
 
 function Sidebar ({changeSection})  {
   return (

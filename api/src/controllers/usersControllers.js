@@ -24,6 +24,7 @@ const cleanUserData = (arr) => {
   let data = [];
     arr.map((el) => {
       data.push({
+        id: el.id,
         dni: el.dni,
         name: el.name,
         email: el.email,
@@ -32,7 +33,8 @@ const cleanUserData = (arr) => {
         state: el.state
       });
     });
-  return data;
+    let sorted = data.sort((a,b)=>a.id - b.id)
+  return sorted;
 };
 
 const getUserByDNI = async (dni, password) => {

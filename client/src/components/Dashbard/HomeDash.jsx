@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Nav from './Nav'
 import {useSelector,useDispatch} from 'react-redux'
-import { getProducts,getUsers,  } from '../../redux/actions';
+import { deleteUser, getProducts,getUsers, reactiveUser,  } from '../../redux/actions';
+
 
 function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSection, PostProductSection}) {
    const dispatch=useDispatch();
@@ -15,9 +16,22 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
    useEffect(()=>{
     dispatch(getUsers())
    },[])
-
-
    console.log(products)
+
+   const userActivate = (e)=>{
+    e.preventDefault() 
+    dispatch(deleteUser(e.target.value))
+    dispatch(getUsers())
+    console.log(e.target.value)
+   }
+
+   const reactiveUsers = (e)=>{
+    e.preventDefault() 
+    dispatch(reactiveUser(e.target.value))
+    dispatch(getUsers())
+    console.log(e.target.value)
+   }
+
   return (
     <div className='px-1'>
       <Nav Toggle={Toggle}/>
@@ -97,6 +111,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
           <td>{i.dni}</td>
           <td>{i.phone}</td>
           <td>{i.state}</td>
+          <button className='bg-[green] text-green-600' onClick={reactiveUsers} value={key+1}>on</button><button className=' text-red-700' onClick={userActivate} value={key+1}>off</button>
         </tr>
        )}
        
@@ -105,6 +120,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
       </table>
       </section>
     }
+    <button onClick={()=>console.log(users)}> Ver usuarios </button>
 
 
     {ProductsSection&&

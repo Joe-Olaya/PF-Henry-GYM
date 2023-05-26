@@ -9,7 +9,9 @@ import {
   GET_NAME_EXERCISES,
   POST_PRODUCT_CREATE,
   ORDER_PRODUCTS,
-  GET_NAME_PRODUCTS
+  GET_NAME_PRODUCTS,
+  DISABLE_USER,
+  REACTIVE_USER
 } from "./action_types";
 
 const initialState = {
@@ -55,7 +57,17 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
         };
+
+        case DISABLE_USER:
+         return{
+          ...state,
+         };
         
+      case REACTIVE_USER:
+        return {
+          ...state,
+        };
+
     case FILTER_BY_MUSCLE: 
     const muscles = state.exercisesOrigin.filter(el => el.muscle === action.payload)
       return{
