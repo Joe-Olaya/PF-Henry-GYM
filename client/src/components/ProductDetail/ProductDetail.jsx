@@ -28,20 +28,19 @@ const ProductDetails = () => {
       const response = await axios.get(
         `/reviews?productId=${productId}&page=${page}`
       );
-      setComments(response.data.comments);
+      setComments(response.data.reviews);
     } catch (error) {
       console.log(error);
     }
   };
 
-  
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
           `/reviews?productId=${productId}&page=1`
         );
-        setComments(response.data.comments);
+        setComments(response.data.reviews);
       } catch (error) {
         console.log(error);
       }
@@ -146,8 +145,8 @@ const ProductDetails = () => {
           {comments && comments.length !== 0 ? (
             comments.map((comment, index) => (
               <div key={index} className="comments">
-                <p>{comment}</p>
-                {/* ... */}
+                <p>{comment.review}</p>
+                {/* Render other properties of the comment object */}
               </div>
             ))
           ) : (
