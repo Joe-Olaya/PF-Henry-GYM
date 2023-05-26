@@ -60,7 +60,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
 
          
 
-         <div className='col-md-3 p-1'>  
+         {/* <div className='col-md-3 p-1'>  
             <div className='p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded'>
             <div>                               
                 <h3 className='fs-2'>250</h3>                                
@@ -80,7 +80,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
                   <i className='bi bi-universal-access p-3 fs-1'></i>                          
               </div>  
             </div>  
-         </div>
+         </div> */}
          
         
       
@@ -91,7 +91,7 @@ function HomeDash({Toggle,GeneralSection,ProductsSection,UserSection,SalesSectio
       <caption className='text-white fs-4'>Users </caption>
       <thead>
         <tr>  
-          <th scope="col">#</th>
+          <th scope="col">id</th>
           <th scope="col">Name </th>
           <th scope="col">Email</th>
           <th scope="col">Address</th>
