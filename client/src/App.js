@@ -14,6 +14,7 @@ import NavStore from "../src/components/Store/NavStore";
 import Login from "./components/Login/Login";
 import Store from "./components/Store/Store";
 import FormProducts from "./components/FormProducts/FormProducts";
+import FormEditProducts from "./components/FormProducts/FormEditProducts";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Dashboard from "./components/Dashbard/Dashboard";
@@ -58,6 +59,7 @@ const App = () => {
             </div>
           }
         />
+         <Route exact path="/formEditProducts" element={<FormEditProducts />} />
         <Route exact path="/formProducts" element={<FormProducts />} />
         <Route path="/*" element={<Error />} />
         <Route path="/create" element={<FormProducts />} />

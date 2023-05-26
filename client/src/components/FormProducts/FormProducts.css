@@ -25,6 +25,10 @@
 .formContainerP {
     position: relative;
 }
+.formContainerE {
+    position: relative;
+    background-color: transparent !important;
+}
 
 .formP {
     display: flex;

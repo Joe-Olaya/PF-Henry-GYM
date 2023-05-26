@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, getUsers } from "../../redux/actions";
 import { RiCloseCircleFill, RiCheckFill, RiPencilFill } from "react-icons/ri";
-import FormProducts from "../FormProducts/FormProducts.jsx";
+import FormEditProducts from "../FormProducts/FormEditProducts.jsx";
 import "./style.css";
 
 function HomeDash({
@@ -21,6 +21,9 @@ function HomeDash({
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
   const [activeProductIds, setActiveProductIds] = useState([]);
   const [updatedProducts, setUpdatedProducts] = useState([]);
+  const [editPopupOpen, setEditPopupOpen] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProductName, setSelectedProductName] = useState("");
 
   useEffect(() => {
     dispatch(getProducts());
@@ -42,6 +45,15 @@ function HomeDash({
 
   const closePopup = () => {
     setPopupOpen(false);
+  };
+
+  const openEditPopup = (productId) => {
+    const selectedProduct = updatedProducts.find(
+      (product) => product.id === productId
+    );
+    setSelectedProductId(productId);
+    setSelectedProductName(selectedProduct.name);
+    setEditPopupOpen(true);
   };
 
   const deactivateProduct = (productId) => {
@@ -212,7 +224,10 @@ function HomeDash({
                           >
                             <RiCheckFill />
                           </button>
-                          <button className="btn btn-primary">
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => openEditPopup(i.id)}
+                          >
                             <RiPencilFill />
                           </button>
                         </div>
@@ -225,6 +240,23 @@ function HomeDash({
           )}
         </div>
       </div>
+
+      {editPopupOpen && (
+        <div className="popup" onClick={() => setEditPopupOpen(false)}>
+          <div className="popup-inner" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-popup"
+              onClick={() => setEditPopupOpen(false)}
+            >
+              X
+            </button>
+            <FormEditProducts
+              productId={selectedProductId}
+              name={selectedProductName}
+            />
+          </div>
+        </div>
+      )}
 
       {popupOpen && (
         <div className="popup" onClick={closePopup}>
