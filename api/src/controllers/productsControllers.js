@@ -34,9 +34,9 @@ const getProducts = async (
   let filterOps = {
     [Op.and]: [
       {
-        name: { [Op.like]: `${name}%` },
+        name: { [Op.iLike]: `${name}%` },
       },
-      offer ? { offer: true } : {},
+      offer ? { offer } : {},
       categoryproductId ? {categoryproductId} : {},
     ],
   };
