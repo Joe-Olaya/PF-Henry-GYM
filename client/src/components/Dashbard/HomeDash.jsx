@@ -26,10 +26,9 @@ function HomeDash({
     dispatch(getProducts());
     dispatch(getUsers());
   }, []);
-
   useEffect(() => {
     const activeProducts = products.filter(
-      (product) => product.state === "activo"
+      (product) => product.state === "Active"
     );
     const activeProductIds = activeProducts.map((product) => product.id);
     setActiveProductIds(activeProductIds);

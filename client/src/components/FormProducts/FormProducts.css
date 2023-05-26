@@ -115,6 +115,11 @@
     position: relative;
 }
 
+.formP select {
+    color: #FFA500;
+    font-size: 0.8rem;
+}
+
 .formP label .input {
     width: 100%;
     padding: 10px 10px 20px 10px;
