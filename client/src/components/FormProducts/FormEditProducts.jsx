@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../FormProducts/FormProducts.css";
 
+// let navigate = useNavigate();
 const FormEditProducts = ({ productId, name }) => {
   const [input, setInput] = useState({
     name: name || "",
@@ -38,12 +40,13 @@ const FormEditProducts = ({ productId, name }) => {
         `/products/${productId}`,
         putData
       );
-      console.log(putRequest.data);
       alert("Product updated successfully");
     } catch (error) {
       console.log(error);
       alert("Failed to update product");
     }
+    window.location.href = 'https://suppliesandtraining.vercel.app/dashboard';
+    // navigate("/dashboard")
   };
 
   const handleDescriptionClick = () => {
